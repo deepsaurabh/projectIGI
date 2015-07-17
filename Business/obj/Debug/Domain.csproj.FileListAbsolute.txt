@@ -1,0 +1,10 @@
+C:\R&D\Random\Business\bin\Debug\Business.dll
+C:\R&D\Random\Business\bin\Debug\Business.pdb
+C:\R&D\Random\Business\obj\Debug\Domain.csprojResolveAssemblyReference.cache
+C:\R&D\Random\Business\obj\Debug\Business.dll
+C:\R&D\Random\Business\obj\Debug\Business.pdb
+C:\RND\Random\Business\bin\Debug\Business.dll
+C:\RND\Random\Business\bin\Debug\Business.pdb
+C:\RND\Random\Business\obj\Debug\Domain.csprojResolveAssemblyReference.cache
+C:\RND\Random\Business\obj\Debug\Business.dll
+C:\RND\Random\Business\obj\Debug\Business.pdb

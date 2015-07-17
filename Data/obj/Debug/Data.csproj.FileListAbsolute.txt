@@ -1,0 +1,10 @@
+C:\R&D\Random\Data\bin\Debug\Data.dll
+C:\R&D\Random\Data\bin\Debug\Data.pdb
+C:\R&D\Random\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+C:\R&D\Random\Data\obj\Debug\Data.dll
+C:\R&D\Random\Data\obj\Debug\Data.pdb
+C:\RND\Random\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+C:\RND\Random\Data\obj\Debug\Data.dll
+C:\RND\Random\Data\obj\Debug\Data.pdb
+C:\RND\Random\Data\bin\Debug\Data.dll
+C:\RND\Random\Data\bin\Debug\Data.pdb
