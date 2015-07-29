@@ -74,15 +74,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthContext.cs" />
-    <Compile Include="Migrations\201507160742105_test.cs" />
-    <Compile Include="Migrations\201507160742105_test.Designer.cs">
-      <DependentUpon>201507160742105_test.cs</DependentUpon>
+    <Compile Include="Entity\EnterpriseEntity.cs" />
+    <Compile Include="Migrations\201507291712196_InitialMigration.cs" />
+    <Compile Include="Migrations\201507291712196_InitialMigration.Designer.cs">
+      <DependentUpon>201507291712196_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestClass.cs" />
-    <Compile Include="TestDbInitializationFactory.cs" />
-    <Compile Include="UserContext.cs" />
+    <Compile Include="EnterpriseDbInitialization.cs" />
+    <Compile Include="DataContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -95,8 +95,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201507160742105_test.resx">
-      <DependentUpon>201507160742105_test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201507291712196_InitialMigration.resx">
+      <DependentUpon>201507291712196_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
