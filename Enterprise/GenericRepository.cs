@@ -11,11 +11,11 @@ namespace Enterprise
    public class GenericRepository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class
     {
        //Set the variables here
-        internal UserContext Context;
+        internal DataContext Context;
         internal DbSet<TEntity> DbSet;
 
        //Prepare the environment here
-        public GenericRepository(UserContext context)
+        public GenericRepository(DataContext context)
         {
             this.Context = context;
             this.DbSet = context.Set<TEntity>();

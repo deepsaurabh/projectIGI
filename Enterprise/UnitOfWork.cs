@@ -1,5 +1,7 @@
-﻿using Data.Entity;
+﻿using Core;
+using Data.Entity;
 using Entity;
+using Entity.Entity;
 using Interfaces.IBusiness;
 using System;
 
@@ -13,26 +15,27 @@ namespace Enterprise
     public class UnitOfWork : IUnitOfWork
     {
         //Prepare the variables here
-        internal readonly UserContext UserContext = new UserContext("Random");
+        internal readonly DataContext UserContext = new DataContext(new ConnectionRetriever().GetConnectionStringName());
+
         private bool _disposed;
 
         #region "RepositoryLocalVariables"
         
         //prepare the repositoy label variables here
-        private IRepository<TestClass, int> _testokenRepository;
+        private IRepository<User, int> _testokenRepository;
   
         #endregion
 
         #region "RepositoryProperties"
 
         //Prepare the property for user profile repository
-        public IRepository<TestClass, int> UserProfileRepository
+        public IRepository<User, int> UserProfileRepository
         {
             get 
             {
                 if (this._testokenRepository == null)
                 {
-                    this._testokenRepository = new GenericRepository<TestClass, int>(UserContext);
+                    this._testokenRepository = new GenericRepository<User, int>(UserContext);
                 }
                 return _testokenRepository;
             }
