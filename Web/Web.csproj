@@ -42,15 +42,55 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\controller\" />
     <Folder Include="app\directive\" />
     <Folder Include="app\lib\" />
     <Folder Include="app\partials\" />
     <Folder Include="app\service\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\app.js" />
+    <Content Include="app\controller\Controller.js" />
+    <Content Include="Contact.html" />
+    <Content Include="css\animate.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\jquery.fancybox.css" />
+    <Content Include="css\magic-bootstrap.css" />
+    <Content Include="css\owl.carousel.min.css" />
+    <Content Include="css\owl.theme.default.min.css" />
+    <Content Include="css\school-icons.css" />
+    <Content Include="css\style.css" />
+    <Content Include="css\superslides.css" />
     <Content Include="index.html" />
+    <Content Include="js\bootstrap-progressbar.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\html5shiv.js" />
+    <Content Include="js\imagesloaded.pkgd.min.js" />
+    <Content Include="js\jquery-1.11.1.min.js" />
+    <Content Include="js\jquery.animate-enhanced.min.js" />
+    <Content Include="js\jquery.easing.1.3.js" />
+    <Content Include="js\jquery.fancybox.js" />
+    <Content Include="js\jquery.parallax-1.1.3.js" />
+    <Content Include="js\jquery.superslides.js" />
+    <Content Include="js\magic.js" />
+    <Content Include="js\masonry.pkgd.min.js" />
+    <Content Include="js\modernizr.custom.97074.js" />
+    <Content Include="js\owl.carousel.min.js" />
+    <Content Include="js\respond.min.js" />
+    <Content Include="js\retina-1.1.0.min.js" />
+    <Content Include="js\scrollReveal.js" />
+    <Content Include="js\settings.js" />
     <Content Include="login.html" />
+    <Content Include="js\angular-animate.min.js" />
+    <Content Include="js\angular-loader.min.js" />
+    <Content Include="js\angular-route.min.js" />
+    <Content Include="js\angular-touch.min.js" />
+    <Content Include="js\angular.min.js" />
+    <Content Include="Partials\AboutUs.html" />
+    <Content Include="Partials\Contact.html" />
+    <Content Include="Partials\home.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
