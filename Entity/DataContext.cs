@@ -1,16 +1,7 @@
 ﻿using Core;
-using Entity;
-using Entity.Entity;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Core.Objects;
-using System.Data.Entity.Core.Objects.DataClasses;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Reflection;
+using Entity.POCO;
 
-namespace Data.Entity
+namespace Entity
 {
     /// <summary>
     /// Context class. This work as repository for all the classes

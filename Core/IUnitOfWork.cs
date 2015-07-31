@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Interfaces.IBusiness
+namespace Core
 {
     /// <summary>
     /// Unit of work interface

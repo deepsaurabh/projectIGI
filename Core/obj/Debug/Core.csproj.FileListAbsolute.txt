@@ -13,3 +13,13 @@ C:\RND\Random\Core\bin\Debug\EntityFramework.SqlServer.xml
 C:\RND\Random\Core\obj\Debug\Core.csprojResolveAssemblyReference.cache
 C:\RND\Random\Core\obj\Debug\Core.dll
 C:\RND\Random\Core\obj\Debug\Core.pdb
+E:\Project\IGI\projectIGI\Core\bin\Debug\Core.dll.config
+E:\Project\IGI\projectIGI\Core\bin\Debug\Core.dll
+E:\Project\IGI\projectIGI\Core\bin\Debug\Core.pdb
+E:\Project\IGI\projectIGI\Core\bin\Debug\EntityFramework.dll
+E:\Project\IGI\projectIGI\Core\bin\Debug\EntityFramework.SqlServer.dll
+E:\Project\IGI\projectIGI\Core\bin\Debug\EntityFramework.xml
+E:\Project\IGI\projectIGI\Core\bin\Debug\EntityFramework.SqlServer.xml
+E:\Project\IGI\projectIGI\Core\obj\Debug\Core.csprojResolveAssemblyReference.cache
+E:\Project\IGI\projectIGI\Core\obj\Debug\Core.dll
+E:\Project\IGI\projectIGI\Core\obj\Debug\Core.pdb

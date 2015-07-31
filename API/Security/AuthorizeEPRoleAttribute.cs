@@ -1,9 +1,9 @@
 ﻿
-using Data;
+using Data.Enum;
 using System;
 using System.Web.Http.Controllers;
 
-namespace API
+namespace API.Security
 {
     /// <summary>
     /// This attribute is used to Authorize the user
@@ -11,8 +11,8 @@ namespace API
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, Inherited = true, AllowMultiple = true)]
     public class AuthorizeEPRoleAttribute : System.Web.Http.AuthorizeAttribute
     {
-        private EPRole[] _roles;
-        public AuthorizeEPRoleAttribute(params EPRole[] roles)
+        private AppRole[] _roles;
+        public AuthorizeEPRoleAttribute(params AppRole[] roles)
         {
             _roles = roles;
         }

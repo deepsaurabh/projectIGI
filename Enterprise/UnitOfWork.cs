@@ -1,8 +1,7 @@
 ﻿using Core;
-using Data.Entity;
+using Enterprise.Repository;
 using Entity;
-using Entity.Entity;
-using Interfaces.IBusiness;
+using Entity.POCO;
 using System;
 
 namespace Enterprise
@@ -29,17 +28,17 @@ namespace Enterprise
         #region "RepositoryProperties"
 
         //Prepare the property for user profile repository
-        public IRepository<User, int> UserProfileRepository
-        {
-            get 
-            {
-                if (this._testokenRepository == null)
-                {
-                    this._testokenRepository = new GenericRepository<User, int>(UserContext);
-                }
-                return _testokenRepository;
-            }
-        }
+        //public IRepository<User, int> UserProfileRepository
+        //{
+        //    get 
+        //    {
+        //        if (this._testokenRepository == null)
+        //        {
+        //            this._testokenRepository = new GenericRepository<User, int>(UserContext);
+        //        }
+        //        return _testokenRepository;
+        //    }
+        //}
 
         #endregion
 

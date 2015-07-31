@@ -74,12 +74,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthContext.cs" />
-    <Compile Include="Entity\EnterpriseEntity.cs" />
-    <Compile Include="Migrations\201507291712196_InitialMigration.cs" />
-    <Compile Include="Migrations\201507291712196_InitialMigration.Designer.cs">
-      <DependentUpon>201507291712196_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201507310409173_AddUserEntity.cs" />
+    <Compile Include="Migrations\201507310409173_AddUserEntity.Designer.cs">
+      <DependentUpon>201507310409173_AddUserEntity.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="POCO\EnterpriseEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EnterpriseDbInitialization.cs" />
     <Compile Include="DataContext.cs" />
@@ -95,8 +95,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201507291712196_InitialMigration.resx">
-      <DependentUpon>201507291712196_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201507310409173_AddUserEntity.resx">
+      <DependentUpon>201507310409173_AddUserEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

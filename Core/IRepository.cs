@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Interfaces.IBusiness
+namespace Core
 {
     public interface IRepository<TEntity, in TKey> where TEntity : class
     {

@@ -1,11 +1,9 @@
 ﻿using Newtonsoft.Json.Serialization;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
 
-namespace API
+namespace API.Security
 {
     public static class WebApiConfig
     {
@@ -28,10 +26,6 @@ namespace API
             jsonFormatter1.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.None;
             jsonFormatter1.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             config.Formatters.Remove(config.Formatters.XmlFormatter);
-
-            //var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
-            //json.SerializerSettings.PreserveReferencesHandling =
-            //    Newtonsoft.Json.PreserveReferencesHandling.None;
 
         }
     }

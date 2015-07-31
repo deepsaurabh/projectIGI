@@ -40,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dto\UserModel.cs" />
-    <Compile Include="Enum\EPRole.cs" />
+    <Compile Include="Enum\AppRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

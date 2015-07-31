@@ -1,15 +1,11 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
 
-[assembly: OwinStartup(typeof(API.Startup))]
-namespace API
+[assembly: OwinStartup(typeof(API.Security.Startup))]
+namespace API.Security
 {
     public class Startup
     {

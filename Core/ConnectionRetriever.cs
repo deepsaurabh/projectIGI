@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Core
 {
     public class ConnectionRetriever : IConnectionRetriever
     {
         public string GetConnectionStringName()
         {
-            return "Random";
+            return "IGI";
         }
     }
 }

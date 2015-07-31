@@ -8,3 +8,8 @@ C:\RND\Random\Data\obj\Debug\Data.dll
 C:\RND\Random\Data\obj\Debug\Data.pdb
 C:\RND\Random\Data\bin\Debug\Data.dll
 C:\RND\Random\Data\bin\Debug\Data.pdb
+E:\Project\IGI\projectIGI\Data\bin\Debug\Data.dll
+E:\Project\IGI\projectIGI\Data\bin\Debug\Data.pdb
+E:\Project\IGI\projectIGI\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+E:\Project\IGI\projectIGI\Data\obj\Debug\Data.dll
+E:\Project\IGI\projectIGI\Data\obj\Debug\Data.pdb
