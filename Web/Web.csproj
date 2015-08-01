@@ -45,12 +45,11 @@
     <Folder Include="app\directive\" />
     <Folder Include="app\lib\" />
     <Folder Include="app\partials\" />
-    <Folder Include="app\service\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\controller\Controller.js" />
-    <Content Include="Contact.html" />
+    <Content Include="app\service\Services.js" />
     <Content Include="css\animate.css" />
     <Content Include="css\font-awesome.min.css" />
     <Content Include="css\jquery.fancybox.css" />
@@ -87,6 +86,7 @@
     <Content Include="js\angular.min.js" />
     <Content Include="Partials\AboutUs.html" />
     <Content Include="Partials\Contact.html" />
+    <Content Include="Partials\Courses.html" />
     <Content Include="Partials\home.html" />
   </ItemGroup>
   <ItemGroup>
@@ -108,7 +108,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>63249</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:51476/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

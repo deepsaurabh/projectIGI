@@ -16,10 +16,14 @@
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
+    <script src="https://code.jquery.com/jquery-git.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/angular-route.min.js"></script>    
     <script src="app/app.js"></script>
+    <script src="app/service/Services.js"></script>
     <script src="app/controller/Controller.js"></script>
+    
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoRMxiPsqJ9SUuaK1KsCAjd3gqnecjlBw&amp;sensor=false"></script>
 </head>
 <body ng-controller="IndexController">
 
@@ -57,12 +61,12 @@
                 </div>
                 <nav class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="#Home">Home</a></li>
+                        <li><a href="#Home">Home</a></li>
                         <li><a href="#AboutUs">About Us</a></li>
-                        <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">Courses<b class="caret"></b></a>
+                        <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">Content<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="courses-list-left-sidebar.html">Courses List - Left Sidebar</a></li>
-                                <li><a href="courses-list-right-sidebar.html">Courses List - Right Sidebar</a></li>
+                                <li><a href="#Courses">Courses</a></li>
+                                <li><a href="#ToolKit">Toolkit</a></li>
                                 <li class="divider"></li>
                                 <li><a href="courses-details-left-sidebar.html">Course Details - Left Sidebar</a></li>
                                 <li><a href="courses-details-right-sidebar.html">Course Details - Right Sidebar</a></li>
