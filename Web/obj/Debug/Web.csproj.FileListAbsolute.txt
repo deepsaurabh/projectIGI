@@ -29,13 +29,12 @@ C:\RND\Random\Web\bin\Web.pdb
 C:\RND\Random\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
 C:\RND\Random\Web\obj\Debug\Web.dll
 C:\RND\Random\Web\obj\Debug\Web.pdb
-E:\Project\IGI\projectIGI\Web\bin\Web.dll
-E:\Project\IGI\projectIGI\Web\bin\Web.pdb
-E:\Project\IGI\projectIGI\Web\obj\Debug\Web.dll
-E:\Project\IGI\projectIGI\Web\obj\Debug\Web.pdb
 D:\Project\ProjectIGI\trunk\Web\bin\Web.dll
 D:\Project\ProjectIGI\trunk\Web\bin\Web.pdb
 D:\Project\ProjectIGI\trunk\Web\obj\Debug\Web.dll
 D:\Project\ProjectIGI\trunk\Web\obj\Debug\Web.pdb
 D:\Project\ProjectIGI\trunk\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
-E:\Project\IGI\projectIGI\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
+E:\Project\IGI\projectIGI\Web\bin\Web.dll
+E:\Project\IGI\projectIGI\Web\bin\Web.pdb
+E:\Project\IGI\projectIGI\Web\obj\Debug\Web.dll
+E:\Project\IGI\projectIGI\Web\obj\Debug\Web.pdb

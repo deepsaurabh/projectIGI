@@ -17,5 +17,7 @@ namespace Enterprise
         IRepository<Toolkit, Int64> ToolkitRepository { get; }
         IRepository<ToolkitDocument, Int64> ToolkitDocumentRepository { get; }
         IRepository<CourseDocument, Int64> CourseDocumentRepository { get; }
+
+        IRepository<UserPurchaseHistory, Int64> UserPurchaseHistoryRepository { get; }
     }
 }

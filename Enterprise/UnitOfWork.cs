@@ -26,6 +26,7 @@ namespace Enterprise
         private IRepository<Toolkit, Int64> _toolkitRepository;
         private IRepository<CourseDocument, Int64> _courseDocumentRepository;
         private IRepository<ToolkitDocument, Int64> _toolkitDocumentRepository;
+        private IRepository<UserPurchaseHistory, Int64> _userPurchaseHistoryRepository;
   
         #endregion
 
@@ -92,6 +93,18 @@ namespace Enterprise
             }
         }
 
+        public IRepository<UserPurchaseHistory, Int64> UserPurchaseHistoryRepository
+        {
+            get
+            {
+                if (this._userPurchaseHistoryRepository == null)
+                {
+                    this._userPurchaseHistoryRepository = new GenericRepository<UserPurchaseHistory, Int64>(UserContext);
+                }
+                return _userPurchaseHistoryRepository;
+            }
+        }
+
         #endregion
 
         #region "ContextSave"
@@ -130,5 +143,8 @@ namespace Enterprise
 
         #endregion
 
+
+
+      
     }
 }

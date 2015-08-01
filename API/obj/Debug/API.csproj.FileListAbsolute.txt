@@ -58,12 +58,10 @@ C:\RND\Random\API\bin\Data.pdb
 C:\RND\Random\API\bin\Enterprise.pdb
 C:\RND\Random\API\bin\Entity.pdb
 C:\RND\Random\API\bin\Core.pdb
-E:\Project\IGI\projectIGI\API\obj\Debug\API.csprojResolveAssemblyReference.cache
-E:\Project\IGI\projectIGI\API\obj\Debug\API.dll
-E:\Project\IGI\projectIGI\API\obj\Debug\API.pdb
 E:\Project\IGI\projectIGI\API\bin\API.dll.config
 E:\Project\IGI\projectIGI\API\bin\API.dll
 E:\Project\IGI\projectIGI\API\bin\API.pdb
+E:\Project\IGI\projectIGI\API\bin\Core.dll
 E:\Project\IGI\projectIGI\API\bin\Data.dll
 E:\Project\IGI\projectIGI\API\bin\Enterprise.dll
 E:\Project\IGI\projectIGI\API\bin\Entity.dll
@@ -92,7 +90,7 @@ E:\Project\IGI\projectIGI\API\bin\System.Web.Razor.dll
 E:\Project\IGI\projectIGI\API\bin\System.Web.WebPages.Deployment.dll
 E:\Project\IGI\projectIGI\API\bin\System.Web.WebPages.dll
 E:\Project\IGI\projectIGI\API\bin\System.Web.WebPages.Razor.dll
-E:\Project\IGI\projectIGI\API\bin\Core.dll
+E:\Project\IGI\projectIGI\API\bin\Core.pdb
 E:\Project\IGI\projectIGI\API\bin\Data.pdb
 E:\Project\IGI\projectIGI\API\bin\Enterprise.pdb
 E:\Project\IGI\projectIGI\API\bin\Entity.pdb
@@ -118,4 +116,6 @@ E:\Project\IGI\projectIGI\API\bin\System.Web.Razor.xml
 E:\Project\IGI\projectIGI\API\bin\System.Web.WebPages.xml
 E:\Project\IGI\projectIGI\API\bin\System.Web.WebPages.Deployment.xml
 E:\Project\IGI\projectIGI\API\bin\System.Web.WebPages.Razor.xml
-E:\Project\IGI\projectIGI\API\bin\Core.pdb
+E:\Project\IGI\projectIGI\API\obj\Debug\API.csprojResolveAssemblyReference.cache
+E:\Project\IGI\projectIGI\API\obj\Debug\API.dll
+E:\Project\IGI\projectIGI\API\obj\Debug\API.pdb

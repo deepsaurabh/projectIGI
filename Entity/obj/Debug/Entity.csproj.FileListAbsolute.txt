@@ -97,9 +97,10 @@ E:\Project\IGI\projectIGI\Entity\bin\Debug\Microsoft.Owin.Security.Cookies.xml
 E:\Project\IGI\projectIGI\Entity\bin\Debug\Microsoft.Owin.Security.OAuth.xml
 E:\Project\IGI\projectIGI\Entity\bin\Debug\Newtonsoft.Json.xml
 E:\Project\IGI\projectIGI\Entity\obj\Debug\Entity.csprojResolveAssemblyReference.cache
-E:\Project\IGI\projectIGI\Entity\obj\Debug\Entity.dll
-E:\Project\IGI\projectIGI\Entity\obj\Debug\Entity.pdb
 E:\Project\IGI\projectIGI\Entity\obj\Debug\Entity.Migrations.AddUserEntity.resources
-E:\Project\IGI\projectIGI\Entity\obj\Debug\Entity.csproj.GenerateResource.Cache
 E:\Project\IGI\projectIGI\Entity\obj\Debug\Entity.Migrations.CourseAndToolkit.resources
 E:\Project\IGI\projectIGI\Entity\obj\Debug\Entity.Migrations.AddedConstraint.resources
+E:\Project\IGI\projectIGI\Entity\obj\Debug\Entity.csproj.GenerateResource.Cache
+E:\Project\IGI\projectIGI\Entity\obj\Debug\Entity.dll
+E:\Project\IGI\projectIGI\Entity\obj\Debug\Entity.pdb
+E:\Project\IGI\projectIGI\Entity\obj\Debug\Entity.Migrations.PurchaseHistory.resources

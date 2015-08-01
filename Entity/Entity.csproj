@@ -86,6 +86,10 @@
     <Compile Include="Migrations\201508010841393_AddedConstraint.Designer.cs">
       <DependentUpon>201508010841393_AddedConstraint.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508011154281_PurchaseHistory.cs" />
+    <Compile Include="Migrations\201508011154281_PurchaseHistory.Designer.cs">
+      <DependentUpon>201508011154281_PurchaseHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="POCO\Course.cs" />
     <Compile Include="POCO\CourseDocument.cs" />
@@ -94,8 +98,10 @@
     <Compile Include="POCO\DocumentType.cs" />
     <Compile Include="POCO\EnterpriseEntity.cs" />
     <Compile Include="POCO\Gender.cs" />
+    <Compile Include="POCO\ItemType.cs" />
     <Compile Include="POCO\Toolkit.cs" />
     <Compile Include="POCO\ToolkitDocument.cs" />
+    <Compile Include="POCO\UserPurchaseHistory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EnterpriseDbInitialization.cs" />
     <Compile Include="DataContext.cs" />
@@ -119,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508010841393_AddedConstraint.resx">
       <DependentUpon>201508010841393_AddedConstraint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508011154281_PurchaseHistory.resx">
+      <DependentUpon>201508011154281_PurchaseHistory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

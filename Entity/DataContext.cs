@@ -59,4 +59,10 @@ namespace Entity
 
     }
 
+    public class UserPurchaseHistoryConfiguration : BaseEntityConfiguration<UserPurchaseHistory>
+    {
+        public UserPurchaseHistoryConfiguration() { }
+
+    }
+
 }
