@@ -38,3 +38,4 @@ D:\Project\ProjectIGI\trunk\Web\bin\Web.pdb
 D:\Project\ProjectIGI\trunk\Web\obj\Debug\Web.dll
 D:\Project\ProjectIGI\trunk\Web\obj\Debug\Web.pdb
 D:\Project\ProjectIGI\trunk\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
+E:\Project\IGI\projectIGI\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache

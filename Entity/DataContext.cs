@@ -26,4 +26,37 @@ namespace Entity
 
     }
 
+    public class CourseConfiguration : BaseEntityConfiguration<Course>
+    {
+        public CourseConfiguration() {
+            this.HasMany(g => g.CourseDocument)
+                    .WithRequired()
+                    .HasForeignKey(ga => ga.CourseId);
+
+        }
+
+    }
+
+    public class ToolkitConfiguration : BaseEntityConfiguration<Toolkit>
+    {
+        public ToolkitConfiguration() {
+            this.HasMany(g => g.ToolkitDocument)
+                        .WithRequired()
+                        .HasForeignKey(ga => ga.ToolkitId);
+        }
+
+    }
+
+    public class CourseDocumentConfiguration : BaseEntityConfiguration<CourseDocument>
+    {
+        public CourseDocumentConfiguration() { }
+
+    }
+
+    public class ToolkitDocumentConfiguration : BaseEntityConfiguration<ToolkitDocument>
+    {
+        public ToolkitDocumentConfiguration() { }
+
+    }
+
 }

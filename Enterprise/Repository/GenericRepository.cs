@@ -8,7 +8,7 @@ using Core;
 
 namespace Enterprise.Repository
 {
-   public class GenericRepository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class
+   public class GenericRepository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : BaseEntity
     {
        //Set the variables here
         internal DataContext Context;
@@ -34,7 +34,7 @@ namespace Enterprise.Repository
             IQueryable<TEntity> query = DbSet;
             if (filter != null)
             {
-                query = query.Where(filter);
+                query = query.Where(filter).Where(m => !m.IsDeleted);
             }
             
             foreach (var includeProperty in includeProperties.Split
@@ -68,6 +68,8 @@ namespace Enterprise.Repository
        /// <param name="entityToAdd">Get the entity to insert</param>
         public void Insert(TEntity entityToAdd)
         {
+            entityToAdd.CreatedDate = DateTime.UtcNow;
+            entityToAdd.UpdatedDate = DateTime.UtcNow;
             DbSet.Add(entityToAdd);
         }
 
@@ -78,6 +80,7 @@ namespace Enterprise.Repository
         /// <param name="entityToUpdate">Get the entity to update</param>
         public void Update(TEntity entityToUpdate)
         {
+            entityToUpdate.UpdatedDate = DateTime.UtcNow;
             DbSet.Attach(entityToUpdate);
             Context.Entry(entityToUpdate).State = EntityState.Modified;
         }
@@ -96,6 +99,12 @@ namespace Enterprise.Repository
             }
             
             DbSet.Remove(entityToDelete);
+        }
+
+        public void SoftDelete(TKey id)
+        {
+            TEntity entityToDelete = DbSet.Find(id);
+            entityToDelete.IsDeleted = true;
         }
     }
 }

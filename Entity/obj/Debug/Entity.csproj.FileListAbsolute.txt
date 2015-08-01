@@ -101,3 +101,5 @@ E:\Project\IGI\projectIGI\Entity\obj\Debug\Entity.dll
 E:\Project\IGI\projectIGI\Entity\obj\Debug\Entity.pdb
 E:\Project\IGI\projectIGI\Entity\obj\Debug\Entity.Migrations.AddUserEntity.resources
 E:\Project\IGI\projectIGI\Entity\obj\Debug\Entity.csproj.GenerateResource.Cache
+E:\Project\IGI\projectIGI\Entity\obj\Debug\Entity.Migrations.CourseAndToolkit.resources
+E:\Project\IGI\projectIGI\Entity\obj\Debug\Entity.Migrations.AddedConstraint.resources

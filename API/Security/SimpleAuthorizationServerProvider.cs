@@ -28,13 +28,24 @@ namespace API.Security
 
             using (AuthRepository _repo = new AuthRepository())
             {
-                IdentityUser user = await _repo.FindUser(context.UserName, context.Password);
+                var username = context.UserName;
+                if (context.UserName.Contains("@"))
+                {
+                    var userForEmail = await _repo.FindByEmailAsync(context.UserName);
+                    if (userForEmail != null)
+                    {
+                        username = userForEmail.UserName;
+                    }
+                }
+
+                IdentityUser user = await _repo.FindUser(username, context.Password);
                 if (user == null)
                 {
                     context.SetError("invalid_grant", "The username or password is incorrect.");
                     return;
                 }
             }
+            
             //context.OwinContext.Response.Headers.Add("Role", new[] { userRole });
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);

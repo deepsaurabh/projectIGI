@@ -74,6 +74,14 @@ namespace Enterprise.Repository
             return user;
         }
 
+        public async Task<IdentityUser> FindByEmailAsync(string emailAddress)
+        {
+            IdentityUser user = await _userManager.FindByEmailAsync(emailAddress);
+
+            return user;
+        }
+
+        
         public async Task<IdentityRole> FindRole(string roleId)
         {
             IdentityRole role = await _roleManager.FindByIdAsync(roleId);

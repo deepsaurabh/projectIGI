@@ -7,6 +7,7 @@ using System.Web.Http;
 
 namespace API.Controllers
 {
+    [RoutePrefix("api/Course")]
     public class CourseController : ApiController
     {
         //Course Create from Admin Role

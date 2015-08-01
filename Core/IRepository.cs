@@ -14,5 +14,7 @@ namespace Core
         void Insert(TEntity entityToAdd);
         void Update(TEntity entityToUpdate);
         void Delete(TKey id);
+
+        void SoftDelete(TKey id);
     }
 }
