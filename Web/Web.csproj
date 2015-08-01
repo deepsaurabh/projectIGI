@@ -88,6 +88,7 @@
     <Content Include="Partials\Contact.html" />
     <Content Include="Partials\Courses.html" />
     <Content Include="Partials\home.html" />
+    <Content Include="Partials\Login.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -110,7 +111,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>63249</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:51476/</IISUrl>
+          <IISUrl>http://localhost:63249/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

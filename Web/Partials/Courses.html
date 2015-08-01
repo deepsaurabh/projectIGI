@@ -21,199 +21,30 @@
         <div class="row">
 
             <!-- ==== COURSES START == -->
-
             <div class="col-sm-8">
-
                 <div class="courses">
-
                     <!-- Course Start -->
-                    <div class="course row" data-scroll-reveal>
+                    <div class="course row" ng-repeat="course in CourseList" data-scroll-reveal>
                         <div class="col-sm-4">
                             <a href="courses-details-left-sidebar.html">
-                                <img src="http://placehold.it/400x300.jpg" alt="" class="img-responsive" /></a>
+                                <img src="{{course.imageURL}}" alt="" class="img-responsive" /></a>
                         </div>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-9 col-sm-8">
-                                    <h3><a href="courses-details-left-sidebar.html">Creative Website Design	and Development</a></h3>
+                                    <h3><a href="courses-details-left-sidebar.html">{{course.courseName}} - {{course.courseCode}}</a></h3>
                                     <div class="meta">
                                         <span><i class="fa fa-user"></i><a href="teachers-profile.html">John Doe</a></span>
                                         <span><i class="fa fa-file-text"></i>4 Lessons</span>
                                         <span><i class="fa fa-folder"></i><a href="#">Design</a></span>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-4 price">$39.90</div>
+                                <div class="col-md-3 col-sm-4 price">${{course.price}}</div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet pharetra nunc, non scelerisque ligula. Cras vel justo nulla. Vestibulum a sollicitudin metus, faucibus fermentum leo. Nulla ut purus vel nunc ultricies dignissim at at nunc. Vivamus tempor eget lorem non commodo. Vivamus mattis massa in ipsum molestie, eu aliquet lectus pulvinar.<br>
-                                        <a href="courses-details-left-sidebar.html">Read more <i class="fa fa-angle-right"></i></a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <hr>
-                        </div>
-                    </div>
-                    <!-- Course End -->
-
-                    <!-- Course Start -->
-                    <div class="course row" data-scroll-reveal>
-                        <div class="col-sm-4">
-                            <a href="courses-details-left-sidebar.html">
-                                <img src="http://placehold.it/400x300.jpg" alt="" class="img-responsive" /></a>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="row">
-                                <div class="col-md-9 col-sm-8">
-                                    <h3><a href="courses-details-left-sidebar.html">Introducing to Digital Photography</a></h3>
-                                    <div class="meta">
-                                        <span><i class="fa fa-user"></i><a href="teachers-profile.html">John Doe</a></span>
-                                        <span><i class="fa fa-file-text"></i>4 Lessons</span>
-                                        <span><i class="fa fa-folder"></i><a href="#">Photography</a></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-4 price">$29.90</div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet pharetra nunc, non scelerisque ligula. Cras vel justo nulla. Vestibulum a sollicitudin metus, faucibus fermentum leo. Nulla ut purus vel nunc ultricies dignissim at at nunc. Vivamus tempor eget lorem non commodo. Vivamus mattis massa in ipsum molestie, eu aliquet lectus pulvinar.<br>
-                                        <a href="courses-details-left-sidebar.html">Read more <i class="fa fa-angle-right"></i></a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <hr>
-                        </div>
-                    </div>
-                    <!-- Course End -->
-
-                    <!-- Course Start -->
-                    <div class="course row" data-scroll-reveal>
-                        <div class="col-sm-4">
-                            <a href="courses-details-left-sidebar.html">
-                                <img src="http://placehold.it/400x300.jpg" alt="" class="img-responsive" /></a>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="row">
-                                <div class="col-md-9 col-sm-8">
-                                    <h3><a href="courses-details-left-sidebar.html">Adobe Illustrator and Vector Design Basics</a></h3>
-                                    <div class="meta">
-                                        <span><i class="fa fa-user"></i><a href="teachers-profile.html">John Doe</a></span>
-                                        <span><i class="fa fa-file-text"></i>4 Lessons</span>
-                                        <span><i class="fa fa-folder"></i><a href="#">Illustration</a></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-4 price">$19.90</div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet pharetra nunc, non scelerisque ligula. Cras vel justo nulla. Vestibulum a sollicitudin metus, faucibus fermentum leo. Nulla ut purus vel nunc ultricies dignissim at at nunc. Vivamus tempor eget lorem non commodo. Vivamus mattis massa in ipsum molestie, eu aliquet lectus pulvinar.<br>
-                                        <a href="courses-details-left-sidebar.html">Read more <i class="fa fa-angle-right"></i></a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <hr>
-                        </div>
-                    </div>
-                    <!-- Course End -->
-
-                    <!-- Course Start -->
-                    <div class="course row" data-scroll-reveal>
-                        <div class="col-sm-4">
-                            <a href="courses-details-left-sidebar.html">
-                                <img src="http://placehold.it/400x300.jpg" alt="" class="img-responsive" /></a>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="row">
-                                <div class="col-md-9 col-sm-8">
-                                    <h3><a href="courses-details-left-sidebar.html">Composition and Lighting Advanced Course</a></h3>
-                                    <div class="meta">
-                                        <span><i class="fa fa-user"></i><a href="teachers-profile.html">John Doe</a></span>
-                                        <span><i class="fa fa-file-text"></i>4 Lessons</span>
-                                        <span><i class="fa fa-folder"></i><a href="#">Photography</a></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-4 price">$9.90</div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet pharetra nunc, non scelerisque ligula. Cras vel justo nulla. Vestibulum a sollicitudin metus, faucibus fermentum leo. Nulla ut purus vel nunc ultricies dignissim at at nunc. Vivamus tempor eget lorem non commodo. Vivamus mattis massa in ipsum molestie, eu aliquet lectus pulvinar.<br>
-                                        <a href="courses-details-left-sidebar.html">Read more <i class="fa fa-angle-right"></i></a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <hr>
-                        </div>
-                    </div>
-                    <!-- Course End -->
-
-                    <!-- Course Start -->
-                    <div class="course row" data-scroll-reveal>
-                        <div class="col-sm-4">
-                            <a href="courses-details-left-sidebar.html">
-                                <img src="http://placehold.it/400x300.jpg" alt="" class="img-responsive" /></a>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="row">
-                                <div class="col-md-9 col-sm-8">
-                                    <h3><a href="courses-details-left-sidebar.html">Web Design and Development Premium Course</a></h3>
-                                    <div class="meta">
-                                        <span><i class="fa fa-user"></i><a href="teachers-profile.html">John Doe</a></span>
-                                        <span><i class="fa fa-file-text"></i>4 Lessons</span>
-                                        <span><i class="fa fa-folder"></i><a href="#">Development</a></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-4 price">$35.90</div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet pharetra nunc, non scelerisque ligula. Cras vel justo nulla. Vestibulum a sollicitudin metus, faucibus fermentum leo. Nulla ut purus vel nunc ultricies dignissim at at nunc. Vivamus tempor eget lorem non commodo. Vivamus mattis massa in ipsum molestie, eu aliquet lectus pulvinar.<br>
-                                        <a href="courses-details-left-sidebar.html">Read more <i class="fa fa-angle-right"></i></a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <hr>
-                        </div>
-                    </div>
-                    <!-- Course End -->
-
-                    <!-- Course Start -->
-                    <div class="course row" data-scroll-reveal>
-                        <div class="col-sm-4">
-                            <a href="courses-details-left-sidebar.html">
-                                <img src="http://placehold.it/400x300.jpg" alt="" class="img-responsive" /></a>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="row">
-                                <div class="col-md-9 col-sm-8">
-                                    <h3><a href="courses-details-left-sidebar.html">Advanced Web Development Course</a></h3>
-                                    <div class="meta">
-                                        <span><i class="fa fa-user"></i><a href="teachers-profile.html">John Doe</a></span>
-                                        <span><i class="fa fa-file-text"></i>4 Lessons</span>
-                                        <span><i class="fa fa-folder"></i><a href="#">Development</a></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-4 price">$32.90</div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet pharetra nunc, non scelerisque ligula. Cras vel justo nulla. Vestibulum a sollicitudin metus, faucibus fermentum leo. Nulla ut purus vel nunc ultricies dignissim at at nunc. Vivamus tempor eget lorem non commodo. Vivamus mattis massa in ipsum molestie, eu aliquet lectus pulvinar.<br>
-                                        <a href="courses-details-left-sidebar.html">Read more <i class="fa fa-angle-right"></i></a>
+                                        {{course.description}}
                                     </p>
                                 </div>
                             </div>

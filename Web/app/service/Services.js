@@ -6,7 +6,7 @@
                 GetAllCourses: function () {
                     return $http({
                         method: 'Get',
-                        url: 'api/Course/GetAllCourses'
+                        url: localStorage['webApiUrl'] + 'api/Course/GetAllCourses'
                     });
                 }
             }

@@ -16,13 +16,16 @@
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
+    <script type="text/javascript">
+
+
+    </script>
     <script src="https://code.jquery.com/jquery-git.js"></script>
     <script src="js/angular.min.js"></script>
-    <script src="js/angular-route.min.js"></script>    
+    <script src="js/angular-route.min.js"></script>
     <script src="app/app.js"></script>
     <script src="app/service/Services.js"></script>
     <script src="app/controller/Controller.js"></script>
-    
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoRMxiPsqJ9SUuaK1KsCAjd3gqnecjlBw&amp;sensor=false"></script>
 </head>
 <body ng-controller="IndexController">
@@ -39,8 +42,8 @@
                 </ul>
                 <nav class="pull-right">
                     <ul>
-                        <li><a href="login.html"><i class="fa fa-user"></i><span>Register</span></a></li>
-                        <li><a href="login.html"><i class="fa fa-lock"></i><span>Log In</span></a></li>
+                        <li><a href="#Register"><i class="fa fa-user"></i><span>Register</span></a></li>
+                        <li><a href="#Login"><i class="fa fa-lock"></i><span>Log In</span></a></li>
                     </ul>
                 </nav>
             </div>
@@ -66,16 +69,10 @@
                         <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">Content<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#Courses">Courses</a></li>
+                                <li class="divider"></li>
                                 <li><a href="#ToolKit">Toolkit</a></li>
-                                <li class="divider"></li>
-                                <li><a href="courses-details-left-sidebar.html">Course Details - Left Sidebar</a></li>
-                                <li><a href="courses-details-right-sidebar.html">Course Details - Right Sidebar</a></li>
-                                <li class="divider"></li>
-                                <li><a href="upcoming-exams-grid.html">Upcoming Exams - Grid</a></li>
-                                <li><a href="upcoming-exams-left-sidebar.html">Upcoming Exams - Left Sidebar</a></li>
-                                <li><a href="upcoming-exams-right-sidebar.html">Upcoming Exams - Right Sidebar</a></li>
                             </ul>
-                        </li>                        
+                        </li>
                         <li><a href="#ContactUs">Contact</a></li>
                     </ul>
                 </nav>
@@ -160,6 +157,5 @@
 
     <!-- jQuery Settings -->
     <script src="js/settings.js"></script>
-
 </body>
 </html>
