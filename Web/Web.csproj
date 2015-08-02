@@ -51,6 +51,7 @@
     <Content Include="app\controller\Controller.js" />
     <Content Include="app\service\Services.js" />
     <Content Include="css\animate.css" />
+    <Content Include="css\datepicker.css" />
     <Content Include="css\font-awesome.min.css" />
     <Content Include="css\jquery.fancybox.css" />
     <Content Include="css\magic-bootstrap.css" />
@@ -60,6 +61,12 @@
     <Content Include="css\style.css" />
     <Content Include="css\superslides.css" />
     <Content Include="index.html" />
+    <Content Include="js\angular-animate.min.js" />
+    <Content Include="js\angular-loader.min.js" />
+    <Content Include="js\angular-route.min.js" />
+    <Content Include="js\angular-touch.min.js" />
+    <Content Include="js\angular.min.js" />
+    <Content Include="js\bootstrap-datepicker.js" />
     <Content Include="js\bootstrap-progressbar.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\html5shiv.js" />
@@ -79,11 +86,6 @@
     <Content Include="js\scrollReveal.js" />
     <Content Include="js\settings.js" />
     <Content Include="login.html" />
-    <Content Include="js\angular-animate.min.js" />
-    <Content Include="js\angular-loader.min.js" />
-    <Content Include="js\angular-route.min.js" />
-    <Content Include="js\angular-touch.min.js" />
-    <Content Include="js\angular.min.js" />
     <Content Include="Partials\AboutUs.html" />
     <Content Include="Partials\Contact.html" />
     <Content Include="Partials\Courses.html" />

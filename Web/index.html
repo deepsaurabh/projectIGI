@@ -10,16 +10,12 @@
 
     <!-- Main Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-
+    <link href="css/datepicker.css" rel="stylesheet" />
     <!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
-    <![endif]-->
-    <script type="text/javascript">
-
-
-    </script>
+    <![endif]-->    
     <script src="https://code.jquery.com/jquery-git.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/angular-route.min.js"></script>
@@ -27,6 +23,13 @@
     <script src="app/service/Services.js"></script>
     <script src="app/controller/Controller.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoRMxiPsqJ9SUuaK1KsCAjd3gqnecjlBw&amp;sensor=false"></script>
+    <script>
+        $(function () {
+            $('.datepicker').datepicker();
+        });
+
+
+    </script>
 </head>
 <body ng-controller="IndexController">
 
@@ -71,6 +74,13 @@
                                 <li><a href="#Courses">Courses</a></li>
                                 <li class="divider"></li>
                                 <li><a href="#ToolKit">Toolkit</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">Add Content<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#AddCourses">Add Courses</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#ToolKit">Add Toolkit</a></li>
                             </ul>
                         </li>
                         <li><a href="#ContactUs">Contact</a></li>
@@ -122,6 +132,9 @@
 
     <!-- Bootstrap Plugins -->
     <script src="js/bootstrap.min.js"></script>
+
+    <!-- Datepicker -->
+    <script src="js/bootstrap-datepicker.js"></script>
 
     <!-- Retina Plugin -->
     <script src="js/retina-1.1.0.min.js"></script>
