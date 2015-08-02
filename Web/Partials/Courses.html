@@ -1,258 +1,258 @@
 ﻿<!-- ========== TITLE START ========== -->
-<div ng-controller="courseController">
-    <div class="title">
-        <div class="title-image"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    Courses
+<div class="title">
+    <div class="title-image"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                Courses
 				
-                </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- ========== TITLE END ========== -->
+<!-- ========== TITLE END ========== -->
 
-    <!-- ========== CONTENT START ========== -->
+<!-- ========== CONTENT START ========== -->
 
-    <section id="content">
-        <div class="container">
-            <div class="row">
-                <!-- ==== COURSES START == -->
-                <div class="col-sm-8">
-                    <button type="submit" class="btn btn-primary" ng-click="$scope.showAddCourse=!$scope.showAddCourse">{{$scope.showAddCourse?'Hide Course':'Add Course'}}</button>
-                    <div data-ng-show="$scope.showAddCourse">
-                        <br />
-                        <form role="form" name="course-form" id="course-form">
-                            <div class="col-sm-6">
-                                <div class="form-group" id="login-login-group">
-                                    <label for="login-input-login">Course Name</label>
-                                    <input type="text" class="form-control" id="login-input-login" placeholder="Course Name">
-                                </div>
-                                <div class="form-group" id="Div5">
-                                    <label for="login-input-login">Price</label>
-                                    <div class="input-group">
-                                        <table>
-                                            <tr>
-                                                <td>
-                                                    <select class="form-control">
-                                                        <option>INR</option>
-                                                        <option>Dollar</option>
-                                                        <option>Euro</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <input type="number" min="0" class="form-control" id="Text3" placeholder="Price">
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="form-group" id="Div6">
-                                    <label for="login-input-login">Start Date</label><br />
-                                    <input type="text" class="datepicker" id="Text2" placeholder="Start Date">
-                                </div>
-                                <div class="form-group" id="Div7">
-                                    <label for="login-input-login">End Date</label><br />
-                                    <input type="text" class="datepicker" id="Text4" placeholder="End Date">
-                                </div>                                
-                                <button type="submit" class="btn btn-primary">Submit</button>
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <!-- ==== COURSES START == -->
+            <div class="col-sm-8">
+                <button type="submit" class="btn btn-primary" ng-click="$scope.showAddCourse=!$scope.showAddCourse">{{$scope.showAddCourse?'Hide Course':'Add Course'}}</button>
+                <div data-ng-show="$scope.showAddCourse">
+                    <br />
+                    <form role="form" name="course-form" id="course-form">
+                        <div class="col-sm-6">
+                            <div class="form-group" id="login-login-group">
+                                <label for="login-input-login">Course Name</label>
+                                <input type="text" class="form-control" data-ng-model="CourseList.CourseName" id="login-input-login" placeholder="Course Name">
                             </div>
-                            <div class="col-sm-6">
-                                <div class="form-group" id="Div1">
-                                    <label for="login-input-login">Free Subscription Description</label>
-                                    <div>
-                                        <textarea class="form-control" id="Text1" placeholder="Free Subscription Description"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group" id="Div2">
-                                    <label for="login-input-login">Public User Description</label>
-                                    <div>
-                                        <textarea class="form-control" id="Textarea1" placeholder="Public User Description"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group" id="Div3">
-                                    <label for="login-input-login">Paid User Description</label>
-                                    <div>
-                                        <textarea class="form-control" id="Textarea2" placeholder="Paid User Description"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group" id="Div4">
-                                    <label for="login-input-login">File Upload</label>
-                                    <label class="error" id="attachmentLabel" style="display: none;"><span class="icon24 errorIcon"></span><span id="errorAttachmentText"></span></label>
-                                    <input type="file" class="form-control" name="txtFileUpload" id="txtFileUpload" title="Upload File"
-                                        onchange="angular.element(this).scope().setFiles(this);">                                    
-                                    <ul class="fileslist" data-ng-show="fileAttachments.length>0">
-                                        <li data-ng-repeat="filedetails in fileAttachments | filter : {IsDeleted : false}"><span class="removeIcon icon16" data-ng-click="partialDeleteAttachment(filedetails,isEditable)"></span>
-                                            <a class="btn-link wordBreak">(uploaded) {{filedetails.OriginalName}}</a> <a href="" ng-click="DeleteFile(filedetails)">X</a></li>
-                                    </ul>
+                            <div class="form-group" id="Div5">
+                                <label for="login-input-login">Price</label>
+                                <div class="input-group">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <select class="form-control" data-ng-model="CourseList.CurrencyType">
+                                                    <option value="1">INR</option>
+                                                    <option value="2">Dollar</option>
+                                                    <option value="3">Euro</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input type="number" data-ng-model="CourseList.Price" min="0" class="form-control" id="Text3" placeholder="Price">
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="courses">
-                        <!-- Course Start -->
-                        <div class="course row" ng-repeat="course in CourseList" data-scroll-reveal>
-                            <div class="col-sm-4">
-                                <a href="courses-details-left-sidebar.html">
-                                    <img src="{{course.imageURL}}" alt="" class="img-responsive" /></a>
+                            <div class="form-group">
+                                <label for="login-input-login">Start Date</label><br />
+                                <input type="text" class="datepicker" id="StartDate" data-ng-model="CourseList.StartDate" placeholder="Start Date">
                             </div>
-                            <div class="col-sm-8">
-                                <div class="row">
-                                    <div class="col-md-9 col-sm-8">
-                                        <h3><a href="courses-details-left-sidebar.html">{{course.courseName}} - {{course.courseCode}}</a></h3>
-                                        <div class="meta">
-                                            <span><i class="fa fa-user"></i><a href="teachers-profile.html">John Doe</a></span>
-                                            <span><i class="fa fa-file-text"></i>4 Lessons</span>
-                                            <span><i class="fa fa-folder"></i><a href="#">Design</a></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-4 price">${{course.price}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <p>
-                                            {{course.description}}
-                                        </p>
-                                    </div>
+                            <div class="form-group">
+                                <label for="login-input-login">End Date</label><br />
+                                <input type="text" class="datepicker" id="EndDate" placeholder="End Date" data-ng-model="CourseList.EndDate">
+                            </div>
+                            <button type="submit" class="btn btn-primary" data-ng-click="SaveCourse()">Submit</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group" id="Div1">
+                                <label for="login-input-login">Free Subscription Description</label>
+                                <div>
+                                    <textarea class="form-control" id="Text1" data-ng-model="CourseList.CourseFreeContent" placeholder="Free Subscription Description"></textarea>
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <hr>
+                            <div class="form-group" id="Div2">
+                                <label for="login-input-login">Public User Description</label>
+                                <div>
+                                    <textarea class="form-control" id="Textarea1" placeholder="Public User Description" data-ng-model="CourseList.CoursePublicContent"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group" id="Div3">
+                                <label for="login-input-login">Paid User Description</label>
+                                <div>
+                                    <textarea class="form-control" id="Textarea2" placeholder="Paid User Description" data-ng-model="CourseList.CoursePaidContent"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group" id="Div4">
+                                <label for="login-input-login">File Upload</label>
+                                <label class="error" id="attachmentLabel" style="display: none;"><span class="icon24 errorIcon"></span><span id="errorAttachmentText"></span></label>
+                                <input type="file" class="form-control" name="txtFileUpload" id="txtFileUpload" title="Upload File"
+                                    onchange="angular.element(this).scope().setFiles(this);">
+                                <ul class="fileslist" data-ng-show="fileAttachments.length>0">
+                                    <li data-ng-repeat="filedetails in fileAttachments | filter : {IsDeleted : false}"><span class="removeIcon icon16" data-ng-click="partialDeleteAttachment(filedetails,isEditable)"></span>
+                                        <a class="btn-link wordBreak">(uploaded) {{filedetails.OriginalName}}</a> <a href="" ng-click="DeleteFile(filedetails)">X</a></li>
+                                </ul>
                             </div>
                         </div>
-                        <!-- Course End -->
-
-                        <!-- Pagination Start -->
-                        <div class="row" data-scroll-reveal>
-                            <div class="col-sm-6">
-                                <a class="btn btn-primary lesson-prev"><i class="fa fa-caret-left"></i>&nbsp; Previous</a>
+                    </form>
+                </div>
+                <div class="courses">
+                    <!-- Course Start -->
+                    <div class="course row" ng-repeat="course in Courses" data-scroll-reveal>
+                        <div class="col-sm-4">
+                            <a href="courses-details-left-sidebar.html">
+                                <img src="{{course.imageURL}}" alt="" class="img-responsive" /></a>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-9 col-sm-8">
+                                    <h3><a href="courses-details-left-sidebar.html">{{course.name}}</a></h3>
+                                    <div class="meta">
+                                        <span>Start date : {{course.startDate}}</span>
+                                        <span>End date : {{course.endDate}}</span>
+                                        <span><i class="fa fa-file-text"></i>4 Lessons</span>
+                                        <span><i class="fa fa-folder"></i><a href="#">Design</a></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-4 price">{{course.currency}} {{course.price}}</div>
                             </div>
-                            <div class="col-sm-6 text-right">
-                                <a class="btn btn-primary lesson-next">Next &nbsp; <i class="fa fa-caret-right"></i></a>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <p>
+                                        {{course.content}}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <!-- Pagination End -->
-
+                        <div class="col-md-12">
+                            <hr>
+                        </div>
                     </div>
+                    <!-- Course End -->
+
+                    <!-- Pagination Start -->
+                    <div class="row" data-scroll-reveal>
+                        <div class="col-sm-6">
+                            <a class="btn btn-primary lesson-prev"><i class="fa fa-caret-left"></i>&nbsp; Previous</a>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <a class="btn btn-primary lesson-next">Next &nbsp; <i class="fa fa-caret-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- Pagination End -->
 
                 </div>
-
-                <!-- ==== COURSES END == -->
-
-                <!-- ==== SIDEBAR START == -->
-
-                <div class="col-sm-4">
-
-                    <!-- ==== FITER START == -->
-                    <div class="widget" data-scroll-reveal>
-                        <form role="form">
-                            <h3>Category Filter</h3>
-                            <ul>
-                                <li class="checkbox">
-                                    <label>
-                                        <input type="checkbox">
-                                        Design <span class="pull-right">4</span></label>
-                                </li>
-                                <li class="checkbox">
-                                    <label>
-                                        <input type="checkbox">
-                                        Development <span class="pull-right">7</span></label>
-                                </li>
-                                <li class="checkbox">
-                                    <label>
-                                        <input type="checkbox">
-                                        Illustration <span class="pull-right">5</span></label>
-                                </li>
-                                <li class="checkbox">
-                                    <label>
-                                        <input type="checkbox">
-                                        Photography <span class="pull-right">3</span></label>
-                                </li>
-                            </ul>
-                            <h3>Price Filter</h3>
-                            <ul>
-                                <li class="checkbox">
-                                    <label>
-                                        <input type="checkbox">
-                                        Payable <span class="pull-right">12</span></label>
-                                </li>
-                                <li class="checkbox">
-                                    <label>
-                                        <input type="checkbox">
-                                        Free <span class="pull-right">4</span></label>
-                                </li>
-                            </ul>
-                            <button type="submit" class="btn btn-primary">Apply Filters</button>
-                        </form>
-                    </div>
-                    <!-- ==== FITER END == -->
-
-                    <!-- ==== NEWSLETTER START == -->
-                    <div class="widget" data-scroll-reveal>
-                        <h3>Newsletter</h3>
-                        <form role="form" name="newsletter-form" id="newsletter-form" action="process-newsletter.php">
-                            <div class="form-group" id="newsletter-name-group">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="newsletter-input-name" placeholder="Name">
-                                    <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                                </div>
-                            </div>
-                            <div class="form-group" id="newsletter-email-group">
-                                <div class="input-group">
-                                    <input type="email" class="form-control" id="newsletter-input-email" placeholder="Email">
-                                    <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
-                    <!-- ==== NEWSLETTER END == -->
-
-                    <!-- ==== LATEST POSTS START == -->
-                    <div class="widget" data-scroll-reveal>
-                        <h3>Latest posts</h3>
-                        <div class="post row">
-                            <div class="col-md-4">
-                                <a href="#">
-                                    <img src="http://placehold.it/600x400.jpg" alt="" class="img-responsive" /></a>
-                            </div>
-                            <div class="col-md-8">
-                                <h5><a href="#">Morbi nec quam sed elit pharetra</a></h5>
-                                <div class="meta">Posted Aug 18, 2015 by John Doe in Category Name</div>
-                            </div>
-                        </div>
-                        <div class="post row">
-                            <div class="col-md-4">
-                                <a href="#">
-                                    <img src="http://placehold.it/600x400.jpg" alt="" class="img-responsive" /></a>
-                            </div>
-                            <div class="col-md-8">
-                                <h5><a href="#">Morbi nec quam sed elit pharetra</a></h5>
-                                <div class="meta">Posted Aug 18, 2015 by John Doe in Category Name</div>
-                            </div>
-                        </div>
-                        <div class="post row">
-                            <div class="col-md-4">
-                                <a href="#">
-                                    <img src="http://placehold.it/600x400.jpg" alt="" class="img-responsive" /></a>
-                            </div>
-                            <div class="col-md-8">
-                                <h5><a href="#">Morbi nec quam sed elit pharetra</a></h5>
-                                <div class="meta">Posted Aug 18, 2015 by John Doe in Category Name</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ==== LATEST POSTS END == -->
-
-                </div>
-
-                <!-- ==== SIDEBAR END == -->
 
             </div>
-        </div>
-    </section>
 
-    <!-- ========== CONTENT END ========== -->
-</div>
+            <!-- ==== COURSES END == -->
+
+            <!-- ==== SIDEBAR START == -->
+
+            <div class="col-sm-4">
+
+                <!-- ==== FITER START == -->
+                <div class="widget" data-scroll-reveal>
+                    <form role="form">
+                        <h3>Category Filter</h3>
+                        <ul>
+                            <li class="checkbox">
+                                <label>
+                                    <input type="checkbox">
+                                    Design <span class="pull-right">4</span></label>
+                            </li>
+                            <li class="checkbox">
+                                <label>
+                                    <input type="checkbox">
+                                    Development <span class="pull-right">7</span></label>
+                            </li>
+                            <li class="checkbox">
+                                <label>
+                                    <input type="checkbox">
+                                    Illustration <span class="pull-right">5</span></label>
+                            </li>
+                            <li class="checkbox">
+                                <label>
+                                    <input type="checkbox">
+                                    Photography <span class="pull-right">3</span></label>
+                            </li>
+                        </ul>
+                        <h3>Price Filter</h3>
+                        <ul>
+                            <li class="checkbox">
+                                <label>
+                                    <input type="checkbox">
+                                    Payable <span class="pull-right">12</span></label>
+                            </li>
+                            <li class="checkbox">
+                                <label>
+                                    <input type="checkbox">
+                                    Free <span class="pull-right">4</span></label>
+                            </li>
+                        </ul>
+                        <button type="submit" class="btn btn-primary">Apply Filters</button>
+                    </form>
+                </div>
+                <!-- ==== FITER END == -->
+
+                <!-- ==== NEWSLETTER START == -->
+                <div class="widget" data-scroll-reveal>
+                    <h3>Newsletter</h3>
+                    <form role="form" name="newsletter-form" id="newsletter-form" action="process-newsletter.php">
+                        <div class="form-group" id="newsletter-name-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="newsletter-input-name" placeholder="Name">
+                                <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="newsletter-email-group">
+                            <div class="input-group">
+                                <input type="email" class="form-control" id="newsletter-input-email" placeholder="Email">
+                                <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <!-- ==== NEWSLETTER END == -->
+
+                <!-- ==== LATEST POSTS START == -->
+                <div class="widget" data-scroll-reveal>
+                    <h3>Latest posts</h3>
+                    <div class="post row">
+                        <div class="col-md-4">
+                            <a href="#">
+                                <img src="http://placehold.it/600x400.jpg" alt="" class="img-responsive" /></a>
+                        </div>
+                        <div class="col-md-8">
+                            <h5><a href="#">Morbi nec quam sed elit pharetra</a></h5>
+                            <div class="meta">Posted Aug 18, 2015 by John Doe in Category Name</div>
+                        </div>
+                    </div>
+                    <div class="post row">
+                        <div class="col-md-4">
+                            <a href="#">
+                                <img src="http://placehold.it/600x400.jpg" alt="" class="img-responsive" /></a>
+                        </div>
+                        <div class="col-md-8">
+                            <h5><a href="#">Morbi nec quam sed elit pharetra</a></h5>
+                            <div class="meta">Posted Aug 18, 2015 by John Doe in Category Name</div>
+                        </div>
+                    </div>
+                    <div class="post row">
+                        <div class="col-md-4">
+                            <a href="#">
+                                <img src="http://placehold.it/600x400.jpg" alt="" class="img-responsive" /></a>
+                        </div>
+                        <div class="col-md-8">
+                            <h5><a href="#">Morbi nec quam sed elit pharetra</a></h5>
+                            <div class="meta">Posted Aug 18, 2015 by John Doe in Category Name</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ==== LATEST POSTS END == -->
+
+            </div>
+
+            <!-- ==== SIDEBAR END == -->
+
+        </div>
+    </div>
+</section>
+
+<!-- ========== CONTENT END ========== -->
+

@@ -20,20 +20,47 @@
     $("#home").removeAttr("style");
 }])
 
-
-.controller('courseController', ['$scope', 'EnterpriseService', '$filter', function ($scope, EnterpriseService, $filter) {
+.controller('courseController', ['$scope', 'EnterpriseService', '$filter', '$route', function ($scope, EnterpriseService, $filter, $route) {
     $("#home").removeAttr("style");
     $scope.CourseList = {
-        courseName: '',
-        courseCode: '',
-        price: 0.0,
+        CourseName: '',
+        Price: 0.0,
         imageURL: '',
-        description: ''
+        CurrencyType: '',
+        StartDate: '',
+        EndDate: '',
+        CourseFreeContent: '',
+        CoursePublicContent: '',
+        CoursePaidContent: ''
     };
+    $scope.Courses = [];
     $scope.showAddCourse = true;
-    EnterpriseService.GetAllCourses().success(function (data) {
-        $scope.CourseList = data;
+    EnterpriseService.GetAllFreeCourse().success(function (data) {
+        if (data && data.course) {
+            $scope.Courses = data.course;
+            $scope.Courses.forEach(function (key, value) {
+                key.startDate = getFormattedDate(new Date(key.startDate));
+                key.endDate = getFormattedDate(new Date(key.endDate));
+            });
+        }
     }).error(function () { });
+
+    function getFormattedDate(date) {
+        var year = date.getFullYear();
+        var month = (1 + date.getMonth()).toString();
+        month = month.length > 1 ? month : '0' + month;
+        var day = date.getDate().toString();
+        day = day.length > 1 ? day : '0' + day;
+        return day + '/' + month + '/' + year;
+    }
+
+    $scope.SaveCourse = function () {
+        EnterpriseService.SaveCourse($scope.CourseList)
+        .success(function () {
+            $route.reload();
+        })
+        .error(function () { });
+    }
 
     //  Checking extension of the uploaded file
     $scope.checkFileExtension = function (fileAttached) {
@@ -163,6 +190,31 @@
     $("#home").removeAttr("style");
 }])
 
-.controller('loginController', ['$scope', function ($scope) {
-
+.controller('loginController', ['$scope', 'authService', function ($scope, authService) {
+    $("#home").removeAttr("style");
+    $scope.UserRegisteration = {
+        UserName: '',
+        Password: '',
+        ConfirmPassword: '',
+        EmailAddress: '',
+        PhoneNumber: '',
+        FirstName: '',
+        Gender: '',
+        DateOfBirth: ''
+    }
+    $scope.SubmitRegisteration = function (UserRegisteration) {
+        UserRegisteration.DateOfBirth = new Date();
+        authService.saveRegistration(UserRegisteration)
+        .success(function (data) {
+            alert('Successfully registered');
+        })
+        .error(function () { });
+    }
+    $scope.Login = function (UserName, Password) {
+        authService.login({ userName: UserName, password: Password })
+        .success(function (data) {
+            var abc = data;
+        })
+        .error(function () { });
+    }
 }]);

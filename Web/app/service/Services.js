@@ -3,10 +3,17 @@
         '$http',
         function ($http) {
             return {
-                GetAllCourses: function () {
+                GetAllFreeCourse: function () {
                     return $http({
                         method: 'Get',
-                        url: localStorage['webApiUrl'] + 'api/Course/GetAllCourses'
+                        url: localStorage['webApiUrl'] + 'api/Course/GetAllFreeCourse'
+                    });
+                },
+                SaveCourse: function (date) {
+                    return $http({
+                        method: 'POST',
+                        url: localStorage['webApiUrl'] + 'api/Course/Post',
+                        data: date
                     });
                 }
             }

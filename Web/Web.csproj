@@ -49,6 +49,7 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\controller\Controller.js" />
+    <Content Include="app\service\authService.js" />
     <Content Include="app\service\Services.js" />
     <Content Include="css\animate.css" />
     <Content Include="css\datepicker.css" />
