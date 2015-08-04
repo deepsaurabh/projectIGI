@@ -13,3 +13,7 @@ E:\Project\IGI\projectIGI\Data\bin\Debug\Data.pdb
 E:\Project\IGI\projectIGI\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
 E:\Project\IGI\projectIGI\Data\obj\Debug\Data.dll
 E:\Project\IGI\projectIGI\Data\obj\Debug\Data.pdb
+D:\Project\ProjectIGI\trunk\Data\bin\Debug\Data.dll
+D:\Project\ProjectIGI\trunk\Data\bin\Debug\Data.pdb
+D:\Project\ProjectIGI\trunk\Data\obj\Debug\Data.dll
+D:\Project\ProjectIGI\trunk\Data\obj\Debug\Data.pdb
