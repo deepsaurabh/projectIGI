@@ -1,4 +1,5 @@
-﻿using Entity.POCO;
+﻿using Data.Enum;
+using Entity.POCO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

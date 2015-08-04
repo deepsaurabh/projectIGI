@@ -90,10 +90,17 @@
     <Compile Include="Migrations\201508011154281_PurchaseHistory.Designer.cs">
       <DependentUpon>201508011154281_PurchaseHistory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508031642515_Updated_CourseAttachment_Table.cs" />
+    <Compile Include="Migrations\201508031642515_Updated_CourseAttachment_Table.Designer.cs">
+      <DependentUpon>201508031642515_Updated_CourseAttachment_Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508031704511_Added_CourseAttachmentMapping.cs" />
+    <Compile Include="Migrations\201508031704511_Added_CourseAttachmentMapping.Designer.cs">
+      <DependentUpon>201508031704511_Added_CourseAttachmentMapping.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="POCO\Course.cs" />
     <Compile Include="POCO\CourseDocument.cs" />
-    <Compile Include="POCO\Currency.cs" />
     <Compile Include="POCO\DocumentScope.cs" />
     <Compile Include="POCO\DocumentType.cs" />
     <Compile Include="POCO\EnterpriseEntity.cs" />
@@ -115,6 +122,10 @@
       <Project>{48516c69-5318-46db-a9e4-1e3c73d05c2d}</Project>
       <Name>Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{31cf6eea-b797-41bf-9b22-5cf0d3d024ef}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201507310409173_AddUserEntity.resx">
@@ -128,6 +139,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508011154281_PurchaseHistory.resx">
       <DependentUpon>201508011154281_PurchaseHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508031642515_Updated_CourseAttachment_Table.resx">
+      <DependentUpon>201508031642515_Updated_CourseAttachment_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508031704511_Added_CourseAttachmentMapping.resx">
+      <DependentUpon>201508031704511_Added_CourseAttachmentMapping.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,5 @@
 ﻿using Core;
+using Data.Enum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -30,7 +31,14 @@ namespace Entity.POCO
         public Currency CurrencyType { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+    }
 
-        public virtual ICollection<CourseDocument> CourseDocument { get; set; }
+    public class CourseAttachmentMapping : BaseEntity
+    {
+        public long courseId { get; set; }
+        public virtual Course course { get; set; }
+
+        public long courseDocumentID { get; set; }
+        public virtual CourseDocument courseDocument { get; set; }
     }
 }

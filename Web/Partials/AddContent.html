@@ -1,0 +1,117 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $('.datepicker').datepicker({
+            autoclose: true,
+            todayBtn: true,
+            todayHighlight: true
+        });
+    });
+</script>
+
+<!-- ========== TITLE START ========== -->
+<div class="title">
+    <div class="title-image"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                Add Course Detail
+           
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== TITLE END ========== -->
+
+<!-- ========== CONTENT START ========== -->
+
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <!-- ==== COURSES START == -->
+            <div class="col-sm-8">
+                <form role="form" name="course-form" id="course-form">
+                    <div class="col-sm-6">
+                        <div class="form-group" id="login-login-group">
+                            <label for="login-input-login">Course Name</label>
+                            <input type="text" class="form-control" data-ng-model="CourseList.CourseName" id="login-input-login" placeholder="Course Name">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Start Date</label><br />
+                            <input type="text" autoclose data-date-format="dd/mm/yyyy" class="datepicker" id="StartDate" data-ng-model="CourseList.StartDate" placeholder="Start Date" />
+                            {{CourseList.StartDate}}
+                        </div>
+                        <div class="form-group" id="Div1">
+                            <label>Free Subscription Description</label>
+                            <div>
+                                <textarea class="form-control" id="Text1" data-ng-model="CourseList.CourseFreeContent" placeholder="Free Subscription Description"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group" id="Div6">
+                            <label for="login-input-login">Free Subscription File Upload</label>
+                            <label class="error" id="Label1" style="display: none;"><span class="icon24 errorIcon"></span><span id="Span1"></span></label>
+                            <input type="file" class="form-control" name="txtFileUpload" id="File1" title="Upload File"
+                                onchange="angular.element(this).scope().setFiles(this,1);">
+                        </div>
+                        <div class="form-group" id="Div3">
+                            <label for="login-input-login">Paid User Description</label>
+                            <div>
+                                <textarea class="form-control" id="Textarea2" placeholder="Paid User Description" data-ng-model="CourseList.CoursePaidContent"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" data-ng-click="SaveCourse(CourseList)">Submit</button>
+
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group" id="Div5">
+                            <label for="login-input-login">Price</label>
+                            <div class="input-group">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <select class="form-control" data-ng-model="CourseList.CurrencyType">
+                                                <option value="1">INR</option>
+                                                <option value="2">Dollar</option>
+                                                <option value="3">Euro</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="number" data-ng-model="CourseList.Price" min="0" class="form-control" id="Text3" placeholder="Price">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-input-login">End Date</label><br />
+                            <input type="text" class="datepicker" id="EndDate" placeholder="End Date" data-ng-model="CourseList.EndDate">
+                        </div>
+
+                        <div class="form-group" id="Div2">
+                            <label for="login-input-login">Public User Description</label>
+                            <div>
+                                <textarea class="form-control" id="Textarea1" placeholder="Public User Description" data-ng-model="CourseList.CoursePublicContent"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group" id="Div7">
+                            <label for="login-input-login">Public User File Upload</label>
+                            <label class="error" id="Label2" style="display: none;"><span class="icon24 errorIcon"></span><span id="Span2"></span></label>
+                            <input type="file" class="form-control" name="txtFileUpload" id="File2" title="Upload File"
+                                onchange="angular.element(this).scope().setFiles(this,2);">
+                        </div>
+                        <div class="form-group" id="Div4">
+                            <label for="login-input-login">Paid User File Upload</label>
+                            <label class="error" id="attachmentLabel" style="display: none;"><span class="icon24 errorIcon"></span><span id="errorAttachmentText"></span></label>
+                            <input type="file" class="form-control" name="txtFileUpload" id="txtFileUpload" title="Upload File"
+                                onchange="angular.element(this).scope().setFiles(this,3);">
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== CONTENT END ========== -->

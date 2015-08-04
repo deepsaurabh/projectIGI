@@ -110,7 +110,7 @@ namespace API.Controllers
 
                 var user = new User()
                 {
-                    DateOfBirth = userModel.DateOfBirth,
+                    //DateOfBirth = userModel.DateOfBirth,
                     FirstName = userModel.FirstName,
                     LastName = userModel.LastName,
                     Gender = (userModel.Gender == 1) ? Gender.male : Gender.female
