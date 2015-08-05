@@ -7,9 +7,24 @@
 .controller('homeController', ['$scope', function ($scope) {
 }])
 
-.controller('LoginController', ['$scope', function ($scope) {
+.controller('LoginController', ['$scope', 'authService', function ($scope, authService) {
     $("#home").removeAttr("style");
     $scope.emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/i;
+
+    //$scope.login = function (userName, password) {
+    //    loginData = {};
+    //    loginData.userName = userName;
+    //    loginData.password = password;
+    //    authService.login(loginData).success(function (response) {
+
+    //        console.log("login Successful")
+    //    }).error(function () {
+    //        console.log("Error in login");
+    //    });
+    //}
+
+    
+
 }])
 
 .controller('contactController', ['$scope', function ($scope) {
@@ -212,9 +227,12 @@
     }
     $scope.Login = function (UserName, Password) {
         authService.login({ userName: UserName, password: Password })
-        .success(function (data) {
-            var abc = data;
-        })
-        .error(function () { });
+        .success(function (response) {
+            var ss = response;
+
+        }).error(function (err, status) {
+            _logOut();
+            deferred.reject(err);
+        });
     }
 }]);

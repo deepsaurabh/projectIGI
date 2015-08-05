@@ -42,18 +42,18 @@
             url: serviceBase + 'token',
             headers: requestHeaders,
             data: data
-        }).success(function (response) {
-            localStorage.setItem('authorizationData', { token: response.access_token, userName: loginData.userName });
+        }).then(function (response) {
+
+            localStorage.setItem('authorizationData', { token: response.data.access_token, userName: loginData.userName });
             _authentication.isAuth = true;
             _authentication.userName = loginData.userName;
 
             deferred.resolve(response);
 
-        }).error(function (err, status) {
+        }, function (err, status) {
             _logOut();
             deferred.reject(err);
         });
-
         return deferred.promise;
 
     };
