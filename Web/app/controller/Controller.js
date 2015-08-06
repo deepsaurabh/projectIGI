@@ -37,28 +37,68 @@
 
 .controller('courseController', ['$scope', 'EnterpriseService', '$filter', '$route', function ($scope, EnterpriseService, $filter, $route) {
     $("#home").removeAttr("style");
+    $scope.CurrencyType = [
+        { Key: '1', Value: 'INR' },
+        { Key: '2', Value: 'Dollar' },
+        { Key: '3', Value: 'Euro' }
+    ];
     $scope.CourseList = {
+        CourseID: 0,
         CourseName: '',
         Price: 0.0,
         imageURL: '',
-        CurrencyType: '',
+        CurrencyType: '1',
         StartDate: '',
         EndDate: '',
         CourseFreeContent: '',
         CoursePublicContent: '',
-        CoursePaidContent: ''
+        CoursePaidContent: '',
+        FreeContentImageId: '',
+        PublicContentImageId: '',
+        PaidContentImageId: '',
+        ImageURL: '',
+        Description: '',
+        isSelected: false
     };
+
     $scope.Courses = [];
+
     $scope.showAddCourse = true;
-    EnterpriseService.GetAllFreeCourse().success(function (data) {
-        if (data && data.course) {
-            $scope.Courses = data.course;
-            $scope.Courses.forEach(function (key, value) {
-                key.startDate = getFormattedDate(new Date(key.startDate));
-                key.endDate = getFormattedDate(new Date(key.endDate));
-            });
-        }
-    }).error(function () { });
+
+    $scope.Init = function () {
+        EnterpriseService.GetAllFreeCourse().success(function (data) {
+            if (data && data.course) {
+                $scope.Courses = data.course;
+                $scope.Courses.forEach(function (key, value) {
+                    if (key.courseFreeContent)
+                        key.description = key.courseFreeContent;
+                    else if (key.coursePaidContent)
+                        key.description = key.coursePaidContent;
+                    else if (key.coursePublicContent)
+                        key.description = key.coursePublicContent;
+                    key.startDate = getFormattedDate(new Date(key.startDate));
+                    key.endDate = getFormattedDate(new Date(key.endDate));
+                });
+                if ($scope.Courses.length > 0)
+                    $scope.DisplayCourse($scope.Courses[0]);
+            }
+        }).error(function () { });
+    }
+
+    $scope.DisplayCourse = function (course) {
+        $scope.Courses.forEach(function (key, value) {
+            key.isSelected = false;
+        });
+        course.isSelected = true;
+        $scope.CourseList.CourseID = course.courseID;
+        $scope.CourseList.CourseName = course.courseName;
+        $scope.CourseList.Price = course.price;
+        $scope.CourseList.CurrencyType = $filter('filter')($scope.CurrencyType, { Key: course.currencyType })[0].Value;
+        $scope.CourseList.StartDate = course.startDate;
+        $scope.CourseList.EndDate = course.endDate;
+        $scope.CourseList.ImageURL = course.imageURL;
+        $scope.CourseList.Description = course.courseFreeContent;
+    }
 
     function getFormattedDate(date) {
         var year = date.getFullYear();
@@ -69,15 +109,15 @@
         return day + '/' + month + '/' + year;
     }
 
-    $scope.SaveCourse = function () {
-        EnterpriseService.SaveCourse($scope.CourseList)
+    $scope.SaveCourse = function (CourseList) {
+        EnterpriseService.SaveCourse(CourseList)
         .success(function () {
+            alert('Course saved successfully');
             $route.reload();
         })
         .error(function () { });
     }
 
-    //  Checking extension of the uploaded file
     $scope.checkFileExtension = function (fileAttached) {
         for (var id = 0; id < fileAttached.length; id++) {
             var filename = fileAttached[id].name;
@@ -101,19 +141,14 @@
         if (isShow) {
             $("#attachmentLabel").show();
             $("#errorAttachmentText").html(alertMessage);
-
-            $timeout(function () {
-                $("#attachmentLabel").hide();
-                $("#errorAttachmentText").html("");
-            }, 15000);
         }
     }
 
     $scope.fileAttachments = [];
 
-    $scope.setFiles = function (element) {
+    $scope.setFiles = function (element, documentScope) {
         // Only atmost 2 files can be selected
-        if (element.files.length <= 2) {
+        if (element.files.length == 1) {
             var totalSizeLimitInBytes = 1024 * 1024 * parseInt(10);
             var usedSizeLimit = 0
             var attachedFiles = element.files;
@@ -155,24 +190,26 @@
                             fd.append("uploadedFile", attachedFiles[i])
                         }
 
-                        //createIntershipRequest.uploadAttachment(fd)
-                        //    .success(function (data) {
-                        //        if (data) {
-                        //            if (data.attachedFiles && data.attachedFiles.length) {
-                        //                for (var i = 0, iLen = data.attachedFiles.length; i < iLen; i++) {
-                        //                    $scope.InternshipDetails.fileAttachments.push(data.attachedFiles[i]);
-                        //                }
-                        //            }
-                        //            if (data.erroredAttachments) {
-                        //                $scope.showAttachmentAlertMessage(data.erroredAttachments, true);
-                        //            }
-                        //        } else {
-                        //            $scope.showAttachmentAlertMessage("File cannot be uploaded due to some error. Please try again.", true);
-                        //        }
-                        //    }).error(function (data, status, headers, config) {
-                        //        $scope.showAttachmentAlertMessage(data.Message, true);
-                        //        log.error("Error ~ " + status + config.toString() + data.toString() + headers.toString());
-                        //    });
+                        EnterpriseService.uploadAttachment(fd, documentScope)
+                            .success(function (data) {
+                                if (data && data.attachedFiles && data.attachedFiles.length > 0) {
+                                    switch (documentScope) {
+                                        case 1:
+                                            $scope.CourseList.FreeContentImageId = data.attachedFiles[0].id
+                                            break;
+                                        case 2:
+                                            $scope.CourseList.PublicContentImageId = data.attachedFiles[0].id
+                                            break;
+                                        case 3:
+                                            $scope.CourseList.PaidContentImageId = data.attachedFiles[0].id
+                                            break;
+                                    }
+                                } else {
+                                    $scope.showAttachmentAlertMessage("File cannot be uploaded due to some error. Please try again.", true);
+                                }
+                            }).error(function (data, status, headers, config) {
+                                $scope.showAttachmentAlertMessage(data.Message, true);
+                            });
                         $scope.fileAttachments.push({ OriginalName: element.files[0].name, IsDeleted: false });
                         if (!$scope.$$phase) {
                             $scope.$apply();

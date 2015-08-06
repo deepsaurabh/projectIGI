@@ -29,10 +29,20 @@ namespace Entity
     public class CourseConfiguration : BaseEntityConfiguration<Course>
     {
         public CourseConfiguration() {
-            this.HasMany(g => g.CourseDocument)
-                    .WithRequired()
-                    .HasForeignKey(ga => ga.CourseId);
+            
+        }
 
+    }
+
+    public class CourseAttachmentMappingConfiguration : BaseEntityConfiguration<CourseAttachmentMapping>
+    {
+        public CourseAttachmentMappingConfiguration()
+        {
+            this.HasRequired(ch => ch.course).WithMany().HasForeignKey(ch
+                => ch.courseId);
+
+            this.HasRequired(ch => ch.courseDocument).WithMany().HasForeignKey(ch
+                => ch.courseDocumentID);
         }
 
     }
@@ -49,7 +59,8 @@ namespace Entity
 
     public class CourseDocumentConfiguration : BaseEntityConfiguration<CourseDocument>
     {
-        public CourseDocumentConfiguration() { }
+        public CourseDocumentConfiguration() {
+        }
 
     }
 

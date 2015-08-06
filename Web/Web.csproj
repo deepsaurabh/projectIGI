@@ -88,6 +88,7 @@
     <Content Include="js\settings.js" />
     <Content Include="login.html" />
     <Content Include="Partials\AboutUs.html" />
+    <Content Include="Partials\AddContent.html" />
     <Content Include="Partials\Contact.html" />
     <Content Include="Partials\Courses.html" />
     <Content Include="Partials\home.html" />

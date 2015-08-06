@@ -27,6 +27,7 @@ namespace Enterprise
         private IRepository<CourseDocument, Int64> _courseDocumentRepository;
         private IRepository<ToolkitDocument, Int64> _toolkitDocumentRepository;
         private IRepository<UserPurchaseHistory, Int64> _userPurchaseHistoryRepository;
+        private IRepository<CourseAttachmentMapping, Int64> _courseAttachmentRepository;
   
         #endregion
 
@@ -42,6 +43,18 @@ namespace Enterprise
                     this._userRepository = new GenericRepository<User, Int64>(UserContext);
                 }
                 return _userRepository;
+            }
+        }
+
+        public IRepository<CourseAttachmentMapping, Int64> CourseAttachmentRepository
+        {
+            get
+            {
+                if (this._courseAttachmentRepository == null)
+                {
+                    this._courseAttachmentRepository = new GenericRepository<CourseAttachmentMapping, Int64>(UserContext);
+                }
+                return _courseAttachmentRepository;
             }
         }
 

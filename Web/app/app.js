@@ -14,5 +14,6 @@ angular.module('IGI', ['ngRoute', 'Enterprise.Controller', 'Enterprise.Services'
     $routeProvider.when('/ToolKit', { templateUrl: 'partials/Courses.html', controller: 'toolkitController' });
     $routeProvider.when('/Login', { templateUrl: 'partials/Login.html', controller: 'loginController' });
     $routeProvider.when('/Register', { templateUrl: 'partials/Login.html', controller: 'loginController' });
+    $routeProvider.when('/AddCourse', { templateUrl: 'partials/AddContent.html', controller: 'courseController' });
     $routeProvider.otherwise({ redirectTo: '/Home' });
 }]);

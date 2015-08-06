@@ -6,13 +6,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Entity.POCO
 {
     public class CourseDocument : BaseEntity
-    {
-        public Int64 CourseId { get; set; }
-        public DocumentType DocumentType { get; set; }
+    {        
+        public string FileType { get; set; }
+        
+        public long? FileSize { get; set; }
+        
+        public byte[] FileData { get; set; }
 
-        [Column(TypeName = "VARCHAR")]
-        [StringLength(1023)]
-        public string DocumentPath { get; set; }
+        public DocumentType DocumentType { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [StringLength(255)]
@@ -21,9 +22,8 @@ namespace Entity.POCO
         [Column(TypeName = "VARCHAR")]
         [StringLength(255)]
         public string DocumentPseudoName { get; set; }
-        public DocumentScope Scope { get; set; }
 
-        public virtual Course Course { get; set; }
+        public DocumentScope Scope { get; set; }       
 
     }
 }
