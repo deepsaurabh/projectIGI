@@ -242,7 +242,7 @@
     $("#home").removeAttr("style");
 }])
 
-.controller('loginController', ['$scope', 'authService', function ($scope, authService) {
+.controller('loginController', ['$scope', 'authService', '$location', function ($scope, authService, $location) {
     $("#home").removeAttr("style");
     $scope.UserRegisteration = {
         UserName: '',
@@ -263,13 +263,10 @@
         .error(function () { });
     }
     $scope.Login = function (UserName, Password) {
-        authService.login({ userName: UserName, password: Password })
-        .success(function (response) {
-            var ss = response;
-
-        }).error(function (err, status) {
-            _logOut();
-            deferred.reject(err);
+        authService.login({ userName: UserName, password: Password }).then(function (data) {
+            var ss = data;
+            $location.url('/Home');
         });
+        
     }
 }]);

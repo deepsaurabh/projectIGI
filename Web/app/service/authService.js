@@ -50,9 +50,6 @@
 
             deferred.resolve(response);
 
-        }, function (err, status) {
-            _logOut();
-            deferred.reject(err);
         });
         return deferred.promise;
 
