@@ -81,10 +81,11 @@ namespace Enterprise.Repository
             return user;
         }
 
-        
-        public async Task<IdentityRole> FindRole(string roleId)
+
+        public IdentityRole FindRole(string roleId)
         {
-            IdentityRole role = await _roleManager.FindByIdAsync(roleId);
+           
+            IdentityRole role =  _roleManager.FindById(roleId);
 
             return role;
         }
