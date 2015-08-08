@@ -1,4 +1,5 @@
 ﻿using Data.Enum;
+using Entity.POCO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +10,29 @@ namespace Data.ViewModel
 {
     public class CourseViewModel
     {
-        public Int64 CourseID { get; set; }
-        public string CourseName { get; set; }
-        public string CourseFreeContent { get; set; }
-        public string CoursePublicContent { get; set; }
-        public string CoursePaidContent { get; set; }
-        public string Price { get; set; }
-        public Currency CurrencyType { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public long FreeContentImageId { get; set; }
-        public long PublicContentImageId { get; set; }
-        public long PaidContentImageId { get; set; }
-        public String ImageURL { get; set; }
+        public Int64 courseID { get; set; }
+        public string courseName { get; set; }
+        public string price { get; set; }
+        public Currency currencyType { get; set; }
+        public DateTime startDate { get; set; }
+        public DateTime endDate { get; set; }
+        public Content freeContent { get; set; }
+        public Content publicContent { get; set; }
+        public Content paidContent { get; set; }
+    }
+
+    public class Content
+    {
+        public String description { get; set; }
+        public List<DocumentAttached> fileAttachment { get; set; }
+    }
+    public class DocumentAttached
+    {
+        public long attachmentID { get; set; }
+        public bool isDeleted { get; set; }
+        public String imageURL { get; set; }
+        public String documentName { get; set; }
+        public DocumentScope documentScope { get; set; }
     }
 }
+

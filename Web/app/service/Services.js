@@ -9,11 +9,23 @@
                         url: localStorage['webApiUrl'] + 'api/Course/GetAllFreeCourse'
                     });
                 },
+                GetAllCourse: function () {
+                    return $http({
+                        method: 'Get',
+                        url: localStorage['webApiUrl'] + 'api/Course/GetAllCourse'
+                    });
+                },
                 SaveCourse: function (date) {
                     return $http({
                         method: 'POST',
                         url: localStorage['webApiUrl'] + 'api/Course/Post',
                         data: date
+                    });
+                },
+                GetCourseById: function (Id, documentScope) {
+                    return $http({
+                        method: 'GET',
+                        url: localStorage['webApiUrl'] + 'api/Course/GetAllCoursebyId?id=' + Id + '&scope=' + documentScope
                     });
                 },
                 uploadAttachment: function (formData, documentScope) {

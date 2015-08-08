@@ -1,4 +1,14 @@
-﻿<style>
+﻿<script type="text/javascript">
+    $(function () {
+        $('.datepicker').datepicker({
+            autoclose: true,
+            todayBtn: true,
+            todayHighlight: true
+        });
+    });
+</script>
+
+<style>
     .selectedItem {
         color: black;
         font-weight: 900;
@@ -49,35 +59,149 @@
 
                 <div class="courses">
 
-                    <!-- Course Start -->
-                    <div class="course row" data-scroll-reveal>
-                        <div class="col-sm-4">
-                            <img src="{{CourseList.ImageURL}}" alt="" class="img-responsive" />
-                        </div>
-                        <div class="col-sm-8">
+                    <!-- Student Course View -->
+                    <div class="course row" data-scroll-reveal data-ng-hide="isAdmin">
+                        <div class="col-sm-12">
                             <div class="row">
-                                <div class="col-md-9 col-sm-8">
-                                    <h3><a href="courses-details-left-sidebar.html">{{CourseList.CourseName}}</a></h3>
+                                <div class="col-md-9 col-sm-8 col-xs-8">
+                                    <h3><a href="">{{CourseList.courseName}}</a></h3>
                                     <div class="meta">
-                                        <span><a href="#">Start Date</a> : {{CourseList.StartDate}}</span>
-                                        <span><a href="#">End Date</a> : {{CourseList.EndDate}}</span>
+                                        <span><a href="#">Start Date</a> : {{CourseList.startDate}}</span>
+                                        <span><a href="#">End Date</a> : {{CourseList.endDate}}</span>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-4 price">{{CourseList.CurrencyType}} {{CourseList.Price}}</div>
+                                <div class="col-md-3 col-sm-4 price">{{CourseList.currencyType}} {{CourseList.price}}</div>
                             </div>
-                            <div class="row">
+                            <div class="row col-sm-12">
+                                <a href="">Description</a>
+                            </div>
+                            <div class="row" data-ng-show="CourseList.freeContent!=null && CourseList.freeContent.description!=null">
                                 <div class="col-sm-12">
                                     <p>
-                                        {{CourseList.Description}}
+                                        <a href="">Description</a>
+                                        {{CourseList.freeContent.description}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row" data-ng-show="CourseList.publicContent!=null && CourseList.publicContent.description!=null">
+                                <div class="col-sm-12">
+                                    <p>
+                                        {{CourseList.publicContent.description}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row" data-ng-show="CourseList.paidContent!=null && CourseList.paidContent.description!=null">
+                                <div class="col-sm-12">
+                                    <p>
+                                        {{CourseList.paidContent.description}}
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <hr>
+                    </div>
+                    <!-- Student Course View End-->
+
+                    <!-- Admin Course View -->
+                    <div class="course row" data-scroll-reveal data-ng-show="isAdmin">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8">
+                                    <div>
+                                        <a href="">Course Name</a>
+                                        <input type="text" maxlength="255" class="form-control" data-ng-model="CourseList.courseName" /><br />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8">
+                                    <p>
+                                        <a href="">Currency</a>
+                                        <select style class="form-control" data-ng-model="CourseList.currencyType">
+                                            <option value="1">INR</option>
+                                            <option value="2">Dollar</option>
+                                            <option value="3">Euro</option>
+                                        </select>
+                                    </p>
+
+                                    <p>
+                                        <a href="">Price</a>
+                                        <input class="form-control" type="number" min="0" data-ng-model="CourseList.price" />
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom: 15px;">
+                                <p>
+                                    <div class="col-sm-2">
+                                        <a href="">Start Date</a>
+                                        <input type="text" autoclose data-date-format="dd/mm/yyyy" class="datepicker" data-ng-model="CourseList.startDate" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        &nbsp;
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <a href="">End Date</a>
+                                        <input type="text" autoclose data-date-format="dd/mm/yyyy" class="datepicker" data-ng-model="CourseList.endDate" />
+                                    </div>
+                                </p>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <p>
+                                        <a href="">Free Content</a>
+                                        <textarea class="form-control" maxlength="1000" data-ng-model="CourseList.freeContent.description"></textarea>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <p>
+                                        <a href="">Paid Content</a>
+                                        <textarea class="form-control" maxlength="1000" data-ng-model="CourseList.paidContent.description"></textarea>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <p>
+                                        <a href="">Public Content</a>
+                                        <textarea class="form-control" maxlength="1000" data-ng-model="CourseList.publicContent.description"></textarea>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <!-- Course End -->
+                    <!-- Admin Course End -->
+
+                    <div class="row col-sm-4 " data-ng-show="CourseList.freeContent.fileAttachment!=null && CourseList.freeContent.fileAttachment.length>0">
+                        <a href="">Free Content Images</a>
+                        <span ng-repeat="document in CourseList.freeContent.fileAttachment | filter : {isDeleted:false}">
+                            <img src="{{document.imageURL}}" alt="" class="img-thumbnail" />
+                            <div data-ng-show="isAdmin">
+                                {{document.documentName}} (<a href="" ng-click="document.isDeleted=true">Delete</a>)
+                            </div>
+                        </span>
+                    </div>
+                    <div class="col-sm-4 " data-ng-class="classInitialize(DocumentScope.PublicContent)" data-ng-show="CourseList.publicContent.fileAttachment!=null && CourseList.publicContent.fileAttachment.length>0">
+                        <a href="">Public Content Images</a>
+                        <div ng-repeat="document in CourseList.publicContent.fileAttachment | filter : {isDeleted:false}">
+                            <img src="{{document.imageURL}}" alt="" class="img-thumbnail" />
+                            <div data-ng-show="isAdmin">
+                                {{document.documentName}} (<a href="" ng-click="document.isDeleted=true">Delete</a>)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" data-ng-class="classInitialize(DocumentScope.PaidContent)" data-ng-show="CourseList.paidContent.fileAttachment!=null && CourseList.paidContent.fileAttachment.length>0">
+                        <a href="">Paid Content Images</a>
+                        <span ng-repeat="document in CourseList.paidContent.fileAttachment | filter : {isDeleted:false}">
+                            <img src="{{document.imageURL}}" alt="" class="img-thumbnail" />
+                            <div data-ng-show="isAdmin">
+                                {{document.documentName}} (<a href="" ng-click="document.isDeleted=true">Delete</a>)
+                            </div>
+                        </span>
+                    </div>                    
+                    <div class="col-md-12">
+                        <hr>
+                    </div>
                 </div>
             </div>
             <!-- ==== COURSES END == -->

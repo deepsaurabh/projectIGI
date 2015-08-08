@@ -34,18 +34,18 @@
                     <div class="col-sm-6">
                         <div class="form-group" id="login-login-group">
                             <label for="login-input-login">Course Name</label>
-                            <input type="text" class="form-control" data-ng-model="CourseList.CourseName" id="login-input-login" placeholder="Course Name">
+                            <input type="text" maxlength="255" class="form-control" data-ng-model="CourseList.courseName" id="login-input-login" placeholder="Course Name">
                         </div>
 
                         <div class="form-group">
                             <label>Start Date</label><br />
-                            <input type="text" autoclose data-date-format="dd/mm/yyyy" class="datepicker" id="StartDate" data-ng-model="CourseList.StartDate" placeholder="Start Date" />
+                            <input type="text" autoclose data-date-format="dd/mm/yyyy" class="datepicker" id="StartDate" data-ng-model="CourseList.startDate" placeholder="Start Date" />
                             {{CourseList.StartDate}}
                         </div>
                         <div class="form-group" id="Div1">
                             <label>Free Subscription Description</label>
                             <div>
-                                <textarea class="form-control" id="Text1" data-ng-model="CourseList.CourseFreeContent" placeholder="Free Subscription Description"></textarea>
+                                <textarea maxlength="1000" class="form-control" id="Text1" data-ng-model="CourseList.freeContent.description" placeholder="Free Subscription Description"></textarea>
                             </div>
                         </div>
                         <div class="form-group" id="Div6">
@@ -53,11 +53,12 @@
                             <label class="error" id="Label1" style="display: none;"><span class="icon24 errorIcon"></span><span id="Span1"></span></label>
                             <input type="file" class="form-control" name="txtFileUpload" id="File1" title="Upload File"
                                 onchange="angular.element(this).scope().setFiles(this,1);">
+                            <div data-ng-repeat="document in CourseList.freeContent.fileAttachment">{{document.OriginalName}} (Uploaded) <a href="" ng-click="DeleteFile(CourseList.freeContent.fileAttachment,$index)">Delete</a></div>
                         </div>
                         <div class="form-group" id="Div3">
                             <label for="login-input-login">Paid User Description</label>
                             <div>
-                                <textarea class="form-control" id="Textarea2" placeholder="Paid User Description" data-ng-model="CourseList.CoursePaidContent"></textarea>
+                                <textarea maxlength="1000" class="form-control" id="Textarea2" placeholder="Paid User Description" data-ng-model="CourseList.paidContent.description"></textarea>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary" data-ng-click="SaveCourse(CourseList)">Submit</button>
@@ -70,14 +71,14 @@
                                 <table>
                                     <tr>
                                         <td>
-                                            <select class="form-control" data-ng-model="CourseList.CurrencyType">
+                                            <select class="form-control" data-ng-model="CourseList.currencyType">
                                                 <option value="1">INR</option>
                                                 <option value="2">Dollar</option>
                                                 <option value="3">Euro</option>
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="number" data-ng-model="CourseList.Price" min="0" class="form-control" id="Text3" placeholder="Price">
+                                            <input type="number" data-ng-model="CourseList.price" min="0" class="form-control" id="Text3" placeholder="Price">
                                         </td>
                                     </tr>
                                 </table>
@@ -85,13 +86,13 @@
                         </div>
                         <div class="form-group">
                             <label for="login-input-login">End Date</label><br />
-                            <input type="text" class="datepicker" id="EndDate" placeholder="End Date" data-ng-model="CourseList.EndDate">
+                            <input type="text" class="datepicker" id="EndDate" placeholder="End Date" data-ng-model="CourseList.endDate">
                         </div>
 
                         <div class="form-group" id="Div2">
                             <label for="login-input-login">Public User Description</label>
                             <div>
-                                <textarea class="form-control" id="Textarea1" placeholder="Public User Description" data-ng-model="CourseList.CoursePublicContent"></textarea>
+                                <textarea class="form-control" maxlength="1000" id="Textarea1" placeholder="Public User Description" data-ng-model="CourseList.publicContent.description"></textarea>
                             </div>
                         </div>
                         <div class="form-group" id="Div7">
@@ -99,12 +100,14 @@
                             <label class="error" id="Label2" style="display: none;"><span class="icon24 errorIcon"></span><span id="Span2"></span></label>
                             <input type="file" class="form-control" name="txtFileUpload" id="File2" title="Upload File"
                                 onchange="angular.element(this).scope().setFiles(this,2);">
+                    <div data-ng-repeat="document in CourseList.publicContent.fileAttachment">{{document.OriginalName}} (Uploaded) <a href="" ng-click="DeleteFile(CourseList.publicContent.fileAttachment,$index)">Delete</a></div>
                         </div>
                         <div class="form-group" id="Div4">
                             <label for="login-input-login">Paid User File Upload</label>
                             <label class="error" id="attachmentLabel" style="display: none;"><span class="icon24 errorIcon"></span><span id="errorAttachmentText"></span></label>
                             <input type="file" class="form-control" name="txtFileUpload" id="txtFileUpload" title="Upload File"
                                 onchange="angular.element(this).scope().setFiles(this,3);">
+                            <div data-ng-repeat="document in CourseList.paidContent.fileAttachment | filter : {isDeleted:false}">{{document.OriginalName}} (Uploaded) <a href="" ng-click="DeleteFile(CourseList.paidContent.fileAttachment,$index)">Delete</a></div>
                         </div>
 
                     </div>

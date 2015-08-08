@@ -101,7 +101,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="POCO\Course.cs" />
     <Compile Include="POCO\CourseDocument.cs" />
-    <Compile Include="POCO\DocumentScope.cs" />
     <Compile Include="POCO\DocumentType.cs" />
     <Compile Include="POCO\EnterpriseEntity.cs" />
     <Compile Include="POCO\Gender.cs" />

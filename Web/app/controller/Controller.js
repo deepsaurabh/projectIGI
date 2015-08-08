@@ -1,30 +1,21 @@
 ﻿angular.module('Enterprise.Controller', [])
 
 .controller('IndexController', ['$scope', function ($scope) {
+    $scope.userName = 'jnhimanshu';
+    $scope.isLoggedIn = false;
 
+    if (localStorage && localStorage.getItem('authorizationData')) {
+        $scope.userName = localStorage.getItem('authorizationData').userName;
+        $scope.isLoggedIn = true;
+    }
+
+    $scope.$on("UpdateLoginCredentials", function (event, userName) {
+        $scope.userName = userName;
+        $scope.isLoggedIn = true;
+    })
 }])
 
 .controller('homeController', ['$scope', function ($scope) {
-}])
-
-.controller('LoginController', ['$scope', 'authService', function ($scope, authService) {
-    $("#home").removeAttr("style");
-    $scope.emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/i;
-
-    //$scope.login = function (userName, password) {
-    //    loginData = {};
-    //    loginData.userName = userName;
-    //    loginData.password = password;
-    //    authService.login(loginData).success(function (response) {
-
-    //        console.log("login Successful")
-    //    }).error(function () {
-    //        console.log("Error in login");
-    //    });
-    //}
-
-    
-
 }])
 
 .controller('contactController', ['$scope', function ($scope) {
@@ -42,62 +33,102 @@
         { Key: '2', Value: 'Dollar' },
         { Key: '3', Value: 'Euro' }
     ];
+    $scope.DocumentScope = {
+        FreeContent: 1,
+        PublicContent: 2,
+        PaidContent: 3,
+        AllContent: 4
+    };
     $scope.CourseList = {
-        CourseID: 0,
-        CourseName: '',
-        Price: 0.0,
+        courseID: 0,
+        courseName: '',
+        price: 0.0,
         imageURL: '',
-        CurrencyType: '1',
-        StartDate: '',
-        EndDate: '',
-        CourseFreeContent: '',
-        CoursePublicContent: '',
-        CoursePaidContent: '',
-        FreeContentImageId: '',
-        PublicContentImageId: '',
-        PaidContentImageId: '',
-        ImageURL: '',
-        Description: '',
+        currencyType: '1',
+        startDate: '',
+        endDate: '',
+        freeContent: {
+            description: '',
+            fileAttachment: []
+        },
+        publicContent: {
+            description: '',
+            fileAttachment: []
+        },
+        paidContent: {
+            description: '',
+            fileAttachment: []
+        },
         isSelected: false
     };
+
+    $scope.isStudent = localStorage.getItem('authorizationData') ? true : false;
+    $scope.isAdmin = false;
+
+    $scope.isStudent = $scope.isAdmin;
 
     $scope.Courses = [];
 
     $scope.showAddCourse = true;
 
     $scope.Init = function () {
-        EnterpriseService.GetAllFreeCourse().success(function (data) {
-            if (data && data.course) {
-                $scope.Courses = data.course;
-                $scope.Courses.forEach(function (key, value) {
-                    if (key.courseFreeContent)
-                        key.description = key.courseFreeContent;
-                    else if (key.coursePaidContent)
-                        key.description = key.coursePaidContent;
-                    else if (key.coursePublicContent)
-                        key.description = key.coursePublicContent;
-                    key.startDate = getFormattedDate(new Date(key.startDate));
-                    key.endDate = getFormattedDate(new Date(key.endDate));
-                });
-                if ($scope.Courses.length > 0)
-                    $scope.DisplayCourse($scope.Courses[0]);
-            }
-        }).error(function () { });
+        if ($scope.isAdmin) {
+            EnterpriseService.GetAllCourse().success(function (data) {
+                if (data && data.course) {
+                    $scope.Courses = data.course;
+                    if ($scope.Courses.length > 0) {
+                        $scope.DisplayCourse($scope.Courses[0], $scope.DocumentScope.AllContent);
+                    }
+                }
+            }).error(function () { });
+        }
+        else {
+            EnterpriseService.GetAllFreeCourse().success(function (data) {
+                if (data && data.course) {
+                    $scope.Courses = data.course;
+                    if ($scope.Courses.length > 0) {
+                        $scope.DisplayCourse($scope.Courses[0], $scope.DocumentScope.FreeContent);
+                    }
+                }
+            }).error(function () { });
+        }
     }
 
-    $scope.DisplayCourse = function (course) {
+    $scope.classInitialize = function (scope) {
+        if (scope == $scope.DocumentScope.PublicContent)
+        {
+            if ($scope.CourseList.freeContent == null || $scope.CourseList.freeContent.fileAttachment.length == 0)
+                return "row";
+        }
+        else if (scope == $scope.DocumentScope.PaidContent) {
+            if ($scope.CourseList.freeContent == null || $scope.CourseList.freeContent.fileAttachment.length == 0) {
+                if ($scope.CourseList.publicContent == null || $scope.CourseList.publicContent.fileAttachment.length == 0) {
+                    return "row";
+                }
+            }
+        }
+    }
+
+    $scope.DisplayCourse = function (courseObj, documentscope) {
         $scope.Courses.forEach(function (key, value) {
             key.isSelected = false;
         });
-        course.isSelected = true;
-        $scope.CourseList.CourseID = course.courseID;
-        $scope.CourseList.CourseName = course.courseName;
-        $scope.CourseList.Price = course.price;
-        $scope.CourseList.CurrencyType = $filter('filter')($scope.CurrencyType, { Key: course.currencyType })[0].Value;
-        $scope.CourseList.StartDate = course.startDate;
-        $scope.CourseList.EndDate = course.endDate;
-        $scope.CourseList.ImageURL = course.imageURL;
-        $scope.CourseList.Description = course.courseFreeContent;
+        courseObj.isSelected = true;
+        if ($scope.isAdmin)
+            documentscope = $scope.DocumentScope.AllContent;
+        else
+            documentscope = $scope.DocumentScope.FreeContent;
+        EnterpriseService.GetCourseById(courseObj.id, documentscope).success(function (data) {
+            if (data && data.course) {
+                $scope.CourseList = data.course;
+                $scope.CourseList.startDate = getFormattedDate(new Date($scope.CourseList.startDate));
+                $scope.CourseList.endDate = getFormattedDate(new Date($scope.CourseList.endDate));
+                $scope.CourseList.price = parseFloat($scope.CourseList.price);
+                $scope.CourseList.currencyType = $scope.isAdmin ? $scope.CourseList.currencyType.toString() : $filter('filter')($scope.CurrencyType, { Key: $scope.CourseList.currencyType })[0].Value;
+            }
+
+        }).error(function () {
+        });
     }
 
     function getFormattedDate(date) {
@@ -157,83 +188,83 @@
             var unDeletedAttachments = $filter('filter')($scope.fileAttachments, { IsDeleted: false });
 
             var remainingSizeLimit = 0;
-            var limitedNoOfFiles = 3;
 
             // Checking number of file attached
             // Checking size limit for the attachments
             // Saving attachment to the DB
-            if ((attachedFiles.length + unDeletedAttachments.length) <= limitedNoOfFiles) {
-                for (var ctr = 0; ctr < attachedFiles.length; ctr++) {
-                    if (attachedFiles[ctr].size) {
-                        usedSizeLimit = usedSizeLimit + parseInt(attachedFiles[ctr].size)
-                    }
-                }
-                for (var ctr = 0; ctr < unDeletedAttachments.length; ctr++) {
-                    if (unDeletedAttachments[ctr].FileSize) {
-                        usedSizeLimit = usedSizeLimit + parseInt(unDeletedAttachments[ctr].FileSize)
-                    }
-                }
-                var remainingSizeLimit = totalSizeLimitInBytes - usedSizeLimit;
 
-                // If the size of the attachments size are lesser than the required size
-                if (remainingSizeLimit <= 0) {
-                    $('#txtFileUpload').val("");
-                    $scope.showAttachmentAlertMessage("Size of attachment exceeds the maximum size limit.", true);
-                } else {
-
-                    attachedFiles = $.merge(attachedFiles, unDeletedAttachments);
-
-                    // pushing checked attachments to the fileAttachments array.
-                    if (attachedFiles.length <= limitedNoOfFiles) {
-                        var fd = new FormData();
-                        for (var i in attachedFiles) {
-                            fd.append("uploadedFile", attachedFiles[i])
-                        }
-
-                        EnterpriseService.uploadAttachment(fd, documentScope)
-                            .success(function (data) {
-                                if (data && data.attachedFiles && data.attachedFiles.length > 0) {
-                                    switch (documentScope) {
-                                        case 1:
-                                            $scope.CourseList.FreeContentImageId = data.attachedFiles[0].id
-                                            break;
-                                        case 2:
-                                            $scope.CourseList.PublicContentImageId = data.attachedFiles[0].id
-                                            break;
-                                        case 3:
-                                            $scope.CourseList.PaidContentImageId = data.attachedFiles[0].id
-                                            break;
-                                    }
-                                } else {
-                                    $scope.showAttachmentAlertMessage("File cannot be uploaded due to some error. Please try again.", true);
-                                }
-                            }).error(function (data, status, headers, config) {
-                                $scope.showAttachmentAlertMessage(data.Message, true);
-                            });
-                        $scope.fileAttachments.push({ OriginalName: element.files[0].name, IsDeleted: false });
-                        if (!$scope.$$phase) {
-                            $scope.$apply();
-                        }
-
-                    }
-                    else {
-                        $('#txtFileUpload').val("");
-                        $scope.showAttachmentAlertMessage("Number of attachments reached the maximum limit.", true);
-                    }
+            for (var ctr = 0; ctr < attachedFiles.length; ctr++) {
+                if (attachedFiles[ctr].size) {
+                    usedSizeLimit = usedSizeLimit + parseInt(attachedFiles[ctr].size)
                 }
             }
-            else {
+            for (var ctr = 0; ctr < unDeletedAttachments.length; ctr++) {
+                if (unDeletedAttachments[ctr].FileSize) {
+                    usedSizeLimit = usedSizeLimit + parseInt(unDeletedAttachments[ctr].FileSize)
+                }
+            }
+            var remainingSizeLimit = totalSizeLimitInBytes - usedSizeLimit;
+
+            // If the size of the attachments size are lesser than the required size
+            if (remainingSizeLimit <= 0) {
                 $('#txtFileUpload').val("");
-                $scope.showAttachmentAlertMessage("Number of attachments reached the maximum limit.", true);
+                $scope.showAttachmentAlertMessage("Size of attachment exceeds the maximum size limit.", true);
+            } else {
+
+                attachedFiles = $.merge(attachedFiles, unDeletedAttachments);
+
+                // pushing checked attachments to the fileAttachments array.
+                var fd = new FormData();
+                for (var i in attachedFiles) {
+                    fd.append("uploadedFile", attachedFiles[i])
+                }
+
+                EnterpriseService.uploadAttachment(fd, documentScope)
+                    .success(function (data) {
+                        if (data && data.attachedFiles && data.attachedFiles.length > 0) {
+                            switch (documentScope) {
+                                case 1:
+                                    {
+                                        $scope.CourseList.freeContent.fileAttachment.push({ attachmentID: data.attachedFiles[0].id, OriginalName: element.files[0].name, isDeleted: false });
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        $scope.CourseList.publicContent.fileAttachment.push({ attachmentID: data.attachedFiles[0].id, OriginalName: element.files[0].name, isDeleted: false });
+                                        break;
+                                    }
+                                case 3:
+                                    {
+                                        $scope.CourseList.paidContent.fileAttachment.push({ attachmentID: data.attachedFiles[0].id, OriginalName: element.files[0].name, isDeleted: false });
+                                        break;
+                                    }
+                            }
+                        } else {
+                            $scope.showAttachmentAlertMessage("File cannot be uploaded due to some error. Please try again.", true);
+                        }
+                    }).error(function (data, status, headers, config) {
+                        $scope.showAttachmentAlertMessage(data.Message, true);
+                    });
+                $scope.fileAttachments.push({ OriginalName: element.files[0].name, IsDeleted: false });
+                if (!$scope.$$phase) {
+                    $scope.$apply();
+                }
+
+
+                else {
+                    $('#txtFileUpload').val("");
+                    $scope.showAttachmentAlertMessage("Number of attachments reached the maximum limit.", true);
+                }
             }
+
         }
         else {
             $scope.showAttachmentAlertMessage("Number of attachments reached the maximum limit.", true);
         }
     }
 
-    $scope.DeleteFile = function (fileDetail) {
-        fileDetail.IsDeleted = true;
+    $scope.DeleteFile = function (DocumentList, index) {
+        DocumentList.splice(index, 1);
     }
 
 }])
@@ -249,6 +280,7 @@
         Password: '',
         ConfirmPassword: '',
         EmailAddress: '',
+        LastName: '',
         PhoneNumber: '',
         FirstName: '',
         Gender: '',
@@ -264,9 +296,9 @@
     }
     $scope.Login = function (UserName, Password) {
         authService.login({ userName: UserName, password: Password }).then(function (data) {
-            var ss = data;
+            $scope.$emit('UpdateLoginCredentials', data.data.userName);
             $location.url('/Home');
         });
-        
+
     }
 }]);
