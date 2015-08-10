@@ -78,7 +78,6 @@
                             <div class="row" data-ng-show="CourseList.freeContent!=null && CourseList.freeContent.description!=null">
                                 <div class="col-sm-12">
                                     <p>
-                                        <a href="">Description</a>
                                         {{CourseList.freeContent.description}}
                                     </p>
                                 </div>
@@ -174,6 +173,8 @@
 
                     <div class="row col-sm-4 " data-ng-show="CourseList.freeContent.fileAttachment!=null && CourseList.freeContent.fileAttachment.length>0">
                         <a href="">Free Content Images</a>
+                        <input type="file" class="form-control" name="txtFileUpload" id="File1" title="Upload File"
+                            onchange="angular.element(this).scope().setFiles(this,1);">
                         <span ng-repeat="document in CourseList.freeContent.fileAttachment | filter : {isDeleted:false}">
                             <img src="{{document.imageURL}}" alt="" class="img-thumbnail" />
                             <div data-ng-show="isAdmin">
@@ -183,6 +184,8 @@
                     </div>
                     <div class="col-sm-4 " data-ng-class="classInitialize(DocumentScope.PublicContent)" data-ng-show="CourseList.publicContent.fileAttachment!=null && CourseList.publicContent.fileAttachment.length>0">
                         <a href="">Public Content Images</a>
+                        <input type="file" class="form-control" name="txtFileUpload" id="File2" title="Upload File"
+                            onchange="angular.element(this).scope().setFiles(this,2);">
                         <div ng-repeat="document in CourseList.publicContent.fileAttachment | filter : {isDeleted:false}">
                             <img src="{{document.imageURL}}" alt="" class="img-thumbnail" />
                             <div data-ng-show="isAdmin">
@@ -192,13 +195,21 @@
                     </div>
                     <div class="col-sm-4" data-ng-class="classInitialize(DocumentScope.PaidContent)" data-ng-show="CourseList.paidContent.fileAttachment!=null && CourseList.paidContent.fileAttachment.length>0">
                         <a href="">Paid Content Images</a>
+                        <input type="file" class="form-control" name="txtFileUpload" id="txtFileUpload" title="Upload File"
+                            onchange="angular.element(this).scope().setFiles(this,3);">
                         <span ng-repeat="document in CourseList.paidContent.fileAttachment | filter : {isDeleted:false}">
                             <img src="{{document.imageURL}}" alt="" class="img-thumbnail" />
                             <div data-ng-show="isAdmin">
                                 {{document.documentName}} (<a href="" ng-click="document.isDeleted=true">Delete</a>)
                             </div>
                         </span>
-                    </div>                    
+                    </div>
+
+                    <div class="col-md-12">
+                        <p>
+                            <button type="submit" style="float: right;" class="btn btn-primary" data-ng-click="SaveCourse(CourseList)">Update</button>
+                        </p>
+                    </div>
                     <div class="col-md-12">
                         <hr>
                     </div>

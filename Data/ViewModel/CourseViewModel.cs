@@ -18,7 +18,7 @@ namespace Data.ViewModel
         public DateTime endDate { get; set; }
         public Content freeContent { get; set; }
         public Content publicContent { get; set; }
-        public Content paidContent { get; set; }
+        public Content paidContent { get; set; }        
     }
 
     public class Content

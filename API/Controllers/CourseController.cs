@@ -222,13 +222,33 @@ namespace API.Controllers
                     EndDate = viewModel.endDate,
                     CurrencyType = viewModel.currencyType
                 };
-                UnitOfWork.CourseRepository.Insert(model);
+                if (viewModel.courseID > 0)
+                {
+                    model.Id = viewModel.courseID;
+                    model.CreatedDate = DateTime.UtcNow;
+                    UnitOfWork.CourseRepository.Update(model);
+                }
+                else
+                {
+                    UnitOfWork.CourseRepository.Insert(model);
+                }
                 UnitOfWork.SaveChange();
+                var getAllMapping = UnitOfWork.CourseAttachmentRepository.Get(ch => ch.courseId == model.Id && !ch.IsDeleted);
+
                 if (viewModel.freeContent != null && viewModel.freeContent.fileAttachment != null)
                 {
                     foreach (var item in viewModel.freeContent.fileAttachment)
                     {
-                        UnitOfWork.CourseAttachmentRepository.Insert(new CourseAttachmentMapping() { courseId = model.Id, courseDocumentID = item.attachmentID });
+                        var itemExist = getAllMapping.Where(ch => ch.courseDocumentID == item.attachmentID).FirstOrDefault();
+                        if (itemExist == null)
+                        {
+                            UnitOfWork.CourseAttachmentRepository.Insert(new CourseAttachmentMapping() { courseId = model.Id, courseDocumentID = item.attachmentID });
+                        }
+                        else if (item.isDeleted)
+                        {
+                            itemExist.IsDeleted = true;
+                            UnitOfWork.CourseAttachmentRepository.Update(itemExist);
+                        }
                     }
                 }
 
@@ -236,7 +256,16 @@ namespace API.Controllers
                 {
                     foreach (var item in viewModel.publicContent.fileAttachment)
                     {
-                        UnitOfWork.CourseAttachmentRepository.Insert(new CourseAttachmentMapping() { courseId = model.Id, courseDocumentID = item.attachmentID });
+                        var itemExist = getAllMapping.Where(ch => ch.courseDocumentID == item.attachmentID).FirstOrDefault();
+                        if (itemExist == null)
+                        {
+                            UnitOfWork.CourseAttachmentRepository.Insert(new CourseAttachmentMapping() { courseId = model.Id, courseDocumentID = item.attachmentID });
+                        }
+                        else if (item.isDeleted)
+                        {
+                            itemExist.IsDeleted = true;
+                            UnitOfWork.CourseAttachmentRepository.Update(itemExist);
+                        }
                     }
                 }
 
@@ -244,7 +273,16 @@ namespace API.Controllers
                 {
                     foreach (var item in viewModel.paidContent.fileAttachment)
                     {
-                        UnitOfWork.CourseAttachmentRepository.Insert(new CourseAttachmentMapping() { courseId = model.Id, courseDocumentID = item.attachmentID });
+                        var itemExist = getAllMapping.Where(ch => ch.courseDocumentID == item.attachmentID).FirstOrDefault();
+                        if (itemExist == null)
+                        {
+                            UnitOfWork.CourseAttachmentRepository.Insert(new CourseAttachmentMapping() { courseId = model.Id, courseDocumentID = item.attachmentID });
+                        }
+                        else if (item.isDeleted)
+                        {
+                            itemExist.IsDeleted = true;
+                            UnitOfWork.CourseAttachmentRepository.Update(itemExist);
+                        }
                     }
                 }
 
@@ -302,7 +340,7 @@ namespace API.Controllers
             try
             {
                 string erroredAtchmnts = String.Empty;
-
+                string imageURL = String.Empty;
                 //Loop through the multiple files.
                 for (int i = 0; i < context.Request.Files.Count; i++)
                 {
@@ -327,6 +365,8 @@ namespace API.Controllers
                         UnitOfWork.CourseDocumentRepository.Insert(fileAttachment);
                         UnitOfWork.SaveChange();
                         attachedFiles.Add(fileAttachment);
+                        var base64String = Convert.ToBase64String(fileAttachment.FileData, 0, fileAttachment.FileData.Length);
+                        imageURL = String.Format("data:{0};base64,{1}", fileAttachment.FileType, base64String);
                     }
                     catch (Exception)
                     {
@@ -335,7 +375,7 @@ namespace API.Controllers
                     }
                 }
 
-                return Request.CreateResponse(HttpStatusCode.OK, new { erroredAttachments = erroredAtchmnts, attachedFiles = attachedFiles });
+                return Request.CreateResponse(HttpStatusCode.OK, new { erroredAttachments = erroredAtchmnts, attachedFiles = attachedFiles, imageURL = imageURL });
             }
             catch (UnauthorizedAccessException uex)
             {

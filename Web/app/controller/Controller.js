@@ -63,7 +63,8 @@
     };
 
     $scope.isStudent = localStorage.getItem('authorizationData') ? true : false;
-    $scope.isAdmin = false;
+
+    $scope.isAdmin = true;
 
     $scope.isStudent = $scope.isAdmin;
 
@@ -95,14 +96,13 @@
     }
 
     $scope.classInitialize = function (scope) {
-        if (scope == $scope.DocumentScope.PublicContent)
-        {
-            if ($scope.CourseList.freeContent == null || $scope.CourseList.freeContent.fileAttachment.length == 0)
+        if (scope == $scope.DocumentScope.PublicContent) {
+            if ($scope.CourseList.freeContent == null || $scope.CourseList.freeContent.fileAttachment == null || $scope.CourseList.freeContent.fileAttachment.length == 0)
                 return "row";
         }
         else if (scope == $scope.DocumentScope.PaidContent) {
-            if ($scope.CourseList.freeContent == null || $scope.CourseList.freeContent.fileAttachment.length == 0) {
-                if ($scope.CourseList.publicContent == null || $scope.CourseList.publicContent.fileAttachment.length == 0) {
+            if ($scope.CourseList.freeContent == null || $scope.CourseList.freeContent.fileAttachment == null || $scope.CourseList.freeContent.fileAttachment.length == 0) {
+                if ($scope.CourseList.publicContent == null || $scope.CourseList.publicContent.fileAttachment == null || $scope.CourseList.publicContent.fileAttachment.length == 0) {
                     return "row";
                 }
             }
@@ -141,6 +141,21 @@
     }
 
     $scope.SaveCourse = function (CourseList) {
+        if (CourseList.freeContent && CourseList.freeContent.fileAttachment) {
+            CourseList.freeContent.fileAttachment.forEach(function (key, value) {
+                key.imageURL = ''
+            });
+        }
+        if (CourseList.paidContent && CourseList.paidContent.fileAttachment) {
+            CourseList.paidContent.fileAttachment.forEach(function (key, value) {
+                key.imageURL = ''
+            });
+        }
+        if (CourseList.publicContent && CourseList.publicContent.fileAttachment) {
+            CourseList.publicContent.fileAttachment.forEach(function (key, value) {
+                key.imageURL = ''
+            });
+        }
         EnterpriseService.SaveCourse(CourseList)
         .success(function () {
             alert('Course saved successfully');
@@ -222,20 +237,26 @@
                 EnterpriseService.uploadAttachment(fd, documentScope)
                     .success(function (data) {
                         if (data && data.attachedFiles && data.attachedFiles.length > 0) {
+                            var attachmentObj = {
+                                attachmentID: data.attachedFiles[0].id,
+                                documentName: data.attachedFiles[0].documentName,
+                                isDeleted: false,
+                                imageURL: data.imageURL
+                            };
                             switch (documentScope) {
                                 case 1:
                                     {
-                                        $scope.CourseList.freeContent.fileAttachment.push({ attachmentID: data.attachedFiles[0].id, OriginalName: element.files[0].name, isDeleted: false });
+                                        $scope.CourseList.freeContent.fileAttachment.push(attachmentObj);
                                         break;
                                     }
                                 case 2:
                                     {
-                                        $scope.CourseList.publicContent.fileAttachment.push({ attachmentID: data.attachedFiles[0].id, OriginalName: element.files[0].name, isDeleted: false });
+                                        $scope.CourseList.publicContent.fileAttachment.push(attachmentObj);
                                         break;
                                     }
                                 case 3:
                                     {
-                                        $scope.CourseList.paidContent.fileAttachment.push({ attachmentID: data.attachedFiles[0].id, OriginalName: element.files[0].name, isDeleted: false });
+                                        $scope.CourseList.paidContent.fileAttachment.push(attachmentObj);
                                         break;
                                     }
                             }

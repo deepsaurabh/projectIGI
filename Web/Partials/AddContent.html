@@ -39,7 +39,7 @@
 
                         <div class="form-group">
                             <label>Start Date</label><br />
-                            <input type="text" autoclose data-date-format="dd/mm/yyyy" class="datepicker" id="StartDate" data-ng-model="CourseList.startDate" placeholder="Start Date" />
+                            <input type="text" data-date-format="dd/mm/yyyy" class="datepicker" id="StartDate" data-ng-model="CourseList.startDate" placeholder="Start Date" />
                             {{CourseList.StartDate}}
                         </div>
                         <div class="form-group" id="Div1">
@@ -53,7 +53,7 @@
                             <label class="error" id="Label1" style="display: none;"><span class="icon24 errorIcon"></span><span id="Span1"></span></label>
                             <input type="file" class="form-control" name="txtFileUpload" id="File1" title="Upload File"
                                 onchange="angular.element(this).scope().setFiles(this,1);">
-                            <div data-ng-repeat="document in CourseList.freeContent.fileAttachment">{{document.OriginalName}} (Uploaded) <a href="" ng-click="DeleteFile(CourseList.freeContent.fileAttachment,$index)">Delete</a></div>
+                            <div data-ng-repeat="document in CourseList.freeContent.fileAttachment">{{document.documentName}} (Uploaded) <a href="" ng-click="DeleteFile(CourseList.freeContent.fileAttachment,$index)">Delete</a></div>
                         </div>
                         <div class="form-group" id="Div3">
                             <label for="login-input-login">Paid User Description</label>
@@ -86,7 +86,7 @@
                         </div>
                         <div class="form-group">
                             <label for="login-input-login">End Date</label><br />
-                            <input type="text" class="datepicker" id="EndDate" placeholder="End Date" data-ng-model="CourseList.endDate">
+                            <input type="text" class="datepicker" id="EndDate" data-date-format="dd/mm/yyyy" placeholder="End Date" data-ng-model="CourseList.endDate">
                         </div>
 
                         <div class="form-group" id="Div2">
@@ -100,14 +100,14 @@
                             <label class="error" id="Label2" style="display: none;"><span class="icon24 errorIcon"></span><span id="Span2"></span></label>
                             <input type="file" class="form-control" name="txtFileUpload" id="File2" title="Upload File"
                                 onchange="angular.element(this).scope().setFiles(this,2);">
-                    <div data-ng-repeat="document in CourseList.publicContent.fileAttachment">{{document.OriginalName}} (Uploaded) <a href="" ng-click="DeleteFile(CourseList.publicContent.fileAttachment,$index)">Delete</a></div>
+                    <div data-ng-repeat="document in CourseList.publicContent.fileAttachment">{{document.documentName}} (Uploaded) <a href="" ng-click="DeleteFile(CourseList.publicContent.fileAttachment,$index)">Delete</a></div>
                         </div>
                         <div class="form-group" id="Div4">
                             <label for="login-input-login">Paid User File Upload</label>
                             <label class="error" id="attachmentLabel" style="display: none;"><span class="icon24 errorIcon"></span><span id="errorAttachmentText"></span></label>
                             <input type="file" class="form-control" name="txtFileUpload" id="txtFileUpload" title="Upload File"
                                 onchange="angular.element(this).scope().setFiles(this,3);">
-                            <div data-ng-repeat="document in CourseList.paidContent.fileAttachment | filter : {isDeleted:false}">{{document.OriginalName}} (Uploaded) <a href="" ng-click="DeleteFile(CourseList.paidContent.fileAttachment,$index)">Delete</a></div>
+                            <div data-ng-repeat="document in CourseList.paidContent.fileAttachment | filter : {isDeleted:false}">{{document.documentName}} (Uploaded) <a href="" ng-click="DeleteFile(CourseList.paidContent.fileAttachment,$index)">Delete</a></div>
                         </div>
 
                     </div>
