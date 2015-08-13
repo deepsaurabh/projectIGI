@@ -44,7 +44,11 @@
             data: data
         }).then(function (response) {
 
-            localStorage.setItem('authorizationData', { token: response.data.access_token, userName: loginData.userName });
+            var authorizationData = { token: response.data.access_token, userName: loginData.userName, role: response.data.roles }
+            localStorage.setItem('authorizationData', JSON.stringify(authorizationData));
+            
+
+            //localStorage.setItem('authorizationData', { token: response.data.access_token, userName: loginData.userName });
             _authentication.isAuth = true;
             _authentication.userName = loginData.userName;
 
@@ -66,10 +70,13 @@
 
     var _fillAuthData = function () {
 
+
         var authData = localStorage.getItem('authorizationData');
         if (authData) {
+
+            authorizationData = JSON.parse(authData);
             _authentication.isAuth = true;
-            _authentication.userName = authData.userName;
+            _authentication.userName = authorizationData.userName;
         }
 
     }

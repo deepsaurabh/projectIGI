@@ -1,12 +1,34 @@
 ﻿angular.module('Enterprise.Controller', [])
 
-.controller('IndexController', ['$scope', function ($scope) {
-    $scope.userName = 'jnhimanshu';
+.controller('IndexController', ['$scope', 'authService', '$location', function ($scope, authService, $location) {
+    $scope.userName = '';
     $scope.isLoggedIn = false;
+    $scope.role = "free";
 
     if (localStorage && localStorage.getItem('authorizationData')) {
-        $scope.userName = localStorage.getItem('authorizationData').userName;
+        var authorizationDataString = localStorage.getItem('authorizationData');
+        authorizationData = JSON.parse(authorizationDataString);
+        $scope.userName = authorizationData.userName;
         $scope.isLoggedIn = true;
+        $scope.role = authorizationData.role;
+    }
+  
+
+    $scope.logout = function () {
+        authService.logOut();
+        $scope.userName = '';
+        $scope.isLoggedIn = false;
+        $scope.role = "free";
+        window.open('http://localhost:63249/#/Login', '_self')
+       // window.location = "http://localhost:63249/#/Login";
+    }
+
+    $scope.isAdmin = function () {
+        if ($scope.role.toLowerCase() == 'admin')
+            return true;
+        else
+            return false;
+        //return true; //Just as a test to make sure it works
     }
 
     $scope.$on("UpdateLoginCredentials", function (event, userName) {
@@ -312,13 +334,17 @@
         authService.saveRegistration(UserRegisteration)
         .success(function (data) {
             alert('Successfully registered');
+            $scope.UserRegisteration();
         })
-        .error(function () { });
+        .error(function (error) {
+            $scope.errorMessage = error.message;
+            alert($scope.errorMessage);
+        });
     }
     $scope.Login = function (UserName, Password) {
         authService.login({ userName: UserName, password: Password }).then(function (data) {
             $scope.$emit('UpdateLoginCredentials', data.data.userName);
-            $location.url('/Home');
+            window.open('http://localhost:63249/#/Home', '_self')
         });
 
     }

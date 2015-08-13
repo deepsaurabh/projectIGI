@@ -55,6 +55,14 @@ namespace API.Controllers
             var result = new IdentityResult();
             try
             {
+                var userExistance = _repo.IsUserExistsByUsername(userModel.UserName);
+
+                if (userExistance)
+                {
+                    return BadRequest("User Name already exist.");
+                }
+                   
+
                 result = await _repo.RegisterCustomerAsync(userModel);
 
                 var user = new User() 
@@ -94,10 +102,10 @@ namespace API.Controllers
 //    "DateOfBirth": "2015-08-01"
 //}
         // POST api/Account/RegisterAdmin
-        [HttpPost]
-        [AllowAnonymous]
-        [Route("RegisterAdmin")]
-        public async Task<IHttpActionResult> RegisterAdmin(UserModel userModel)
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[Route("RegisterAdmin")]
+        private async Task<IHttpActionResult> RegisterAdmin(UserModel userModel)
         {
             if (!ModelState.IsValid)
             {
