@@ -1,19 +1,6 @@
 ﻿angular.module('Enterprise.Controller', [])
 
 .controller('IndexController', ['$scope', 'authService', '$location', '$rootScope', function ($scope, authService, $location, $rootScope) {
-    $scope.userName = '';
-    $scope.isLoggedIn = false;
-    $scope.role = "free";
-
-    if (localStorage && localStorage.getItem('authorizationData')) {
-        var authorizationDataString = localStorage.getItem('authorizationData');
-        authorizationData = JSON.parse(authorizationDataString);
-        $scope.userName = authorizationData.userName;
-        $scope.isLoggedIn = true;
-        $scope.role = authorizationData.role;
-    }
-
-
     $scope.logout = function () {
         authService.logOut();
         $rootScope.userName = '';
@@ -22,13 +9,6 @@
         window.open('http://localhost:63249/#/Login', '_self')
     }
 
-    $scope.isAdmin = function () {
-        if ($scope.role.toLowerCase() == 'admin')
-            return true;
-        else
-            return false;
-        //return true; //Just as a test to make sure it works
-    }
 }])
 
 .controller('homeController', ['$scope', function ($scope) {
@@ -78,7 +58,7 @@
         isSelected: false
     };
 
-    $scope.isAdmin = $scope.$parent.isAdmin();
+    $scope.isAdmin = $scope.isAdmin();
 
     $scope.Courses = [];
 
@@ -347,7 +327,7 @@
         isSelected: false
     };
 
-    $scope.isAdmin = $scope.$parent.isAdmin();
+    $scope.isAdmin = $scope.isAdmin();
 
     $scope.Toolkits = [];
 
