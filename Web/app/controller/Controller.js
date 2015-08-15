@@ -1,39 +1,21 @@
 ﻿angular.module('Enterprise.Controller', [])
 
-.controller('IndexController', ['$scope', 'authService', '$location', function ($scope, authService, $location) {
-    $scope.userName = '';
-    $scope.isLoggedIn = false;
-    $scope.role = "free";
-
-    if (localStorage && localStorage.getItem('authorizationData')) {
-        var authorizationDataString = localStorage.getItem('authorizationData');
-        authorizationData = JSON.parse(authorizationDataString);
-        $scope.userName = authorizationData.userName;
-        $scope.isLoggedIn = true;
-        $scope.role = authorizationData.role;
-    }
-  
+.controller('IndexController', ['$scope', 'authService', '$location', '$rootScope', function ($scope, authService, $location, $rootScope) {
 
     $scope.logout = function () {
         authService.logOut();
-        $scope.userName = '';
-        $scope.isLoggedIn = false;
-        $scope.role = "free";
+        $rootScope.userName = '';
+        $rootScope.isLoggedIn = false;
+        $rootScope.role = "free";
         window.open('http://localhost:63249/#/Login', '_self')
        // window.location = "http://localhost:63249/#/Login";
     }
 
-    $scope.isAdmin = function () {
-        if ($scope.role.toLowerCase() == 'admin')
-            return true;
-        else
-            return false;
-        //return true; //Just as a test to make sure it works
-    }
+    
 
     $scope.$on("UpdateLoginCredentials", function (event, userName) {
-        $scope.userName = userName;
-        $scope.isLoggedIn = true;
+        $rootScope.userName = userName;
+        $rootScope.isLoggedIn = true;
     })
 }])
 
@@ -344,7 +326,7 @@
     $scope.Login = function (UserName, Password) {
         authService.login({ userName: UserName, password: Password }).then(function (data) {
             $scope.$emit('UpdateLoginCredentials', data.data.userName);
-            window.open('http://localhost:63249/#/Home', '_self')
+            window.open('http://localhost:63249', '_self')
         });
 
     }

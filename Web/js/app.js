@@ -4,39 +4,17 @@ angular.module('IGI', ['ngRoute', 'Enterprise.Controller', 'Enterprise.Services'
 .run(['$rootScope', function ($rootScope) {
     //localStorage['webApiUrl'] = window.location.protocol + "//" + window.location.host + "/api/";
     localStorage['webApiUrl'] = 'http://localhost:51473/';
-
-    $rootScope.userName = '';
-    $rootScope.isLoggedIn = false;
-    $rootScope.role = "free";
-
-    if (localStorage && localStorage.getItem('authorizationData')) {
-        var authorizationDataString = localStorage.getItem('authorizationData');
-        authorizationData = JSON.parse(authorizationDataString);
-        $rootScope.userName = authorizationData.userName;
-        $rootScope.isLoggedIn = true;
-        $rootScope.role = authorizationData.role;
-    }
-
-    $rootScope.isAdmin = function () {
-        if ($rootScope.role.toLowerCase() == 'admin')
-            return true;
+    //$rootScope.IsSignedInUser = false;
+    //$rootScope.IsFreeUser = true;
+    //$rootScope.IsAdmin = false;
+    //$rootScope.IsFreeUser = true;
+    //$rootScope.IsPublicUser = false;
+    //var userStorage = localStorage['authorizationData']
+    //if (userStorage != null) {
+    //    $rootScope.IsSignedInUser = true;
+    //    $rootScope.IsFreeUser = false;
         
-        return false;
-    }
-
-    $rootScope.isCustomer = function () {
-        if ($rootScope.role.toLowerCase() == 'customer')
-            return true;
-
-        return false;
-    }
-
-    $rootScope.isRegisteredUser = function () {
-        if ($rootScope.role.toLowerCase() == 'free' )
-            return false;
-        return true;
-    }
-
+    //}
     
 }])
 
