@@ -57,18 +57,31 @@
         },
         isSelected: false
     };
-
+    $scope.isPaidPage = false;
+    if ($route && $route.current && $route.current.$$route && $route.current.$$route.originalPath && $route.current.$$route.originalPath.toLowerCase().indexOf('purchasedcourse') > 0) {
+        $scope.isPaidPage = true;
+    }
     $scope.isAdmin = $scope.isAdmin();
 
     $scope.Courses = [];
 
-    $scope.documentScope = $scope.isAdmin ? $scope.DocumentScope.AllContent : ($scope.$parent.isLoggedIn ? $scope.DocumentScope.FreeContent : $scope.DocumentScope.PublicContent);
+    $scope.documentScope = $scope.isAdmin ? $scope.DocumentScope.AllContent : ($scope.isPaidPage ? $scope.DocumentScope.PaidContent : ($scope.$parent.isLoggedIn ? $scope.DocumentScope.FreeContent : $scope.DocumentScope.PublicContent));
 
     $scope.showAddCourse = true;
 
     $scope.Init = function () {
         if ($scope.isAdmin) {
             EnterpriseService.GetAllCourse().success(function (data) {
+                if (data && data.course) {
+                    $scope.Courses = data.course;
+                    if ($scope.Courses.length > 0) {
+                        $scope.DisplayCourse($scope.Courses[0]);
+                    }
+                }
+            }).error(function () { });
+        }
+        else if ($scope.isPaidPage) {
+            EnterpriseService.GetAllPaidCourse().success(function (data) {
                 if (data && data.course) {
                     $scope.Courses = data.course;
                     if ($scope.Courses.length > 0) {
@@ -333,11 +346,26 @@
 
     $scope.showAddCourse = true;
 
-    $scope.documentScope = $scope.isAdmin ? $scope.DocumentScope.AllContent : ($scope.$parent.isLoggedIn ? $scope.DocumentScope.FreeContent : $scope.DocumentScope.PublicContent);
+    $scope.isPaidPage = false;
+    if ($route && $route.current && $route.current.$$route && $route.current.$$route.originalPath && $route.current.$$route.originalPath.toLowerCase().indexOf('purchasedtoolkit') > 0) {
+        $scope.isPaidPage = true;
+    }
+
+    $scope.documentScope = $scope.isAdmin ? $scope.DocumentScope.AllContent : ($scope.isPaidPage ? $scope.DocumentScope.PaidContent : ($scope.$parent.isLoggedIn ? $scope.DocumentScope.FreeContent : $scope.DocumentScope.PublicContent));
 
     $scope.Init = function () {
         if ($scope.isAdmin) {
             EnterpriseService.GetAllToolkit().success(function (data) {
+                if (data && data.toolkit) {
+                    $scope.Toolkits = data.toolkit;
+                    if ($scope.Toolkits.length > 0) {
+                        $scope.DisplayToolkit($scope.Toolkits[0]);
+                    }
+                }
+            }).error(function () { });
+        }
+        else if ($scope.isPaidPage) {
+            EnterpriseService.GetAllPaidToolkit().success(function (data) {
                 if (data && data.toolkit) {
                     $scope.Toolkits = data.toolkit;
                     if ($scope.Toolkits.length > 0) {

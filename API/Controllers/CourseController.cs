@@ -114,18 +114,7 @@ namespace API.Controllers
         [Route("GetAllPaidCourse")]
         public HttpResponseMessage GetAllPaidCourse()
         {
-            var outCourse = from documentCourse in UnitOfWork.CourseRepository.Get()
-                            select new
-                            {
-                                Id = documentCourse.Id,
-                                Name = documentCourse.CourseName,
-                                Content = documentCourse.CourseFreeContent,
-                                Price = documentCourse.Price.ToString(),
-                                Currency = documentCourse.CurrencyType.ToString(),
-                                StartDate = documentCourse.StartDate,
-                                EndDate = documentCourse.EndDate
-                            };
-
+            var outCourse = UnitOfWork.CourseRepository.Get(ch => ch.IsDeleted == false);
 
             return this.Request.CreateResponse(HttpStatusCode.OK, new { Course = outCourse });
         }

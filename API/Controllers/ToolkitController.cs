@@ -42,16 +42,7 @@ namespace API.Controllers
         [Route("GetAllPaidToolkit")]
         public HttpResponseMessage GetAllPaidToolkit()
         {
-            var outToolkit = from documentToolkit in UnitOfWork.ToolkitRepository.Get()
-                             select new
-                             {
-                                 Id = documentToolkit.Id,
-                                 Name = documentToolkit.ToolkitName,
-                                 Content = documentToolkit.ToolkitFreeContent,
-                                 Price = documentToolkit.Price.ToString(),
-                                 Currency = documentToolkit.CurrencyType.ToString(),
-                             };
-
+            var outToolkit = UnitOfWork.ToolkitRepository.Get(ch => ch.IsDeleted == false);
 
             return this.Request.CreateResponse(HttpStatusCode.OK, new { Toolkit = outToolkit });
         }

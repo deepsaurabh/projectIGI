@@ -9,6 +9,18 @@
                         url: localStorage['webApiUrl'] + 'api/Course/GetAllFreeCourse'
                     });
                 },
+                GetAllPaidToolkit: function () {
+                    return $http({
+                        method: 'Get',
+                        url: localStorage['webApiUrl'] + 'api/Toolkit/GetAllPaidToolkit'
+                    });
+                },
+                GetAllPaidCourse: function () {
+                    return $http({
+                        method: 'Get',
+                        url: localStorage['webApiUrl'] + 'api/Course/GetAllPaidCourse'
+                    });
+                },
                 GetAllPublicCourse: function () {
                     return $http({
                         method: 'Get',
