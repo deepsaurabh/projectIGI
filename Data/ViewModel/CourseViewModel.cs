@@ -8,17 +8,28 @@ using System.Threading.Tasks;
 
 namespace Data.ViewModel
 {
-    public class CourseViewModel
+    public class BaseViewModel
     {
-        public Int64 courseID { get; set; }
-        public string courseName { get; set; }
         public string price { get; set; }
         public Currency currencyType { get; set; }
         public DateTime startDate { get; set; }
         public DateTime endDate { get; set; }
         public Content freeContent { get; set; }
         public Content publicContent { get; set; }
-        public Content paidContent { get; set; }        
+        public Content paidContent { get; set; }
+    }
+
+    public class CourseViewModel : BaseViewModel
+    {
+        public Int64 courseID { get; set; }
+        public string courseName { get; set; }
+
+    }
+
+    public class ToolkitViewModel : BaseViewModel
+    {
+        public Int64 toolkitID { get; set; }
+        public string toolkitName { get; set; }
     }
 
     public class Content

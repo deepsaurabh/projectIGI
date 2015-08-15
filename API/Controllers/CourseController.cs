@@ -29,22 +29,10 @@ namespace API.Controllers
         [Route("GetAllPublicCourse")]
         public HttpResponseMessage GetAllPublicCourse()
         {
-            var outCourse = from documentCourse in UnitOfWork.CourseRepository.Get()
-                            select new
-                            {
-                                Id = documentCourse.Id,
-                                Name = documentCourse.CourseName,
-                                Content = documentCourse.CoursePublicContent,
-                                Price = documentCourse.Price.ToString(),
-                                Currency = documentCourse.CurrencyType.ToString(),
-                                StartDate = documentCourse.StartDate,
-                                EndDate = documentCourse.EndDate
-                            };
-
+            var outCourse = UnitOfWork.CourseRepository.Get(ch => ch.IsDeleted == false);
 
             return this.Request.CreateResponse(HttpStatusCode.OK, new { Course = outCourse });
         }
-
 
         [Route("GetAllFreeCourse")]
         public HttpResponseMessage GetAllFreeCourse()
@@ -91,11 +79,11 @@ namespace API.Controllers
 
             foreach (var courseDocument in courseDocumentList)
             {
-                CourseDocument document = null;
+                AttachedDocument document = null;
                 if (scope == DocumentScope.allDocument)
-                    document = UnitOfWork.CourseDocumentRepository.Get(ch => ch.Id == courseDocument.courseDocumentID && !ch.IsDeleted).FirstOrDefault();
+                    document = UnitOfWork.AttachedDocumentRepository.Get(ch => ch.Id == courseDocument.courseDocumentID && !ch.IsDeleted).FirstOrDefault();
                 else
-                    document = UnitOfWork.CourseDocumentRepository.Get(ch => ch.Id == courseDocument.courseDocumentID && !ch.IsDeleted && ch.Scope == scope).FirstOrDefault();
+                    document = UnitOfWork.AttachedDocumentRepository.Get(ch => ch.Id == courseDocument.courseDocumentID && !ch.IsDeleted && ch.Scope == scope).FirstOrDefault();
                 if (document != null)
                 {
                     if (document.Scope == DocumentScope.freeDocument && courseModel.freeContent != null && courseModel.freeContent.fileAttachment == null)
@@ -172,7 +160,6 @@ namespace API.Controllers
 
             return this.Request.CreateResponse(HttpStatusCode.OK, new { Course = outCourse });
         }
-
 
         [Route("GetFreeCourseById")]
         public HttpResponseMessage GetFreeCourseById(Int64 id, DocumentScope scope)
@@ -331,60 +318,6 @@ namespace API.Controllers
             UnitOfWork.SaveChange();
 
             return this.Request.CreateResponse(HttpStatusCode.OK);
-        }
-
-        public HttpResponseMessage PostUploadAttachment(DocumentScope scope)
-        {
-            HttpContext context = HttpContext.Current;
-            List<CourseDocument> attachedFiles = new List<CourseDocument>();
-            try
-            {
-                string erroredAtchmnts = String.Empty;
-                string imageURL = String.Empty;
-                //Loop through the multiple files.
-                for (int i = 0; i < context.Request.Files.Count; i++)
-                {
-                    var file = context.Request.Files.Get(i);
-
-                    try
-                    {
-                        CourseDocument fileAttachment = new CourseDocument()
-                        {
-                            //Path = savePath,
-                            FileSize = file.ContentLength,
-                            FileType = file.ContentType,
-                            DocumentName = file.FileName,
-                            Scope = scope
-                        };
-
-                        using (var binaryReader = new BinaryReader(file.InputStream))
-                        {
-                            fileAttachment.FileData = binaryReader.ReadBytes(file.ContentLength);
-                        }
-
-                        UnitOfWork.CourseDocumentRepository.Insert(fileAttachment);
-                        UnitOfWork.SaveChange();
-                        attachedFiles.Add(fileAttachment);
-                        var base64String = Convert.ToBase64String(fileAttachment.FileData, 0, fileAttachment.FileData.Length);
-                        imageURL = String.Format("data:{0};base64,{1}", fileAttachment.FileType, base64String);
-                    }
-                    catch (Exception)
-                    {
-                        if (String.IsNullOrEmpty(erroredAtchmnts)) { erroredAtchmnts = "Attachments that could not be saved due to some error: " + file.FileName; }
-                        else { erroredAtchmnts += ", " + file.FileName; }
-                    }
-                }
-
-                return Request.CreateResponse(HttpStatusCode.OK, new { erroredAttachments = erroredAtchmnts, attachedFiles = attachedFiles, imageURL = imageURL });
-            }
-            catch (UnauthorizedAccessException uex)
-            {
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, uex);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
-            }
-        }
+        }        
     }
 }

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace Entity.POCO
 {
-    public class CourseDocument : BaseEntity
+    public class AttachedDocument : BaseEntity
     {        
         public string FileType { get; set; }
         

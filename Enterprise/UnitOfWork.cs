@@ -24,10 +24,11 @@ namespace Enterprise
         private IRepository<User, Int64> _userRepository;
         private IRepository<Course, Int64> _courseRepository;
         private IRepository<Toolkit, Int64> _toolkitRepository;
-        private IRepository<CourseDocument, Int64> _courseDocumentRepository;
-        private IRepository<ToolkitDocument, Int64> _toolkitDocumentRepository;
+        private IRepository<AttachedDocument, Int64> _courseDocumentRepository;
+        private IRepository<ToolkitDocument, Int64> _toolkitDocumentRepository;        
         private IRepository<UserPurchaseHistory, Int64> _userPurchaseHistoryRepository;
         private IRepository<CourseAttachmentMapping, Int64> _courseAttachmentRepository;
+        private IRepository<ToolkitAttachmentMapping, Int64> _toolkitAttachmentRepository;
   
         #endregion
 
@@ -58,6 +59,18 @@ namespace Enterprise
             }
         }
 
+        public IRepository<ToolkitAttachmentMapping, Int64> ToolkitAttachmentRepository
+        {
+            get
+            {
+                if (this._toolkitAttachmentRepository == null)
+                {
+                    this._toolkitAttachmentRepository = new GenericRepository<ToolkitAttachmentMapping, Int64>(UserContext);
+                }
+                return _toolkitAttachmentRepository;
+            }
+        }
+
         public IRepository<Course, Int64> CourseRepository
         {
             get
@@ -82,13 +95,13 @@ namespace Enterprise
             }
         }
 
-        public IRepository<CourseDocument, Int64> CourseDocumentRepository
+        public IRepository<AttachedDocument, Int64> AttachedDocumentRepository
         {
             get
             {
                 if (this._courseDocumentRepository == null)
                 {
-                    this._courseDocumentRepository = new GenericRepository<CourseDocument, Int64>(UserContext);
+                    this._courseDocumentRepository = new GenericRepository<AttachedDocument, Int64>(UserContext);
                 }
                 return _courseDocumentRepository;
             }

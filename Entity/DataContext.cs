@@ -47,17 +47,28 @@ namespace Entity
 
     }
 
-    public class ToolkitConfiguration : BaseEntityConfiguration<Toolkit>
+    public class ToolkitAttachmentMappingConfiguration : BaseEntityConfiguration<ToolkitAttachmentMapping>
     {
-        public ToolkitConfiguration() {
-            this.HasMany(g => g.ToolkitDocument)
-                        .WithRequired()
-                        .HasForeignKey(ga => ga.ToolkitId);
+        public ToolkitAttachmentMappingConfiguration()
+        {
+            this.HasRequired(ch => ch.toolkit).WithMany().HasForeignKey(ch
+                => ch.toolkitId);
+
+            this.HasRequired(ch => ch.toolkitDocument).WithMany().HasForeignKey(ch
+                => ch.toolkitDocumentID);
         }
 
     }
 
-    public class CourseDocumentConfiguration : BaseEntityConfiguration<CourseDocument>
+    public class ToolkitConfiguration : BaseEntityConfiguration<Toolkit>
+    {
+        public ToolkitConfiguration() {
+            
+        }
+
+    }
+
+    public class CourseDocumentConfiguration : BaseEntityConfiguration<AttachedDocument>
     {
         public CourseDocumentConfiguration() {
         }

@@ -9,10 +9,41 @@
                         url: localStorage['webApiUrl'] + 'api/Course/GetAllFreeCourse'
                     });
                 },
+                GetAllPublicCourse: function () {
+                    return $http({
+                        method: 'Get',
+                        url: localStorage['webApiUrl'] + 'api/Course/GetAllFreeCourse'
+                    });
+                },
                 GetAllCourse: function () {
                     return $http({
                         method: 'Get',
                         url: localStorage['webApiUrl'] + 'api/Course/GetAllCourse'
+                    });
+                },
+                GetAllPublicToolkit: function () {
+                    return $http({
+                        method: 'Get',
+                        url: localStorage['webApiUrl'] + 'api/Toolkit/GetAllPublicToolkit'
+                    });
+                },
+                GetAllFreeToolkit: function () {
+                    return $http({
+                        method: 'Get',
+                        url: localStorage['webApiUrl'] + 'api/Toolkit/GetAllFreeToolkit'
+                    });
+                },
+                GetAllToolkit: function () {
+                    return $http({
+                        method: 'Get',
+                        url: localStorage['webApiUrl'] + 'api/Toolkit/GetAllToolkit'
+                    });
+                },
+                SaveToolkit: function (date) {
+                    return $http({
+                        method: 'POST',
+                        url: localStorage['webApiUrl'] + 'api/Toolkit/Post',
+                        data: date
                     });
                 },
                 SaveCourse: function (date) {
@@ -28,8 +59,14 @@
                         url: localStorage['webApiUrl'] + 'api/Course/GetAllCoursebyId?id=' + Id + '&scope=' + documentScope
                     });
                 },
+                GetToolkitById: function (Id, documentScope) {
+                    return $http({
+                        method: 'GET',
+                        url: localStorage['webApiUrl'] + 'api/Toolkit/GetAllToolkitbyId?id=' + Id + '&scope=' + documentScope
+                    });
+                },
                 uploadAttachment: function (formData, documentScope) {
-                    var apiUrl = localStorage['webApiUrl'] + 'api/Course/PostUploadAttachment?scope=' + documentScope;
+                    var apiUrl = localStorage['webApiUrl'] + 'api/Document/PostUploadAttachment?scope=' + documentScope;
                     var deferred = $q.defer();
                     var promise = $http.post(apiUrl, formData, {
                         headers: { 'Content-Type': undefined },

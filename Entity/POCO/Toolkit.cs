@@ -1,5 +1,6 @@
 ﻿using Core;
 using Data.Enum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -28,6 +29,7 @@ namespace Entity.POCO
         [StringLength(50)]
         public string Price { get; set; }
         public Currency CurrencyType { get; set; }
-        public virtual ICollection<ToolkitDocument> ToolkitDocument { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }

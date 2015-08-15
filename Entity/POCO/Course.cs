@@ -39,6 +39,15 @@ namespace Entity.POCO
         public virtual Course course { get; set; }
 
         public long courseDocumentID { get; set; }
-        public virtual CourseDocument courseDocument { get; set; }
+        public virtual AttachedDocument courseDocument { get; set; }
+    }
+
+    public class ToolkitAttachmentMapping : BaseEntity
+    {
+        public long toolkitId { get; set; }
+        public virtual Toolkit toolkit { get; set; }
+
+        public long toolkitDocumentID { get; set; }
+        public virtual AttachedDocument toolkitDocument { get; set; }
     }
 }
