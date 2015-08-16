@@ -170,6 +170,15 @@
                 key.imageURL = ''
             });
         }
+
+        //CourseList.endDate = new Date(angular.element('#EndDate').val());
+        
+        //CourseList.startDate = new Date(angular.element('#StartDate').val());
+
+        CourseList.endDate = angular.element('#EndDate').val();
+
+        CourseList.startDate = angular.element('#StartDate').val();
+        
         EnterpriseService.SaveCourse(CourseList)
         .success(function () {
             alert('Course saved successfully');

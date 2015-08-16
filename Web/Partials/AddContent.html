@@ -39,7 +39,7 @@
 
                         <div class="form-group">
                             <label>Start Date</label><br />
-                            <input type="text" data-date-format="dd/mm/yyyy" class="datepicker" id="StartDate" data-ng-model="CourseList.startDate" placeholder="Start Date" />
+                            <input type="text" data-date-format="yyyy-mm-dd" class="datepicker" id="StartDate" data-ng-model="$parent.CourseList.startDate" placeholder="Start Date" />
                             {{CourseList.StartDate}}
                         </div>
                         <div class="form-group" id="Div1">
@@ -86,7 +86,7 @@
                         </div>
                         <div class="form-group">
                             <label for="login-input-login">End Date</label><br />
-                            <input type="text" class="datepicker" id="EndDate" data-date-format="dd/mm/yyyy" placeholder="End Date" data-ng-model="CourseList.endDate">
+                            <input type="text" class="datepicker" id="EndDate" data-date-format="yyyy-mm-dd" placeholder="End Date" data-ng-model="$parent.CourseList.endDate">
                         </div>
 
                         <div class="form-group" id="Div2">
