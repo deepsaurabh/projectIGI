@@ -26,8 +26,8 @@
     $("#home").removeAttr("style");
     $scope.CurrencyType = [
         { Key: '1', Value: 'INR' },
-        { Key: '2', Value: 'Dollar' },
-        { Key: '3', Value: 'Euro' }
+        //{ Key: '2', Value: 'Dollar' },
+        //{ Key: '3', Value: 'Euro' }
     ];
     $scope.DocumentScope = {
         FreeContent: 1,
@@ -151,7 +151,7 @@
         month = month.length > 1 ? month : '0' + month;
         var day = date.getDate().toString();
         day = day.length > 1 ? day : '0' + day;
-        return day + '/' + month + '/' + year;
+        return year + '-' + month + '-' + day;
     }
 
     $scope.SaveCourse = function (CourseList) {
@@ -317,8 +317,8 @@
     $("#home").removeAttr("style");
     $scope.CurrencyType = [
         { Key: '1', Value: 'INR' },
-        { Key: '2', Value: 'Dollar' },
-        { Key: '3', Value: 'Euro' }
+        //{ Key: '2', Value: 'Dollar' },
+        //{ Key: '3', Value: 'Euro' }
     ];
     $scope.DocumentScope = {
         FreeContent: 1,
@@ -332,8 +332,8 @@
         price: 0.0,
         imageURL: '',
         currencyType: '1',
-        startDate: '',
-        endDate: '',
+        //startDate: '',
+        //endDate: '',
         freeContent: {
             description: '',
             fileAttachment: []
@@ -427,8 +427,8 @@
         EnterpriseService.GetToolkitById(toolkitObj.id, $scope.documentScope).success(function (data) {
             if (data && data.course) {
                 $scope.ToolkitList = data.course;
-                $scope.ToolkitList.startDate = getFormattedDate(new Date($scope.ToolkitList.startDate));
-                $scope.ToolkitList.endDate = getFormattedDate(new Date($scope.ToolkitList.endDate));
+                //$scope.ToolkitList.startDate = getFormattedDate(new Date($scope.ToolkitList.startDate));
+                //$scope.ToolkitList.endDate = getFormattedDate(new Date($scope.ToolkitList.endDate));
                 $scope.ToolkitList.price = parseFloat($scope.ToolkitList.price);
                 $scope.ToolkitList.currencyType = $scope.isAdmin ? $scope.ToolkitList.currencyType.toString() : $filter('filter')($scope.CurrencyType, { Key: $scope.ToolkitList.currencyType })[0].Value;
             }

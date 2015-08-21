@@ -12,8 +12,7 @@ namespace Data.ViewModel
     {
         public string price { get; set; }
         public Currency currencyType { get; set; }
-        public DateTime startDate { get; set; }
-        public DateTime endDate { get; set; }
+       
         public Content freeContent { get; set; }
         public Content publicContent { get; set; }
         public Content paidContent { get; set; }
@@ -23,6 +22,8 @@ namespace Data.ViewModel
     {
         public Int64 courseID { get; set; }
         public string courseName { get; set; }
+        public DateTime startDate { get; set; }
+        public DateTime endDate { get; set; }
 
     }
 

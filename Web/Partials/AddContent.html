@@ -8,6 +8,12 @@
     });
 </script>
 
+<style>
+    p {
+        margin: 12px 0 11px;
+    }
+</style>
+
 <!-- ========== TITLE START ========== -->
 <div class="title">
     <div class="title-image"></div>
@@ -29,88 +35,123 @@
     <div class="container">
         <div class="row">
             <!-- ==== COURSES START == -->
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                 <form role="form" name="course-form" id="course-form">
-                    <div class="col-sm-6">
-                        <div class="form-group" id="login-login-group">
-                            <label for="login-input-login">Course Name</label>
-                            <input type="text" maxlength="255" class="form-control" data-ng-model="CourseList.courseName" id="login-input-login" placeholder="Course Name">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-8">
+                                <p>
+                                    <label for="login-input-login">Course Name</label>
+                                    <input type="text" maxlength="255" class="form-control" data-ng-model="CourseList.courseName" id="login-input-login" placeholder="Course Name">
+                                </p>
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label>Start Date</label><br />
-                            <input type="text" data-date-format="yyyy-mm-dd" class="datepicker" id="StartDate" data-ng-model="$parent.CourseList.startDate" placeholder="Start Date" />
-                            {{CourseList.StartDate}}
-                        </div>
-                        <div class="form-group" id="Div1">
-                            <label>Free Subscription Description</label>
-                            <div>
-                                <textarea maxlength="1000" class="form-control" id="Text1" data-ng-model="CourseList.freeContent.description" placeholder="Free Subscription Description"></textarea>
+                        <div class="row">
+                            <div class="col-md-8 col-sm-8">
+                                <p>
+                                    <a href="">Price</a>
+                                    <div class="col-md-3 col-sm-3">
+                                        <select style class="form-control" data-ng-model="CourseList.currencyType">
+                                            <option value="1">INR</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-9 col-sm-9">
+                                        <input class="form-control" type="number" min="0" data-ng-model="CourseList.price" />
+                                    </div>
+                                </p>
                             </div>
                         </div>
-                        <div class="form-group" id="Div6">
-                            <label for="login-input-login">Free Subscription File Upload</label>
-                            <label class="error" id="Label1" style="display: none;"><span class="icon24 errorIcon"></span><span id="Span1"></span></label>
-                            <input type="file" class="form-control" name="txtFileUpload" id="File1" title="Upload File"
-                                onchange="angular.element(this).scope().setFiles(this,1);">
-                            <div data-ng-repeat="document in CourseList.freeContent.fileAttachment">{{document.documentName}} (Uploaded) <a href="" ng-click="DeleteFile(CourseList.freeContent.fileAttachment,$index)">Delete</a></div>
-                        </div>
-                        <div class="form-group" id="Div3">
-                            <label for="login-input-login">Paid User Description</label>
-                            <div>
-                                <textarea maxlength="1000" class="form-control" id="Textarea2" placeholder="Paid User Description" data-ng-model="CourseList.paidContent.description"></textarea>
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4">
+                                <p>
+                                    <label>Start Date</label><br />
+                                    <input type="text" data-date-format="yyyy-mm-dd" class="datepicker" id="StartDate" data-ng-model="$parent.CourseList.startDate" placeholder="Start Date" />
+                                    {{CourseList.StartDate}}                                </p>
+                            </div>
+
+                            <div class="col-md-4 col-sm-4">
+                                <p>
+                                    <label for="login-input-login">End Date</label><br />
+                                    <input type="text" class="datepicker" id="EndDate" data-date-format="yyyy-mm-dd" placeholder="End Date" data-ng-model="$parent.CourseList.endDate">
+                                </p>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary" data-ng-click="SaveCourse(CourseList)">Submit</button>
+
+
+                        <div class="row">
+                            <div class="col-md-5 col-sm-5">
+                                <p>
+                                    <label>Free Subscription Description</label>
+                                        <textarea maxlength="1000" class="form-control" id="Text1" data-ng-model="CourseList.freeContent.description" placeholder="Free Subscription Description"></textarea>
+                                                                   </p>
+                            </div>
+
+                            <div class="col-md-3 col-sm-3">
+                                <p>
+                                    <label for="login-input-login">Free Subscription File Upload</label>
+                                    <label class="error" id="Label1" style="display: none;"><span class="icon24 errorIcon"></span><span id="Span1"></span></label>
+                                    <input type="file" class="form-control" name="txtFileUpload" id="File1" title="Upload File"
+                                           onchange="angular.element(this).scope().setFiles(this,1);">
+                                    <div data-ng-repeat="document in CourseList.freeContent.fileAttachment">{{document.documentName}} (Uploaded) <a href="" ng-click="DeleteFile(CourseList.freeContent.fileAttachment,$index)">Delete</a></div>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5 col-sm-5">
+                                <p>
+                                    <label for="login-input-login">Public User Description</label>
+                                    <textarea class="form-control" maxlength="1000" id="Textarea1" placeholder="Public User Description" data-ng-model="CourseList.publicContent.description"></textarea>
+                                </p>
+                            </div>
+
+                            <div class="col-md-3 col-sm-3">
+                                <p>
+                                    <label for="login-input-login">Public User File Upload</label>
+                                    <label class="error" id="Label2" style="display: none;"><span class="icon24 errorIcon"></span><span id="Span2"></span></label>
+                                    <input type="file" class="form-control" name="txtFileUpload" id="File2" title="Upload File"
+                                           onchange="angular.element(this).scope().setFiles(this,2);">
+                                    <div data-ng-repeat="document in CourseList.publicContent.fileAttachment">{{document.documentName}} (Uploaded) <a href="" ng-click="DeleteFile(CourseList.publicContent.fileAttachment,$index)">Delete</a></div>
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-5 col-sm-5">
+                                <p>
+                                    <label for="login-input-login">Paid User Description</label>
+                                    
+                                        <textarea maxlength="1000" class="form-control" id="Textarea2" placeholder="Paid User Description" data-ng-model="CourseList.paidContent.description"></textarea>
+                                    
+                                </p>
+                            </div>
+
+                            <div class="col-md-3 col-sm-3">
+                                <p>
+                                    <label for="login-input-login">Paid User File Upload</label>
+                                    <label class="error" id="attachmentLabel" style="display: none;"><span class="icon24 errorIcon"></span><span id="errorAttachmentText"></span></label>
+                                    <input type="file" class="form-control" name="txtFileUpload" id="txtFileUpload" title="Upload File"
+                                           onchange="angular.element(this).scope().setFiles(this,3);">
+                                    <div data-ng-repeat="document in CourseList.paidContent.fileAttachment | filter : {isDeleted:false}">{{document.documentName}} (Uploaded) <a href="" ng-click="DeleteFile(CourseList.paidContent.fileAttachment,$index)">Delete</a></div>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-8 col-sm-8">
+                                <p>
+                                    <button type="submit" class="btn btn-primary" data-ng-click="SaveCourse(CourseList)">Submit</button>
+                                </p>
+                            </div>
+                        </div>
+
+
 
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group" id="Div5">
-                            <label for="login-input-login">Price</label>
-                            <div class="input-group">
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <select class="form-control" data-ng-model="CourseList.currencyType">
-                                                <option value="1">INR</option>
-                                                <option value="2">Dollar</option>
-                                                <option value="3">Euro</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <input type="number" data-ng-model="CourseList.price" min="0" class="form-control" id="Text3" placeholder="Price">
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="login-input-login">End Date</label><br />
-                            <input type="text" class="datepicker" id="EndDate" data-date-format="yyyy-mm-dd" placeholder="End Date" data-ng-model="$parent.CourseList.endDate">
-                        </div>
-
-                        <div class="form-group" id="Div2">
-                            <label for="login-input-login">Public User Description</label>
-                            <div>
-                                <textarea class="form-control" maxlength="1000" id="Textarea1" placeholder="Public User Description" data-ng-model="CourseList.publicContent.description"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group" id="Div7">
-                            <label for="login-input-login">Public User File Upload</label>
-                            <label class="error" id="Label2" style="display: none;"><span class="icon24 errorIcon"></span><span id="Span2"></span></label>
-                            <input type="file" class="form-control" name="txtFileUpload" id="File2" title="Upload File"
-                                onchange="angular.element(this).scope().setFiles(this,2);">
-                    <div data-ng-repeat="document in CourseList.publicContent.fileAttachment">{{document.documentName}} (Uploaded) <a href="" ng-click="DeleteFile(CourseList.publicContent.fileAttachment,$index)">Delete</a></div>
-                        </div>
-                        <div class="form-group" id="Div4">
-                            <label for="login-input-login">Paid User File Upload</label>
-                            <label class="error" id="attachmentLabel" style="display: none;"><span class="icon24 errorIcon"></span><span id="errorAttachmentText"></span></label>
-                            <input type="file" class="form-control" name="txtFileUpload" id="txtFileUpload" title="Upload File"
-                                onchange="angular.element(this).scope().setFiles(this,3);">
-                            <div data-ng-repeat="document in CourseList.paidContent.fileAttachment | filter : {isDeleted:false}">{{document.documentName}} (Uploaded) <a href="" ng-click="DeleteFile(CourseList.paidContent.fileAttachment,$index)">Delete</a></div>
-                        </div>
-
-                    </div>
+                    
                 </form>
             </div>
         </div>

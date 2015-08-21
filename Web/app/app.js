@@ -1,5 +1,5 @@
 ﻿
-angular.module('IGI', ['ngRoute', 'Enterprise.Controller', 'Enterprise.Services', 'Enterprise.authServices'])
+var app  = angular.module('IGI', ['ngRoute', 'Enterprise.Controller', 'Enterprise.Services', 'Enterprise.authServices'])
 
 .run(['$rootScope', function ($rootScope) {
     //localStorage['webApiUrl'] = window.location.protocol + "//" + window.location.host + "/api/";
@@ -54,3 +54,8 @@ angular.module('IGI', ['ngRoute', 'Enterprise.Controller', 'Enterprise.Services'
     $routeProvider.when('/PurchasedToolkit', { templateUrl: 'partials/ToolkitContent.html', controller: 'toolkitController' });
     $routeProvider.otherwise({ redirectTo: '/Home' });
 }]);
+
+
+app.config(function ($httpProvider) {
+    $httpProvider.interceptors.push('authInterceptorService');
+});

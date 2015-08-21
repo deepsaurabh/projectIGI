@@ -159,7 +159,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Security\AuthorizeEPRoleAttribute.cs" />
+    <Compile Include="Security\AuthorizeAppRoleAttribute.cs" />
     <Compile Include="Security\SimpleAuthorizationServerProvider.cs" />
     <Compile Include="Security\Startup.cs" />
     <Compile Include="Security\WebApiConfig.cs" />

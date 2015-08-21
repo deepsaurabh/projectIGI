@@ -8,107 +8,131 @@
     });
 </script>
 
+<style>
+    p {
+        margin: 12px 0 11px;
+    }
+</style>
+
 <!-- ========== TITLE START ========== -->
 <div class="title">
     <div class="title-image"></div>
     <div class="container">
         <div class="row">
             <div class="col-sm-12 text-center">
-                Add Tookit Detail           
+                Add Tookit Detail
             </div>
         </div>
     </div>
 </div>
 
 <!-- ========== TITLE END ========== -->
-
 <!-- ========== CONTENT START ========== -->
 
 <section id="content">
     <div class="container">
         <div class="row">
             <!-- ==== TOOLKIT START == -->
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                 <form role="form" name="course-form" id="course-form">
-                    <div class="col-sm-6">
-                        <div class="form-group" id="login-login-group">
-                            <label for="login-input-login">Tookit Name</label>
-                            <input type="text" maxlength="255" class="form-control" data-ng-model="ToolkitList.toolkitName" id="login-input-login" placeholder="Toolkit Name">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Start Date</label><br />
-                            <input type="text" data-date-format="dd/mm/yyyy" class="datepicker" id="StartDate" data-ng-model="ToolkitList.startDate" placeholder="Start Date" />
-                            {{ToolkitList.StartDate}}
-                        </div>
-                        <div class="form-group" id="Div1">
-                            <label>Free Subscription Description</label>
-                            <div>
-                                <textarea maxlength="1000" class="form-control" id="Text1" data-ng-model="ToolkitList.freeContent.description" placeholder="Free Subscription Description"></textarea>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-8">
+                                <p>
+                                    <label for="login-input-login">Tookit Name</label>
+                                    <input type="text" maxlength="255" class="form-control" data-ng-model="ToolkitList.toolkitName" id="login-input-login" placeholder="Toolkit Name">
+                                </p>
                             </div>
                         </div>
-                        <div class="form-group" id="Div6">
-                            <label for="login-input-login">Free Subscription File Upload</label>
-                            <label class="error" id="Label1" style="display: none;"><span class="icon24 errorIcon"></span><span id="Span1"></span></label>
-                            <input type="file" class="form-control" name="txtFileUpload" id="File1" title="Upload File"
-                                onchange="angular.element(this).scope().setFiles(this,1);">
-                            <div data-ng-repeat="document in ToolkitList.freeContent.fileAttachment">{{document.documentName}} (Uploaded) <a href="" ng-click="DeleteFile(ToolkitList.freeContent.fileAttachment,$index)">Delete</a></div>
-                        </div>
-                        <div class="form-group" id="Div3">
-                            <label for="login-input-login">Paid User Description</label>
-                            <div>
-                                <textarea maxlength="1000" class="form-control" id="Textarea2" placeholder="Paid User Description" data-ng-model="ToolkitList.paidContent.description"></textarea>
+
+                        <div class="row">
+                            <div class="col-md-8 col-sm-8">
+
+                                <p>
+                                    <a href="">Price</a>
+                                    <div class="col-md-3 col-sm-3">
+                                        <select style class="form-control" data-ng-model="ToolkitList.currencyType">
+                                            <option value="1">INR</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-9 col-sm-9">
+                                        <input class="form-control" type="number" min="0" data-ng-model="ToolkitList.price" />
+                                    </div>
+
+
+
+                                </p>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary" data-ng-click="SaveToolkit(ToolkitList)">Submit</button>
 
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group" id="Div5">
-                            <label for="login-input-login">Price</label>
-                            <div class="input-group">
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <select class="form-control" data-ng-model="ToolkitList.currencyType">
-                                                <option value="1">INR</option>
-                                                <option value="2">Dollar</option>
-                                                <option value="3">Euro</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <input type="number" data-ng-model="ToolkitList.price" min="0" class="form-control" id="Text3" placeholder="Price">
-                                        </td>
-                                    </tr>
-                                </table>
+
+
+                        <div class="row">
+                            <div class="col-md-5 col-sm-5">
+                                <p>
+                                    <label>Free Subscription Description</label>
+                                    <textarea maxlength="1000" class="form-control" id="Text1" data-ng-model="ToolkitList.freeContent.description" placeholder="Free Subscription Description"></textarea>
+                                </p>
+                            </div>
+
+                            <div class="col-md-3 col-sm-3">
+                                <p>
+                                    <label for="login-input-login">Free Subscription File Upload</label>
+                                    <label class="error" id="Label1" style="display: none;"><span class="icon24 errorIcon"></span><span id="Span1"></span></label>
+                                    <input type="file" class="form-control" name="txtFileUpload" id="File1" title="Upload File"
+                                           onchange="angular.element(this).scope().setFiles(this,1);">
+                                    <div data-ng-repeat="document in ToolkitList.freeContent.fileAttachment">{{document.documentName}} (Uploaded) <a href="" ng-click="DeleteFile(ToolkitList.freeContent.fileAttachment,$index)">Delete</a></div>
+                                </p>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="login-input-login">End Date</label><br />
-                            <input type="text" class="datepicker" id="EndDate" data-date-format="dd/mm/yyyy" placeholder="End Date" data-ng-model="ToolkitList.endDate">
-                        </div>
 
-                        <div class="form-group" id="Div2">
-                            <label for="login-input-login">Public User Description</label>
-                            <div>
-                                <textarea class="form-control" maxlength="1000" id="Textarea1" placeholder="Public User Description" data-ng-model="ToolkitList.publicContent.description"></textarea>
+                        <div class="row">
+                            <div class="col-md-5 col-sm-5">
+                                <p>
+                                    <label for="login-input-login">Public User Description</label>
+                                    <textarea class="form-control" maxlength="1000" id="Textarea1" placeholder="Public User Description" data-ng-model="ToolkitList.publicContent.description"></textarea>
+                                </p>
+
+                                </p>
+                            </div>
+
+                            <div class="col-md-3 col-sm-3">
+                                <p>
+                                    <label for="login-input-login">Public User File Upload</label>
+                                    <label class="error" id="Label2" style="display: none;"><span class="icon24 errorIcon"></span><span id="Span2"></span></label>
+                                    <input type="file" class="form-control" name="txtFileUpload" id="File2" title="Upload File"
+                                           onchange="angular.element(this).scope().setFiles(this,2);">
+                                    <div data-ng-repeat="document in ToolkitList.publicContent.fileAttachment">{{document.documentName}} (Uploaded) <a href="" ng-click="DeleteFile(ToolkitList.publicContent.fileAttachment,$index)">Delete</a></div>
+                                </p>
                             </div>
                         </div>
-                        <div class="form-group" id="Div7">
-                            <label for="login-input-login">Public User File Upload</label>
-                            <label class="error" id="Label2" style="display: none;"><span class="icon24 errorIcon"></span><span id="Span2"></span></label>
-                            <input type="file" class="form-control" name="txtFileUpload" id="File2" title="Upload File"
-                                onchange="angular.element(this).scope().setFiles(this,2);">
-                    <div data-ng-repeat="document in ToolkitList.publicContent.fileAttachment">{{document.documentName}} (Uploaded) <a href="" ng-click="DeleteFile(ToolkitList.publicContent.fileAttachment,$index)">Delete</a></div>
-                        </div>
-                        <div class="form-group" id="Div4">
-                            <label for="login-input-login">Paid User File Upload</label>
-                            <label class="error" id="attachmentLabel" style="display: none;"><span class="icon24 errorIcon"></span><span id="errorAttachmentText"></span></label>
-                            <input type="file" class="form-control" name="txtFileUpload" id="txtFileUpload" title="Upload File"
-                                onchange="angular.element(this).scope().setFiles(this,3);">
-                            <div data-ng-repeat="document in ToolkitList.paidContent.fileAttachment | filter : {isDeleted:false}">{{document.documentName}} (Uploaded) <a href="" ng-click="DeleteFile(ToolkitList.paidContent.fileAttachment,$index)">Delete</a></div>
-                        </div>
 
+                        <div class="row">
+                            <div class="col-md-5 col-sm-5">
+                                <p>
+                                    <label for="login-input-login">Paid User Description</label>
+                                    <textarea maxlength="1000" class="form-control" id="Textarea2" placeholder="Paid User Description" data-ng-model="ToolkitList.paidContent.description"></textarea>
+
+                                </p>
+                            </div>
+
+                            <div class="col-md-3 col-sm-3">
+                                <p>
+                                    <label for="login-input-login">Paid User File Upload</label>
+                                    <label class="error" id="attachmentLabel" style="display: none;"><span class="icon24 errorIcon"></span><span id="errorAttachmentText"></span></label>
+                                    <input type="file" class="form-control" name="txtFileUpload" id="txtFileUpload" title="Upload File"
+                                           onchange="angular.element(this).scope().setFiles(this,3);">
+                                    <div data-ng-repeat="document in ToolkitList.paidContent.fileAttachment | filter : {isDeleted:false}">{{document.documentName}} (Uploaded) <a href="" ng-click="DeleteFile(ToolkitList.paidContent.fileAttachment,$index)">Delete</a></div>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 col-sm-8">
+                                <p>
+                                    <button type="submit" class="btn btn-primary" data-ng-click="SaveToolkit(ToolkitList)">Submit</button>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>

@@ -1,4 +1,5 @@
-﻿using Data.Enum;
+﻿using API.Security;
+using Data.Enum;
 using Data.ViewModel;
 using Entity.POCO;
 using System;
@@ -66,8 +67,8 @@ namespace API.Controllers
             {
                 toolkitID = item.Id,
                 toolkitName = item.ToolkitName,
-                startDate = item.StartDate,
-                endDate = item.EndDate,
+                //startDate = item.StartDate,
+                //endDate = item.EndDate,
                 price = item.Price,
                 currencyType = item.CurrencyType,
             };
@@ -179,6 +180,8 @@ namespace API.Controllers
             return this.Request.CreateResponse(HttpStatusCode.OK, new { Toolkit = outToolkit });
         }
 
+        [AuthorizeAppRole(AppRole.admin)]
+
         [Route("Post")]
         public HttpResponseMessage Post(ToolkitViewModel viewModel)
         {
@@ -194,8 +197,8 @@ namespace API.Controllers
                     ToolkitPaidContent = viewModel.paidContent.description,
                     ToolkitPublicContent = viewModel.publicContent.description,
                     Price = viewModel.price,
-                    StartDate = viewModel.startDate,
-                    EndDate = viewModel.endDate,
+                    //StartDate = viewModel.startDate,
+                    //EndDate = viewModel.endDate,
                     CurrencyType = viewModel.currencyType
                 };
                 if (viewModel.toolkitID > 0)

@@ -49,6 +49,7 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\controller\Controller.js" />
+    <Content Include="app\service\authInterceptorService.js" />
     <Content Include="app\service\authService.js" />
     <Content Include="app\service\Services.js" />
     <Content Include="css\animate.css" />
@@ -89,10 +90,12 @@
     <Content Include="login.html" />
     <Content Include="Partials\AboutUs.html" />
     <Content Include="Partials\AddContent.html" />
+    <Content Include="Partials\AddToolkitContent.html" />
     <Content Include="Partials\Contact.html" />
     <Content Include="Partials\Courses.html" />
     <Content Include="Partials\home.html" />
     <Content Include="Partials\Login.html" />
+    <Content Include="Partials\ToolkitContent.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

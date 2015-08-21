@@ -29,7 +29,7 @@ namespace Entity.POCO
         [StringLength(50)]
         public string Price { get; set; }
         public Currency CurrencyType { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        //public DateTime StartDate { get; set; }
+        //public DateTime EndDate { get; set; }
     }
 }

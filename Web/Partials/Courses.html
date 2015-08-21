@@ -116,8 +116,8 @@
                                         <a href="">Currency</a>
                                         <select style class="form-control" data-ng-model="CourseList.currencyType">
                                             <option value="1">INR</option>
-                                            <option value="2">Dollar</option>
-                                            <option value="3">Euro</option>
+                                            <!--<option value="2">Dollar</option>
+                                            <option value="3">Euro</option>-->
                                         </select>
                                     </p>
 
@@ -131,14 +131,14 @@
                                 <p>
                                     <div class="col-sm-2">
                                         <a href="">Start Date</a>
-                                        <input type="text" autoclose data-date-format="dd/mm/yyyy" class="datepicker" data-ng-model="CourseList.startDate" />
+                                        <input type="text" id="StartDate" autoclose data-date-format="yyyy-mm-dd" class="datepicker" data-ng-model="CourseList.startDate" />
                                     </div>
                                     <div class="col-sm-2">
                                         &nbsp;
                                     </div>
                                     <div class="col-sm-2">
                                         <a href="">End Date</a>
-                                        <input type="text" autoclose data-date-format="dd/mm/yyyy" class="datepicker" data-ng-model="CourseList.endDate" />
+                                        <input type="text" id="EndDate" autoclose data-date-format="yyyy-mm-dd" class="datepicker" data-ng-model="CourseList.endDate" />
                                     </div>
                                 </p>
                             </div>
