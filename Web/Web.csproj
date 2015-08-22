@@ -48,6 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="assets\img\blank.gif" />
+    <Content Include="assets\img\paddle_next_999.png" />
+    <Content Include="assets\img\paddle_next_fff.png" />
+    <Content Include="assets\img\paddle_prev_999.png" />
+    <Content Include="assets\img\paddle_prev_fff.png" />
     <Content Include="app\controller\Controller.js" />
     <Content Include="app\service\authInterceptorService.js" />
     <Content Include="app\service\authService.js" />
@@ -60,6 +65,7 @@
     <Content Include="css\owl.carousel.min.css" />
     <Content Include="css\owl.theme.default.min.css" />
     <Content Include="css\school-icons.css" />
+    <Content Include="css\style1.css" />
     <Content Include="css\style.css" />
     <Content Include="css\superslides.css" />
     <Content Include="index.html" />
@@ -87,6 +93,7 @@
     <Content Include="js\retina-1.1.0.min.js" />
     <Content Include="js\scrollReveal.js" />
     <Content Include="js\settings.js" />
+    <Content Include="js\TweenMax.min.js" />
     <Content Include="login.html" />
     <Content Include="Partials\AboutUs.html" />
     <Content Include="Partials\AddContent.html" />

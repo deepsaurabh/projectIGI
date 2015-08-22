@@ -13,6 +13,111 @@
         color: black;
         font-weight: 900;
     }
+
+
+    /*body {
+        overflow: hidden;
+        background-color: #000000;
+    }*/
+
+    .slider {
+        width: 800px;
+        height: 400px;
+        overflow: hidden;
+        position: relative;
+        /*background: #e6e6e6;*/
+        border: 20px solid #FFF;
+        margin-top: 20px;
+    }
+
+    .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .arrow {
+        position: absolute;
+        z-index: 1002;
+        display: block;
+        top: 50%;
+        margin-top: -35px;
+        width: 36px;
+        height: 71px;
+        outline: none;
+        cursor: pointer;
+        background: url(../assets/img/blank.gif) no-repeat;
+    }
+
+        .arrow.prev {
+            opacity: 0.2;
+            left: 20px;
+            background-image: url(../assets/img/paddle_prev_999.png);
+            transition: 0.2s linear all;
+        }
+
+        .arrow.next {
+            opacity: 0.2;
+            right: 20px;
+            background-image: url(../assets/img/paddle_next_999.png);
+            transition: 0.2s linear all;
+        }
+
+        .arrow.prev:hover {
+            opacity: 1;
+            background-image: url(../assets/img/paddle_prev_fff.png);
+        }
+
+        .arrow.next:hover {
+            opacity: 1;
+            background-image: url(../assets/img/paddle_next_fff.png);
+        }
+
+
+
+    /*---------------------------------------------------------
+NAV
+---------------------------------------------------------*/
+
+    .nonDraggableImage {
+        -webkit-user-drag: none;
+    }
+
+    .dots .dot {
+        position: relative;
+        margin: 0 8px;
+        width: 12px;
+        height: 12px;
+    }
+
+        .dots .dot a {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 6px;
+            height: 6px;
+            text-indent: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            background: #FFF;
+            border: 1px solid transparent;
+            outline: none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            -webkit-transition: background-color 0.25s, border-color 0.25s;
+            -moz-transition: background-color 0.25s, border-color 0.25s;
+            transition: background-color 0.25s, border-color 0.25s;
+        }
+
+            .dots .dot a.active {
+                border-color: #FFF;
+                background-color: transparent;
+            }
+
 </style>
 <!-- ========== TITLE START ========== -->
 <div class="title">
@@ -170,10 +275,43 @@
                     </div>
                     <!-- Admin Course End -->
 
-                    <div class="row col-sm-4 " data-ng-show="ToolkitList.freeContent.fileAttachment!=null && ToolkitList.freeContent.fileAttachment.length>0">
+                    <div class="container slider" data-ng-if="!isAdmin">
+                        <div ng-if="ToolkitList.freeContent.fileAttachment!=null && ToolkitList.freeContent.fileAttachment.length>0">
+                            <img ng-repeat="document in ToolkitList.freeContent.fileAttachment | filter : {isDeleted:false}"
+                                 class="slide slide-animation nonDraggableImage" ng-src="{{document.imageURL}}"
+                                 ng-hide="!isCurrentSlideIndex($index)">
+
+
+                            <a class="arrow prev" ng-click="nextSlide(1)"></a>
+                            <a class="arrow next" ng-click="prevSlide(1)"></a>
+                        </div>
+
+                        <div ng-if="ToolkitList.publicContent.fileAttachment!=null && ToolkitList.publicContent.fileAttachment.length>0">
+                            <img ng-repeat="document in ToolkitList.publicContent.fileAttachment | filter : {isDeleted:false}"
+                                 class="slide slide-animation nonDraggableImage" ng-src="{{document.imageURL}}"
+                                 ng-hide="!isCurrentSlideIndex($index)">
+
+
+                            <a class="arrow prev" ng-click="nextSlide(2)"></a>
+                            <a class="arrow next" ng-click="prevSlide(2)"></a>
+                        </div>
+
+                        <div ng-if="ToolkitList.paidContent.fileAttachment!=null && ToolkitList.paidContent.fileAttachment.length>0">
+                            <img ng-repeat="document in ToolkitList.paidContent.fileAttachment | filter : {isDeleted:false}"
+                                 class="slide slide-animation nonDraggableImage" ng-src="{{document.imageURL}}"
+                                 ng-hide="!isCurrentSlideIndex($index)">
+
+
+                            <a class="arrow prev" ng-click="nextSlide(3)"></a>
+                            <a class="arrow next" ng-click="prevSlide(3)"></a>
+                        </div>
+
+                    </div>
+
+                    <div class="row col-sm-4 " data-ng-if="isAdmin" data-ng-show="ToolkitList.freeContent.fileAttachment!=null && ToolkitList.freeContent.fileAttachment.length>0">
                         <a href="">Free Content Images</a>
                         <input data-ng-show="isAdmin" type="file" class="form-control" name="txtFileUpload" id="File1" title="Upload File"
-                            onchange="angular.element(this).scope().setFiles(this,1);">
+                               onchange="angular.element(this).scope().setFiles(this,1);">
                         <span ng-repeat="document in ToolkitList.freeContent.fileAttachment | filter : {isDeleted:false}">
                             <img src="{{document.imageURL}}" alt="" class="img-thumbnail" />
                             <div data-ng-show="isAdmin">
@@ -181,10 +319,10 @@
                             </div>
                         </span>
                     </div>
-                    <div class="col-sm-4 " data-ng-class="classInitialize(DocumentScope.PublicContent)" data-ng-show="ToolkitList.publicContent.fileAttachment!=null && ToolkitList.publicContent.fileAttachment.length>0">
+                    <div class="col-sm-4 " data-ng-if="isAdmin" data-ng-class="classInitialize(DocumentScope.PublicContent)" data-ng-show="ToolkitList.publicContent.fileAttachment!=null && ToolkitList.publicContent.fileAttachment.length>0">
                         <a href="">Public Content Images</a>
                         <input data-ng-show="isAdmin" type="file" class="form-control" name="txtFileUpload" id="File2" title="Upload File"
-                            onchange="angular.element(this).scope().setFiles(this,2);">
+                               onchange="angular.element(this).scope().setFiles(this,2);">
                         <div ng-repeat="document in ToolkitList.publicContent.fileAttachment | filter : {isDeleted:false}">
                             <img src="{{document.imageURL}}" alt="" class="img-thumbnail" />
                             <div data-ng-show="isAdmin">
@@ -192,10 +330,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4" data-ng-class="classInitialize(DocumentScope.PaidContent)" data-ng-show="ToolkitList.paidContent.fileAttachment!=null && ToolkitList.paidContent.fileAttachment.length>0">
+                    <div class="col-sm-4" data-ng-if="isAdmin" data-ng-class="classInitialize(DocumentScope.PaidContent)" data-ng-show="ToolkitList.paidContent.fileAttachment!=null && ToolkitList.paidContent.fileAttachment.length>0">
                         <a href="">Paid Content Images</a>
                         <input data-ng-show="isAdmin" type="file" class="form-control" name="txtFileUpload" id="txtFileUpload" title="Upload File"
-                            onchange="angular.element(this).scope().setFiles(this,3);">
+                               onchange="angular.element(this).scope().setFiles(this,3);">
                         <span ng-repeat="document in ToolkitList.paidContent.fileAttachment | filter : {isDeleted:false}">
                             <img src="{{document.imageURL}}" alt="" class="img-thumbnail" />
                             <div data-ng-show="isAdmin">

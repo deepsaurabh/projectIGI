@@ -1,8 +1,7 @@
 ﻿
-var app  = angular.module('IGI', ['ngRoute', 'Enterprise.Controller', 'Enterprise.Services', 'Enterprise.authServices'])
+var app = angular.module('IGI', ['ngRoute', 'Enterprise.Controller', 'Enterprise.Services', 'Enterprise.authServices'])
 
 .run(['$rootScope', function ($rootScope) {
-    //localStorage['webApiUrl'] = window.location.protocol + "//" + window.location.host + "/api/";
     localStorage['webApiUrl'] = 'http://localhost:51473/';
 
     $rootScope.userName = '';
@@ -39,7 +38,7 @@ var app  = angular.module('IGI', ['ngRoute', 'Enterprise.Controller', 'Enterpris
 
     
 }])
-
+    
 .config(['$routeProvider', function ($routeProvider) {    
     $routeProvider.when('/Home', { templateUrl: 'partials/Home.html', controller: 'homeController' });
     $routeProvider.when('/ContactUs', { templateUrl: 'partials/Contact.html', controller: 'contactController' });

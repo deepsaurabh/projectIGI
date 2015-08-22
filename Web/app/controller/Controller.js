@@ -1,4 +1,4 @@
-﻿angular.module('Enterprise.Controller', [])
+﻿angular.module('Enterprise.Controller', ['ngAnimate'])
 
 .controller('IndexController', ['$scope', 'authService', '$location', '$rootScope', function ($scope, authService, $location, $rootScope) {
     $scope.logout = function () {
@@ -311,6 +311,50 @@
         DocumentList.splice(index, 1);
     }
 
+    $scope.direction = 'left';
+    $scope.currentIndex = 0;
+
+    $scope.setCurrentSlideIndex = function (index) {
+        $scope.direction = (index > $scope.currentIndex) ? 'left' : 'right';
+        $scope.currentIndex = index;
+    };
+
+    $scope.isCurrentSlideIndex = function (index) {
+        return $scope.currentIndex === index;
+    };
+
+    $scope.prevSlide = function (index) {
+        if (index == 1) {
+            $scope.currentIndex = ($scope.currentIndex < $scope.CourseList.freeContent.fileAttachment.length - 1) ? ++$scope.currentIndex : 0;
+
+        }
+        else if (index == 2) {
+            $scope.currentIndex = ($scope.currentIndex < $scope.CourseList.publicContent.fileAttachment.length - 1) ? ++$scope.currentIndex : 0;
+
+        }
+        else if (index == 3) {
+            $scope.currentIndex = ($scope.currentIndex < $scope.CourseList.paidContent.fileAttachment.length - 1) ? ++$scope.currentIndex : 0;
+
+        }
+
+        $scope.direction = 'left';
+    };
+
+    $scope.nextSlide = function (index) {
+
+        if (index == 1) {
+            $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.CourseList.freeContent.fileAttachment.length - 1;
+        }
+        else if (index == 2) {
+            $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.CourseList.publicContent.fileAttachment.length - 1;
+        }
+        else if (index == 3) {
+            $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.CourseList.paidContent.fileAttachment.length - 1;
+        }
+
+        $scope.direction = 'right';
+    };
+
 }])
 
 .controller('toolkitController', ['$scope', 'EnterpriseService', '$filter', '$route', function ($scope, EnterpriseService, $filter, $route) {
@@ -594,6 +638,52 @@
         DocumentList.splice(index, 1);
     }
 
+
+    $scope.direction = 'left';
+    $scope.currentIndex = 0;
+
+    $scope.setCurrentSlideIndex = function (index) {
+        $scope.direction = (index > $scope.currentIndex) ? 'left' : 'right';
+        $scope.currentIndex = index;
+    };
+
+    $scope.isCurrentSlideIndex = function (index) {
+        return $scope.currentIndex === index;
+    };
+
+    $scope.prevSlide = function (index) {
+        if (index == 1) {
+            $scope.currentIndex = ($scope.currentIndex < $scope.ToolkitList.freeContent.fileAttachment.length - 1) ? ++$scope.currentIndex : 0;
+
+        }
+        else if (index == 2) {
+            $scope.currentIndex = ($scope.currentIndex < $scope.ToolkitList.publicContent.fileAttachment.length - 1) ? ++$scope.currentIndex : 0;
+
+        }
+        else if (index == 3) {
+            $scope.currentIndex = ($scope.currentIndex < $scope.ToolkitList.paidContent.fileAttachment.length - 1) ? ++$scope.currentIndex : 0;
+
+        }
+
+        $scope.direction = 'left';
+    };
+
+    $scope.nextSlide = function (index) {
+
+        if (index == 1) {
+            $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.ToolkitList.freeContent.fileAttachment.length - 1;
+        }
+        else if (index == 2) {
+            $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.ToolkitList.publicContent.fileAttachment.length - 1;
+        }
+        else if (index == 3) {
+            $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.ToolkitList.paidContent.fileAttachment.length - 1;
+        }
+
+        $scope.direction = 'right';
+    };
+
+
 }])
 
 .controller('loginController', ['$scope', 'authService', '$location', function ($scope, authService, $location) {
@@ -627,4 +717,41 @@
         });
 
     }
-}]);
+}])
+.animation('.slide-animation', function () {
+    return {
+        beforeAddClass: function (element, className, done) {
+            var scope = element.scope();
+
+            if (className == 'ng-hide') {
+                var finishPoint = element.parent().width();
+                if (scope.direction !== 'right') {
+                    finishPoint = -finishPoint;
+                }
+                TweenMax.to(element, 0.5, { left: finishPoint, onComplete: done });
+            }
+            else {
+                done();
+            }
+        },
+        removeClass: function (element, className, done) {
+            var scope = element.scope();
+
+            if (className == 'ng-hide') {
+                element.removeClass('ng-hide');
+
+                var startPoint = element.parent().width();
+                if (scope.direction === 'right') {
+                    startPoint = -startPoint;
+                }
+
+                TweenMax.fromTo(element, 0.5, { left: startPoint }, { left: 0, onComplete: done });
+            }
+            else {
+                done();
+            }
+        }
+    };
+})
+
+;
