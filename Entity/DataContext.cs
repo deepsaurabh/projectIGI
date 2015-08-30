@@ -87,4 +87,10 @@ namespace Entity
 
     }
 
+    public class CartConfiguration : BaseEntityConfiguration<Cart>
+    {
+        public CartConfiguration() { }
+
+    }
+
 }

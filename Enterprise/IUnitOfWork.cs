@@ -20,6 +20,7 @@ namespace Enterprise
         IRepository<CourseAttachmentMapping, Int64> CourseAttachmentRepository { get; }
         IRepository<ToolkitAttachmentMapping, Int64> ToolkitAttachmentRepository { get; }
         IRepository<UserPurchaseHistory, Int64> UserPurchaseHistoryRepository { get; }
+        IRepository<Cart, Int64> CartRepository { get; }
     }
 }
 

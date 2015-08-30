@@ -29,12 +29,25 @@ namespace Enterprise
         private IRepository<UserPurchaseHistory, Int64> _userPurchaseHistoryRepository;
         private IRepository<CourseAttachmentMapping, Int64> _courseAttachmentRepository;
         private IRepository<ToolkitAttachmentMapping, Int64> _toolkitAttachmentRepository;
+        private IRepository<Cart, Int64> _cartRepository;
   
         #endregion
 
         #region "RepositoryProperties"
 
         //Prepare the property for user profile repository
+
+        public IRepository<Cart, Int64> CartRepository
+        {
+            get
+            {
+                if (this._cartRepository == null)
+                {
+                    this._cartRepository = new GenericRepository<Cart, Int64>(UserContext);
+                }
+                return _cartRepository;
+            }
+        }
         public IRepository<User, Int64> UserRepository
         {
             get

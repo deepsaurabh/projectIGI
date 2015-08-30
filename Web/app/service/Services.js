@@ -93,5 +93,26 @@
                     });
                     return promise;
                 },
+
+                GetUserCart: function (Id) {
+                    return $http({
+                        method: 'Get',
+                        url: localStorage['webApiUrl'] + 'api/Cart/GetMyCart?userName=' + Id
+                    });
+                },
+                SaveCart: function (cartData) {
+                    return $http({
+                        method: 'POST',
+                        url: localStorage['webApiUrl'] + 'api/Cart/Post',
+                        data: cartData
+                    });
+                },
+
+                DeleteSpecificCart: function (Id) {
+                    return $http({
+                        method: 'Delete',
+                        url: localStorage['webApiUrl'] + 'api/Cart/Delete?Id=' + Id
+                    });
+                },
             }
         }]);

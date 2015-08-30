@@ -52,6 +52,7 @@
                     <ul data-ng-show="isLoggedIn">
                         <li>Welcome {{userName}}</li>
                         <li><a ng-click="logout()"><i class="fa"></i><span>Log Out</span></a></li>
+                        <li ng-if="isCustomer()"><a href="#Cart">Cart</a></li>
                     </ul>
                 </nav>
             </div>

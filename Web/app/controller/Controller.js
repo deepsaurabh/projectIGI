@@ -22,7 +22,7 @@
     $("#home").removeAttr("style");
 }])
 
-.controller('courseController', ['$scope', 'EnterpriseService', '$filter', '$route', function ($scope, EnterpriseService, $filter, $route) {
+.controller('courseController', ['$scope', 'EnterpriseService', '$filter', '$route', '$location', function ($scope, EnterpriseService, $filter, $route, $location) {
     $("#home").removeAttr("style");
     $scope.CurrencyType = [
         { Key: '1', Value: 'INR' },
@@ -172,13 +172,13 @@
         }
 
         //CourseList.endDate = new Date(angular.element('#EndDate').val());
-        
+
         //CourseList.startDate = new Date(angular.element('#StartDate').val());
 
         CourseList.endDate = angular.element('#EndDate').val();
 
         CourseList.startDate = angular.element('#StartDate').val();
-        
+
         EnterpriseService.SaveCourse(CourseList)
         .success(function () {
             alert('Course saved successfully');
@@ -355,9 +355,74 @@
         $scope.direction = 'right';
     };
 
+    $scope.AddToCart = function (course) {
+        if (localStorage && localStorage.getItem('authorizationData')) {
+            var authorizationDataString = localStorage.getItem('authorizationData');
+            authorizationData = JSON.parse(authorizationDataString);
+            if (authorizationData.role.toLowerCase() == "customer") {
+
+                var dataToSave = {
+                    type: "course",
+                    quantity: 1,
+                    ItemId: course.courseID,
+                    UserName: authorizationData.userName
+                };
+
+                EnterpriseService.SaveCart(dataToSave)
+               .success(function () {
+                   $location.url('/Cart');
+
+               })
+               .error(function () {
+                   alert("some error")
+               });
+            }
+            else if (authorizationData.role.toLowerCase() == "free") {
+                $location.url('/Login');
+            }
+        }
+        else {
+            $location.url('/Login');
+        }
+
+    }
+
 }])
 
-.controller('toolkitController', ['$scope', 'EnterpriseService', '$filter', '$route', function ($scope, EnterpriseService, $filter, $route) {
+.controller('toolkitController', ['$scope', 'EnterpriseService', '$filter', '$route', '$location', function ($scope, EnterpriseService, $filter, $route, $location) {
+
+    $scope.AddToCart = function (toolkit) {
+        if (localStorage && localStorage.getItem('authorizationData')) {
+            var authorizationDataString = localStorage.getItem('authorizationData');
+            authorizationData = JSON.parse(authorizationDataString);
+            if (authorizationData.role.toLowerCase() == "customer") {
+
+                var dataToSave = {
+                    type: "toolkit",
+                    quantity: 1,
+                    ItemId: toolkit.toolkitID,
+                    UserName: authorizationData.userName
+                };
+
+                EnterpriseService.SaveCart(dataToSave)
+               .success(function () {
+                   $location.url('/Cart');
+
+               })
+               .error(function () {
+                   alert("some error")
+               });
+            }
+            else if (authorizationData.role.toLowerCase() == "free") {
+                $location.url('/Login');
+            }
+        }
+        else {
+            $location.url('/Login');
+        }
+    }
+
+
     $("#home").removeAttr("style");
     $scope.CurrencyType = [
         { Key: '1', Value: 'INR' },
@@ -718,6 +783,89 @@
 
     }
 }])
+
+.controller('cartController', ['$scope', 'EnterpriseService', '$filter', '$route', '$rootScope',
+    function ($scope, EnterpriseService, $filter, $route, $rootScope) {
+        $("#home").removeAttr("style");
+        $scope.myContent = [];
+        $scope.total = 0;
+        $scope.showContent = function () {
+
+            if ($scope.myContent.length > 0) {
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+
+        $scope.update = function (id, quantity, price) {
+
+            var dataToSave = {
+                Id : id,
+                type: "toolkit",
+                quantity: quantity,
+                ItemId: id,
+                UserName: authorizationData.userName
+            };
+
+            EnterpriseService.SaveCart(dataToSave)
+              .success(function () {
+                  $scope.init();
+              })
+              .error(function () {
+                  alert("some error")
+              });
+           
+        }
+
+        $scope.payment = function () {
+            $scope.myContent = [];
+            $scope.total = 0;
+            //redirect to payment
+        }
+
+        $scope.remove = function (id) {
+
+            EnterpriseService.DeleteSpecificCart(id).success(function (data) {
+                $scope.init();
+
+            }).error(function () {
+            });
+
+
+        }
+
+        $scope.recount = function () {
+            $scope.total = 0;
+            for (var index in $scope.myContent) {
+                $scope.total = $scope.total + ($scope.myContent[index].price * $scope.myContent[index].quantity);
+            }
+        }
+
+        $scope.init = function () {
+            EnterpriseService.GetUserCart($rootScope.userName).success(function (data) {
+                if (data && data.cart) {
+                    $scope.myContent = data.cart;
+                    $scope.recount();
+                }
+
+            }).error(function () {
+            });
+
+            //$scope.myContent = [{"id" : 1, "type": "toolkit", "name": "wow 1", "quantity": "1", "price": "123" },
+            //{ "id": 2, "type": "toolkit", "name": "wow 1", "quantity": "1", "price": "123" },
+            //{ "id": 3, "type": "toolkit", "name": "wow 1", "quantity": "1", "price": "123" },
+            //{ "id": 4, "type": "toolkit", "name": "wow 1", "quantity": "1", "price": "123" },
+            //{ "id": 5, "type": "course", "name": "wow 1", "quantity": "1", "price": "123" },
+            //{ "id": 6, "type": "course", "name": "wow 1", "quantity": "1", "price": "123" },
+            //];
+
+        }
+
+        $scope.init();
+    }])
+
 .animation('.slide-animation', function () {
     return {
         beforeAddClass: function (element, className, done) {

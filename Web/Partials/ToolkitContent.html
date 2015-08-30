@@ -142,7 +142,7 @@ NAV
                 <!-- ==== FITER START == -->
                 <div class="widget" data-scroll-reveal>
                     <form role="form">
-                        <h3>Course List</h3>
+                        <h3>Toolkit List</h3>
                         <ul>
                             <li class="checkbox" ng-repeat="toolkit in Toolkits" ng-click="DisplayToolkit(toolkit);" ng-class="{'selectedItem':course.isSelected}">
                                 <label>{{toolkit.toolkitName}}</label>
@@ -197,6 +197,14 @@ NAV
                                 <div class="col-sm-12">
                                     <p>
                                         {{ToolkitList.paidContent.description}}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row" >
+                                <div class="col-sm-12">
+                                    <p>
+                                        <button type="submit" style="float: right;" class="btn btn-primary" data-ng-click="AddToCart(ToolkitList)">Add to Cart</button>
                                     </p>
                                 </div>
                             </div>
@@ -271,7 +279,12 @@ NAV
                                     </p>
                                 </div>
                             </div>
-                        </div>
+
+                            <div class="row" >
+                                <div class="col-sm-12">
+                                    <button type="submit" style="float: right;" class="btn btn-primary" data-ng-click="ToolkitList(CourseList)">Update</button>
+                                </div>
+                            </div>
                     </div>
                     <!-- Admin Course End -->
 

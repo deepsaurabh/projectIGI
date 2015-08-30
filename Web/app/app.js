@@ -51,6 +51,7 @@ var app = angular.module('IGI', ['ngRoute', 'Enterprise.Controller', 'Enterprise
     $routeProvider.when('/AddCourse', { templateUrl: 'partials/AddContent.html', controller: 'courseController' });
     $routeProvider.when('/PurchasedCourse', { templateUrl: 'partials/Courses.html', controller: 'courseController' });
     $routeProvider.when('/PurchasedToolkit', { templateUrl: 'partials/ToolkitContent.html', controller: 'toolkitController' });
+    $routeProvider.when('/Cart', { templateUrl: 'partials/Cart.html', controller: 'cartController' });
     $routeProvider.otherwise({ redirectTo: '/Home' });
 }]);
 
