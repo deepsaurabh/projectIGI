@@ -1,4 +1,5 @@
-﻿using Data.Enum;
+﻿using API.Security;
+using Data.Enum;
 using Data.ViewModel;
 using Entity.POCO;
 using System;
@@ -18,6 +19,7 @@ namespace API.Controllers
     [RoutePrefix("api/Course")]
     public class CourseController : BaseController
     {
+        [AuthorizeAppRole(AppRole.admin)]
         [Route("GetAllCourse")]
         public HttpResponseMessage GetAllCourse()
         {
@@ -26,6 +28,7 @@ namespace API.Controllers
             return this.Request.CreateResponse(HttpStatusCode.OK, new { Course = outCourse });
         }
 
+        [AuthorizeAppRole(AppRole.customer,AppRole.admin)]
         [Route("GetAllPublicCourse")]
         public HttpResponseMessage GetAllPublicCourse()
         {
@@ -41,6 +44,7 @@ namespace API.Controllers
 
             return this.Request.CreateResponse(HttpStatusCode.OK, new { Course = outCourse });
         }
+
 
         private CourseViewModel CreateCourseInstance(Course item, DocumentScope scope)
         {
@@ -111,6 +115,7 @@ namespace API.Controllers
             return courseModel;
         }
 
+        [AuthorizeAppRole(AppRole.admin,AppRole.customer)]
         [Route("GetAllPaidCourse")]
         public HttpResponseMessage GetAllPaidCourse()
         {
@@ -118,6 +123,7 @@ namespace API.Controllers
 
             return this.Request.CreateResponse(HttpStatusCode.OK, new { Course = outCourse });
         }
+
 
         [Route("GetAllCoursebyId")]
         public HttpResponseMessage GetAllCoursebyId(Int64 id, DocumentScope scope)
@@ -131,6 +137,7 @@ namespace API.Controllers
 
         }
 
+        [AuthorizeAppRole(AppRole.admin, AppRole.customer)]
         [Route("GetPublicCourseById")]
         public HttpResponseMessage GetPublicCourseById(Int64 id)
         {
@@ -160,6 +167,7 @@ namespace API.Controllers
             return this.Request.CreateResponse(HttpStatusCode.OK, new { Course = course });
         }
 
+        [AuthorizeAppRole(AppRole.admin, AppRole.customer)]
         [Route("GetPaidCourseById")]
         public HttpResponseMessage GetPaidCourseById(Int64 id)
         {
@@ -179,6 +187,7 @@ namespace API.Controllers
             return this.Request.CreateResponse(HttpStatusCode.OK, new { Course = outCourse });
         }
 
+        [AuthorizeAppRole(AppRole.admin)]
         [Route("Post")]
         public HttpResponseMessage Post(CourseViewModel viewModel)
         {
@@ -272,11 +281,12 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                return this.Request.CreateResponse(HttpStatusCode.BadRequest, ex);
+                return this.Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
             }
 
         }
 
+        [AuthorizeAppRole(AppRole.admin)]
         [Route("Put")]
         public HttpResponseMessage Put(Course model)
         {
@@ -300,6 +310,7 @@ namespace API.Controllers
             return this.Request.CreateResponse(HttpStatusCode.OK);
         }
 
+        [AuthorizeAppRole(AppRole.admin)]
         [Route("Delete")]
         public HttpResponseMessage Delete(int id)
         {
