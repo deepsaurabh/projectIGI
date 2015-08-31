@@ -17,3 +17,4 @@ D:\Project\ProjectIGI\trunk\Data\bin\Debug\Data.dll
 D:\Project\ProjectIGI\trunk\Data\bin\Debug\Data.pdb
 D:\Project\ProjectIGI\trunk\Data\obj\Debug\Data.dll
 D:\Project\ProjectIGI\trunk\Data\obj\Debug\Data.pdb
+D:\Project\ProjectIGI\trunk\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache

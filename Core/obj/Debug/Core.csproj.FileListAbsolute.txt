@@ -32,3 +32,4 @@ D:\Project\ProjectIGI\trunk\Core\bin\Debug\EntityFramework.xml
 D:\Project\ProjectIGI\trunk\Core\bin\Debug\EntityFramework.SqlServer.xml
 D:\Project\ProjectIGI\trunk\Core\obj\Debug\Core.dll
 D:\Project\ProjectIGI\trunk\Core\obj\Debug\Core.pdb
+D:\Project\ProjectIGI\trunk\Core\obj\Debug\Core.csprojResolveAssemblyReference.cache

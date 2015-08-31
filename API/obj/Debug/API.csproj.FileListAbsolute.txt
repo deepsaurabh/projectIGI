@@ -179,3 +179,5 @@ D:\Project\ProjectIGI\trunk\API\bin\System.Web.WebPages.Razor.xml
 D:\Project\ProjectIGI\trunk\API\obj\Debug\API.csprojResolveAssemblyReference.cache
 D:\Project\ProjectIGI\trunk\API\obj\Debug\API.dll
 D:\Project\ProjectIGI\trunk\API\obj\Debug\API.pdb
+D:\Project\ProjectIGI\trunk\API\bin\MySql.Data.dll
+D:\Project\ProjectIGI\trunk\API\bin\MySql.Data.Entity.EF6.dll

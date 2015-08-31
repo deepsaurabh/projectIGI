@@ -57,6 +57,14 @@
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.9.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.7\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.7\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -74,43 +82,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthContext.cs" />
-    <Compile Include="Migrations\201507310409173_AddUserEntity.cs" />
-    <Compile Include="Migrations\201507310409173_AddUserEntity.Designer.cs">
-      <DependentUpon>201507310409173_AddUserEntity.cs</DependentUpon>
+    <Compile Include="Migrations\201508281755483_Initial_Migration.cs" />
+    <Compile Include="Migrations\201508281755483_Initial_Migration.Designer.cs">
+      <DependentUpon>201508281755483_Initial_Migration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508010827488_CourseAndToolkit.cs" />
-    <Compile Include="Migrations\201508010827488_CourseAndToolkit.Designer.cs">
-      <DependentUpon>201508010827488_CourseAndToolkit.cs</DependentUpon>
+    <Compile Include="Migrations\201508311635266_AspNetRoles_Migration.cs" />
+    <Compile Include="Migrations\201508311635266_AspNetRoles_Migration.Designer.cs">
+      <DependentUpon>201508311635266_AspNetRoles_Migration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508010841393_AddedConstraint.cs" />
-    <Compile Include="Migrations\201508010841393_AddedConstraint.Designer.cs">
-      <DependentUpon>201508010841393_AddedConstraint.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508011154281_PurchaseHistory.cs" />
-    <Compile Include="Migrations\201508011154281_PurchaseHistory.Designer.cs">
-      <DependentUpon>201508011154281_PurchaseHistory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508031642515_Updated_CourseAttachment_Table.cs" />
-    <Compile Include="Migrations\201508031642515_Updated_CourseAttachment_Table.Designer.cs">
-      <DependentUpon>201508031642515_Updated_CourseAttachment_Table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508031704511_Added_CourseAttachmentMapping.cs" />
-    <Compile Include="Migrations\201508031704511_Added_CourseAttachmentMapping.Designer.cs">
-      <DependentUpon>201508031704511_Added_CourseAttachmentMapping.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508161625188_unknown.cs" />
-    <Compile Include="Migrations\201508161625188_unknown.Designer.cs">
-      <DependentUpon>201508161625188_unknown.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508190418334_remove-date-toolkit.cs" />
-    <Compile Include="Migrations\201508190418334_remove-date-toolkit.Designer.cs">
-      <DependentUpon>201508190418334_remove-date-toolkit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508301807100_cart.cs" />
-    <Compile Include="Migrations\201508301807100_cart.Designer.cs">
-      <DependentUpon>201508301807100_cart.cs</DependentUpon>
+    <Compile Include="Migrations\201508311648575_Added_Cart_Table.cs" />
+    <Compile Include="Migrations\201508311648575_Added_Cart_Table.Designer.cs">
+      <DependentUpon>201508311648575_Added_Cart_Table.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\MySqlHistoryContext.cs" />
+    <Compile Include="MySqlConfiguration.cs" />
+    <Compile Include="MySqlInitializer.cs" />
     <Compile Include="POCO\Cart.cs" />
     <Compile Include="POCO\Course.cs" />
     <Compile Include="POCO\CourseDocument.cs" />
@@ -140,32 +127,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201507310409173_AddUserEntity.resx">
-      <DependentUpon>201507310409173_AddUserEntity.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201508281755483_Initial_Migration.resx">
+      <DependentUpon>201508281755483_Initial_Migration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508010827488_CourseAndToolkit.resx">
-      <DependentUpon>201508010827488_CourseAndToolkit.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201508311635266_AspNetRoles_Migration.resx">
+      <DependentUpon>201508311635266_AspNetRoles_Migration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508010841393_AddedConstraint.resx">
-      <DependentUpon>201508010841393_AddedConstraint.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508011154281_PurchaseHistory.resx">
-      <DependentUpon>201508011154281_PurchaseHistory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508031642515_Updated_CourseAttachment_Table.resx">
-      <DependentUpon>201508031642515_Updated_CourseAttachment_Table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508031704511_Added_CourseAttachmentMapping.resx">
-      <DependentUpon>201508031704511_Added_CourseAttachmentMapping.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508161625188_unknown.resx">
-      <DependentUpon>201508161625188_unknown.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508190418334_remove-date-toolkit.resx">
-      <DependentUpon>201508190418334_remove-date-toolkit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508301807100_cart.resx">
-      <DependentUpon>201508301807100_cart.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201508311648575_Added_Cart_Table.resx">
+      <DependentUpon>201508311648575_Added_Cart_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

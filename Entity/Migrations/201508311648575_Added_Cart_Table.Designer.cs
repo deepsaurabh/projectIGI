@@ -7,13 +7,13 @@ namespace Entity.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class PurchaseHistory : IMigrationMetadata
+    public sealed partial class Added_Cart_Table : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(PurchaseHistory));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Added_Cart_Table));
         
         string IMigrationMetadata.Id
         {
-            get { return "201508011154281_PurchaseHistory"; }
+            get { return "201508311648575_Added_Cart_Table"; }
         }
         
         string IMigrationMetadata.Source

@@ -1,5 +1,8 @@
 ﻿using Core;
 using Entity.POCO;
+using MySql.Data.Entity;
+using System.Data.Entity;
+using System.Data.Entity.Migrations.History;
 
 namespace Entity
 {
@@ -8,6 +11,8 @@ namespace Entity
     /// Created By : Ashish Kumar
     /// Created On : 07/04/2014
     /// </summary>
+
+    [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class DataContext : BaseDataContext
     {
         public DataContext(string connectionName)
@@ -16,8 +21,9 @@ namespace Entity
 
         public override string GetSchemaName()
         {
-            return "Enterprise";
-        }
+            return "";
+        }      
+        
     }
 
     public class UserConfiguration : BaseEntityConfiguration<User>
@@ -28,8 +34,9 @@ namespace Entity
 
     public class CourseConfiguration : BaseEntityConfiguration<Course>
     {
-        public CourseConfiguration() {
-            
+        public CourseConfiguration()
+        {
+
         }
 
     }
@@ -62,15 +69,17 @@ namespace Entity
 
     public class ToolkitConfiguration : BaseEntityConfiguration<Toolkit>
     {
-        public ToolkitConfiguration() {
-            
+        public ToolkitConfiguration()
+        {
+
         }
 
     }
 
     public class CourseDocumentConfiguration : BaseEntityConfiguration<AttachedDocument>
     {
-        public CourseDocumentConfiguration() {
+        public CourseDocumentConfiguration()
+        {
         }
 
     }

@@ -97,3 +97,5 @@ D:\Project\ProjectIGI\trunk\Enterprise\bin\Debug\Newtonsoft.Json.xml
 D:\Project\ProjectIGI\trunk\Enterprise\obj\Debug\Enterprise.csprojResolveAssemblyReference.cache
 D:\Project\ProjectIGI\trunk\Enterprise\obj\Debug\Enterprise.dll
 D:\Project\ProjectIGI\trunk\Enterprise\obj\Debug\Enterprise.pdb
+D:\Project\ProjectIGI\trunk\Enterprise\bin\Debug\MySql.Data.Entity.EF6.dll
+D:\Project\ProjectIGI\trunk\Enterprise\bin\Debug\MySql.Data.dll

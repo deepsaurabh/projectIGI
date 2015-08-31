@@ -7,13 +7,13 @@ namespace Entity.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Updated_Existing_Table : IMigrationMetadata
+    public sealed partial class AspNetRoles_Migration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Updated_Existing_Table));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AspNetRoles_Migration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201508150529062_Updated_Existing_Table"; }
+            get { return "201508311635266_AspNetRoles_Migration"; }
         }
         
         string IMigrationMetadata.Source
