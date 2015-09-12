@@ -1,0 +1,159 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $('.datepicker').datepicker({
+            autoclose: true,
+            todayBtn: true,
+            todayHighlight: true
+        });
+    });
+</script>
+
+<style>
+    p {
+        margin: 12px 0 11px;
+    }
+</style>
+
+<!-- ========== TITLE START ========== -->
+<div class="title">
+    <div class="title-image"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+               My Cart
+           
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== TITLE END ========== -->
+
+<!-- ========== CONTENT START ========== -->
+
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <!-- ==== COURSES START == -->
+            <div class="col-sm-12">
+                <form role="form" name="course-form" id="course-form">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2">
+                                <p>
+                                    <label for="login-input-login">Content Type</label>
+                                </p>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <p>
+                                    <label for="login-input-login">Content Name</label>
+                                </p>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <p>
+                                    <label for="login-input-login">Quantity</label>
+                                </p>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <p>
+                                    <label for="login-input-login">Price</label>
+                                </p>
+                            </div>
+
+                            <div class="col-md-2 col-sm-2">
+                                <p>
+                                    <label for="login-input-login">Total</label>
+                                </p>
+                            </div>
+
+                            <div class="col-md-2 col-sm-2">
+                                <p>
+                                    <label for="login-input-login">Remove</label>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--{{myContent}}-->
+                    <div class="col-sm-12" ng-if="showContent()">
+                        <div class="row" ng-repeat="content in myContent">
+                            <div class="col-md-2 col-sm-2">
+                                <p>
+                                    <label for="login-input-login">{{content.type}}</label>
+                                </p>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <p>
+                                    <label for="login-input-login">{{content.name}}</label>
+                                </p>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <p>
+                                    <select class="form-control" data-ng-model="content.quantity" ng-change="update(content.id,content.quantity,content.price)">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="9">10</option>
+                                    </select>
+                                </p>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <p>
+                                    <label for="login-input-login">{{content.price}}</label>
+                                </p>
+                            </div>
+
+                            <div class="col-md-2 col-sm-2">
+                                <p>
+                                    <label for="login-input-login">{{content.price * content.quantity}}</label>
+                                </p>
+                            </div>
+
+                            <div class="col-md-2 col-sm-2">
+                                <p>
+                                    <button type="submit" class="btn btn-primary" data-ng-click="remove(content.id)">Remove</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12" ng-if="!showContent()">
+                        <div class="row">
+                            No content exist!
+                            </div>  
+                    </div>
+
+                    <div class="col-sm-12" ng-if="showContent()">
+                        <div class="col-sm-9">
+                            <p>
+                                <label for="login-input-login" style="
+                                       float :  right;
+                                       font-size : 17px;
+                                       font-weight : 900; ">Grand Total = {{total}}  Rs</label>
+
+                            </p>
+                        </div>
+                     
+                    </div>
+
+                    <div class="col-sm-12" ng-if="showContent()">
+                        
+                        <div class="col-sm-9">
+
+                            <button type="submit" style="float: right;" class="btn btn-primary" data-ng-click="payment()">Payment</button>
+                        </div>
+                    </div>
+
+                   
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== CONTENT END ========== -->

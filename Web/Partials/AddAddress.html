@@ -1,0 +1,100 @@
+﻿
+<!-- ========== TITLE START ========== -->
+<div class="title">
+    <div class="title-image"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                Add Address
+           
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== TITLE END ========== -->
+
+<!-- ========== CONTENT START ========== -->
+
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <!-- ==== COURSES START == -->
+            <div class="col-sm-12">
+                <form role="form" name="course-form" id="course-form">
+                    <div class="col-sm-12">
+
+                        <div class="row">
+                            <div class="col-md-8 col-sm-8">
+                                <p>
+                                    <label>Contact Person Name</label>
+                                    <textarea maxlength="1000" class="form-control" id="Name" data-ng-model="Address.Name" placeholder="Name"></textarea>
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-8 col-sm-8">
+                                <p>
+                                    <label>Address</label>
+                                        <textarea maxlength="1000" class="form-control" id="Address" data-ng-model="Address.CompleteAddress" placeholder="Address"></textarea>
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3">
+                                <p>
+                                    <label>City</label>
+                                    <input type="text" maxlength="255" class="form-control" data-ng-model="Address.City" id="login-input-login" placeholder="City">
+                                </p>
+                            </div>
+
+                            <div class="col-md-3 col-sm-3">
+                                <p>
+                                    <label>State</label>
+                                    <input type="text" maxlength="255" class="form-control" data-ng-model="Address.State" id="login-input-login" placeholder="State">
+                                </p>
+                            </div>
+
+                            <div class="col-md-2 col-sm-2">
+                                <p>
+                                    <label>Pin Code</label>
+                                    <input type="text" maxlength="255" class="form-control" data-ng-model="Address.PinCode" id="login-input-login" placeholder="Pin Code">
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4">
+                                <p>
+                                    <label>Phone Number</label>
+                                    <input type="text" maxlength="255" class="form-control" data-ng-model="Address.PhoneNumber" id="login-input-login" placeholder="Phone Number">
+                                </p>
+                            </div>
+
+                            <div class="col-md-4 col-sm-4">
+                                <p>
+                                    <label>Email Address</label>
+                                    <input type="text" maxlength="255" class="form-control" data-ng-model="Address.EmailAddress" id="login-input-login" placeholder="Email Address">
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-8 col-sm-8">
+                                <p>
+                                    <button type="submit" class="btn btn-primary" data-ng-click="SaveAddressAndCheckOut(Address)">CheckOut</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>                    
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== CONTENT END ========== -->
