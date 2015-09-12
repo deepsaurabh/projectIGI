@@ -21,6 +21,7 @@ namespace Enterprise
         IRepository<ToolkitAttachmentMapping, Int64> ToolkitAttachmentRepository { get; }
         IRepository<UserPurchaseHistory, Int64> UserPurchaseHistoryRepository { get; }
         IRepository<Cart, Int64> CartRepository { get; }
+        IRepository<CheckOutAddress, Int64> CheckOutAddressRepository { get; }
     }
 }
 

@@ -114,5 +114,18 @@
                         url: localStorage['webApiUrl'] + 'api/Cart/Delete?Id=' + Id
                     });
                 },
+                GetUserAddress: function (Id) {
+                    return $http({
+                        method: 'Get',
+                        url: localStorage['webApiUrl'] + 'api/CheckoutAddress/GetMyAddress?userName=' + Id
+                    });
+                },
+                SaveAddress: function (cartData) {
+                    return $http({
+                        method: 'POST',
+                        url: localStorage['webApiUrl'] + 'api/CheckoutAddress/Post',
+                        data: cartData
+                    });
+                },
             }
         }]);

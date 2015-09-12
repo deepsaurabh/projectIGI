@@ -784,8 +784,8 @@
     }
 }])
 
-.controller('cartController', ['$scope', 'EnterpriseService', '$filter', '$route', '$rootScope',
-    function ($scope, EnterpriseService, $filter, $route, $rootScope) {
+.controller('cartController', ['$scope', 'EnterpriseService', '$filter', '$route', '$rootScope','$location',
+    function ($scope, EnterpriseService, $filter, $route, $rootScope, $location) {
         $("#home").removeAttr("style");
         $scope.myContent = [];
         $scope.total = 0;
@@ -820,8 +820,7 @@
         }
 
         $scope.payment = function () {
-            $scope.myContent = [];
-            $scope.total = 0;
+            $location.url('/Address');
             //redirect to payment
         }
 
@@ -866,6 +865,49 @@
         $scope.init();
     }])
 
+    .controller('addressController', ['$scope', 'EnterpriseService', '$filter', '$route', '$rootScope',
+    function ($scope, EnterpriseService, $filter, $route, $rootScope) {
+        $("#home").removeAttr("style");
+        $scope.Address = {};
+        $scope.id = 0;
+        $scope.init = function () {
+            EnterpriseService.GetUserAddress($rootScope.userName).success(function (data) {
+                if (data && data.address) {
+                    if (data.address != null){
+                        $scope.Address.City = data.address.city;
+                        $scope.Address.CompleteAddress = data.address.completeAddress;
+                        $scope.Address.State = data.address.state;
+                        $scope.Address.Name = data.address.name;
+                        $scope.Address.PinCode = data.address.pinCode;
+                        $scope.Address.PhoneNumber = data.address.phoneNumber;
+                        $scope.Address.EmailAddress = data.address.emailAddress;
+                        $scope.id = data.address.id;
+                        $scope.Address.Id = data.address.id;
+                    }
+
+                    //$scope.Address = data.address;
+                }
+
+            }).error(function () {
+            });
+
+        }
+
+        $scope.SaveAddressAndCheckOut = function (address) {
+            address.Id = $scope.id;
+            address.UserName = $rootScope.userName;
+            EnterpriseService.SaveAddress(address)
+              .success(function () {
+                  $scope.init();
+              })
+              .error(function () {
+                  alert("some error")
+              });
+        }
+
+        $scope.init();
+    }])
+
 .animation('.slide-animation', function () {
     return {
         beforeAddClass: function (element, className, done) {
@@ -901,5 +943,4 @@
         }
     };
 })
-
 ;

@@ -159,6 +159,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CheckoutAddressController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\CustomerPurchaseHistoryController.cs" />

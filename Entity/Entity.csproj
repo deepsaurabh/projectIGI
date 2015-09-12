@@ -94,10 +94,22 @@
     <Compile Include="Migrations\201508311648575_Added_Cart_Table.Designer.cs">
       <DependentUpon>201508311648575_Added_Cart_Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509110323434_AddCheckoutTables.cs" />
+    <Compile Include="Migrations\201509110323434_AddCheckoutTables.Designer.cs">
+      <DependentUpon>201509110323434_AddCheckoutTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509121711494_Added_name_with_address.cs" />
+    <Compile Include="Migrations\201509121711494_Added_name_with_address.Designer.cs">
+      <DependentUpon>201509121711494_Added_name_with_address.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+<<<<<<< HEAD
     <Compile Include="Migrations\MySqlHistoryContext.cs" />
     <Compile Include="MySqlConfiguration.cs" />
     <Compile Include="MySqlInitializer.cs" />
+=======
+    <Compile Include="POCO\CheckOutAddress.cs" />
+>>>>>>> more work done
     <Compile Include="POCO\Cart.cs" />
     <Compile Include="POCO\Course.cs" />
     <Compile Include="POCO\CourseDocument.cs" />
@@ -135,6 +147,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508311648575_Added_Cart_Table.resx">
       <DependentUpon>201508311648575_Added_Cart_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509110323434_AddCheckoutTables.resx">
+      <DependentUpon>201509110323434_AddCheckoutTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509121711494_Added_name_with_address.resx">
+      <DependentUpon>201509121711494_Added_name_with_address.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

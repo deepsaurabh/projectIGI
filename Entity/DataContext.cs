@@ -102,4 +102,10 @@ namespace Entity
 
     }
 
+    public class CheckOutAddressConfiguration : BaseEntityConfiguration<CheckOutAddress>
+    {
+        public CheckOutAddressConfiguration() { }
+
+    }
+
 }

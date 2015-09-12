@@ -96,6 +96,7 @@
     <Content Include="js\TweenMax.min.js" />
     <Content Include="login.html" />
     <Content Include="Partials\AboutUs.html" />
+    <Content Include="Partials\AddAddress.html" />
     <Content Include="Partials\Cart.html" />
     <Content Include="Partials\AddContent.html" />
     <Content Include="Partials\AddToolkitContent.html" />

@@ -29,6 +29,7 @@ namespace Enterprise
         private IRepository<UserPurchaseHistory, Int64> _userPurchaseHistoryRepository;
         private IRepository<CourseAttachmentMapping, Int64> _courseAttachmentRepository;
         private IRepository<ToolkitAttachmentMapping, Int64> _toolkitAttachmentRepository;
+        private IRepository<CheckOutAddress, Int64> _checkOutAddressRepository;
         private IRepository<Cart, Int64> _cartRepository;
   
         #endregion
@@ -36,6 +37,18 @@ namespace Enterprise
         #region "RepositoryProperties"
 
         //Prepare the property for user profile repository
+
+        public IRepository<CheckOutAddress, long> CheckOutAddressRepository
+        {
+            get
+            {
+                if (this._checkOutAddressRepository == null)
+                {
+                    this._checkOutAddressRepository = new GenericRepository<CheckOutAddress, Int64>(UserContext);
+                }
+                return _checkOutAddressRepository;
+            }
+        }
 
         public IRepository<Cart, Int64> CartRepository
         {
@@ -181,6 +194,9 @@ namespace Enterprise
        }
 
         #endregion
+
+
+
 
 
 
